@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26411ee9798be2346a36a92e59856a65, type: 3}
+  m_Name: Steel
+  m_EditorClassIdentifier: 
+  typeName: Steel
+  superEffectiveAgainst:
+  - {fileID: 11400000, guid: f553b519ccede4843a2bfe432d814035, type: 2}
+  - {fileID: 11400000, guid: cbaac59fb858da04b9b3ed8a8dc4f97e, type: 2}
+  - {fileID: 11400000, guid: 41f7cd986970c0642b65ec42e7ea757c, type: 2}
+  notVeryEffectiveAgainst:
+  - {fileID: 11400000, guid: fa4dd0be38ab4134da4f80de3c42dfad, type: 2}
+  - {fileID: 11400000, guid: f3d4fd7d1359b6841b6e98e0cad27e4e, type: 2}
+  - {fileID: 11400000, guid: c4ac70fcb86e0614b9d7305048bc56e2, type: 2}
+  - {fileID: 11400000}
+  doesNotEffect: []
