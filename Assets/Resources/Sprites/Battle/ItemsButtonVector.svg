@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   sodipodi:docname="ItemsButtonVector.svg"
+   inkscape:export-filename="C:\Users\aniki\dev\PocketWarriorMonsters\Assets\Resources\Sprites\Battle\ItemMenuButtonBlack.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ababab"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="px"
+     showgrid="false"
+     inkscape:zoom="1.4274901"
+     inkscape:cx="397.11042"
+     inkscape:cy="194.641"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath12963">
+      <rect
+         id="rect12965"
+         width="67.73333"
+         height="16.933332"
+         x="35.794025"
+         y="35.314693"
+         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.176057"
+         ry="8.4666662"
+         inkscape:export-filename="C:\Users\aniki\dev\PocketWarriorMonsters\Assets\Resources\Sprites\Battle\MenuButton.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath24517">
+      <rect
+         id="rect24519"
+         width="67.73333"
+         height="16.933332"
+         x="35.794025"
+         y="35.314693"
+         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.176057"
+         ry="8.4666662"
+         inkscape:export-filename="C:\Users\aniki\dev\PocketWarriorMonsters\Assets\Resources\Sprites\Battle\MenuButton.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"
+         transform="rotate(29.551133)" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath24521">
+      <rect
+         id="rect24523"
+         width="67.73333"
+         height="16.933332"
+         x="35.794025"
+         y="35.314693"
+         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.176057"
+         ry="8.4666662"
+         inkscape:export-filename="C:\Users\aniki\dev\PocketWarriorMonsters\Assets\Resources\Sprites\Battle\MenuButton.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"
+         transform="rotate(29.551133)" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath24525">
+      <rect
+         id="rect24527"
+         width="67.73333"
+         height="16.933332"
+         x="35.794025"
+         y="35.314693"
+         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.176057"
+         ry="8.4666662"
+         inkscape:export-filename="C:\Users\aniki\dev\PocketWarriorMonsters\Assets\Resources\Sprites\Battle\MenuButton.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"
+         transform="rotate(-150.44887)" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath24529">
+      <rect
+         id="rect24531"
+         width="67.73333"
+         height="16.933332"
+         x="35.794025"
+         y="35.314693"
+         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.176057"
+         ry="8.4666662"
+         inkscape:export-filename="C:\Users\aniki\dev\PocketWarriorMonsters\Assets\Resources\Sprites\Battle\MenuButton.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"
+         transform="rotate(-150.44887)" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath24533">
+      <rect
+         id="rect24535"
+         width="67.73333"
+         height="16.933332"
+         x="35.794025"
+         y="35.314693"
+         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.176057"
+         ry="8.4666662"
+         inkscape:export-filename="C:\Users\aniki\dev\PocketWarriorMonsters\Assets\Resources\Sprites\Battle\MenuButton.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"
+         transform="rotate(29.551133)" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath24537">
+      <rect
+         id="rect24539"
+         width="67.73333"
+         height="16.933332"
+         x="35.794025"
+         y="35.314693"
+         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.176057"
+         ry="8.4666662"
+         inkscape:export-filename="C:\Users\aniki\dev\PocketWarriorMonsters\Assets\Resources\Sprites\Battle\MenuButton.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath24541">
+      <rect
+         id="rect24543"
+         width="67.73333"
+         height="16.933332"
+         x="35.794025"
+         y="35.314693"
+         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.176057"
+         ry="8.4666662"
+         inkscape:export-filename="C:\Users\aniki\dev\PocketWarriorMonsters\Assets\Resources\Sprites\Battle\MenuButton.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"
+         transform="rotate(29.551133)" />
+    </clipPath>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       id="rect31"
+       width="67.73333"
+       height="16.933332"
+       x="35.794025"
+       y="35.314693"
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.176057"
+       ry="8.4666662"
+       inkscape:export-filename="C:\Users\aniki\dev\PocketWarriorMonsters\Assets\Resources\Sprites\Battle\MenuButton.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <rect
+       style="fill:#000000;fill-opacity:1;stroke:#ffccaa;stroke-width:1.05833334;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect10224"
+       width="17.903212"
+       height="6.8715177"
+       x="47.780411"
+       y="84.15181"
+       rx="1.3261626"
+       ry="0.66072166"
+       transform="rotate(-29.551133)"
+       clip-path="url(#clipPath24541)" />
+    <path
+       id="path10000"
+       style="fill:#000000;stroke:#ffccaa;stroke-width:1.05833334;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 84.033377,42.783759 a 4.8706276,4.6025732 60.44887 0 1 -0.390592,-5.115696 4.8706276,4.6025732 60.44887 0 1 4.297853,-2.354681 4.8706276,4.6025732 60.44887 0 1 4.113909,3.075792"
+       clip-path="url(#clipPath24537)" />
+    <rect
+       style="fill:#000000;fill-opacity:1;stroke:#ffccaa;stroke-width:1.05833334;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect9220"
+       width="13.399149"
+       height="9.7099333"
+       x="50.031651"
+       y="82.502678"
+       rx="0.9925288"
+       ry="0.93364578"
+       transform="rotate(-29.551133)"
+       clip-path="url(#clipPath24533)" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#ffccaa;stroke-width:1.05833334;stroke-miterlimit:4;stroke-dasharray:none"
+       id="path9270"
+       sodipodi:type="arc"
+       sodipodi:cx="-56.719566"
+       sodipodi:cy="-83.487595"
+       sodipodi:rx="6.6879125"
+       sodipodi:ry="6.690073"
+       sodipodi:start="0"
+       sodipodi:end="3.1415927"
+       sodipodi:open="true"
+       sodipodi:arc-type="arc"
+       transform="rotate(150.44887)"
+       d="m -50.031654,-83.487595 a 6.6879125,6.690073 0 0 1 -3.343956,5.793774 6.6879125,6.690073 0 0 1 -6.687913,-10e-7 6.6879125,6.690073 0 0 1 -3.343956,-5.793773"
+       clip-path="url(#clipPath24529)" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#ffccaa;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none"
+       id="path9654"
+       sodipodi:type="arc"
+       sodipodi:cx="-56.682034"
+       sodipodi:cy="-84.227989"
+       sodipodi:rx="3.9795628"
+       sodipodi:ry="4.5231342"
+       sodipodi:start="0.26179939"
+       sodipodi:end="2.8797933"
+       sodipodi:arc-type="arc"
+       transform="rotate(150.44887)"
+       sodipodi:open="true"
+       d="m -52.838071,-83.057316 a 3.9795628,4.5231342 0 0 1 -3.843963,3.352461 3.9795628,4.5231342 0 0 1 -3.843962,-3.352461"
+       clip-path="url(#clipPath24525)" />
+    <circle
+       style="fill:#000000;fill-opacity:1;stroke:#ffccaa;stroke-width:0.908407;stroke-miterlimit:4;stroke-dasharray:none"
+       id="path9678"
+       cx="56.746662"
+       cy="82.595352"
+       r="0.45420378"
+       transform="rotate(-29.551133)"
+       clip-path="url(#clipPath24521)" />
+    <rect
+       style="fill:#000000;fill-opacity:1;stroke:#ffccaa;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect9998"
+       width="8.8949699"
+       height="4.2528019"
+       x="52.29475"
+       y="85.618546"
+       rx="0.65888613"
+       ry="0.40892261"
+       transform="rotate(-29.551133)"
+       clip-path="url(#clipPath24517)" />
+  </g>
+</svg>

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BattleController : MonoBehaviour
 {
@@ -16,6 +17,17 @@ public class BattleController : MonoBehaviour
     public FieldSlotController[] enemyFieldSlots = new FieldSlotController[3];
 
     public GameObject BattleMessage;
+
+    public List<KeyValuePair<GameObject, UnityAction>> buttonActions;
+
+    private BattlePhase battlePhase = BattlePhase.PLAYER_PLANNING;
+
+    public enum BattlePhase
+    {
+        PLAYER_PLANNING,
+        ENEMY_PLANNING,
+        BATTLE
+    }
     // Start is called before the first frame update
     void Start()
     {

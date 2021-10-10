@@ -1,0 +1,592 @@
+fileFormatVersion: 2
+guid: db7fedb7e7933894191779174259c4c6
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2355541054655408848
+    second: MoveButtons_0
+  - first:
+      213: 8004879564192281152
+    second: MoveButtons_1
+  - first:
+      213: 1375205842379716133
+    second: MoveButtons_2
+  - first:
+      213: -8125916611379665720
+    second: MoveButtons_3
+  - first:
+      213: 6899581899010768566
+    second: MoveButtons_4
+  - first:
+      213: 6486726932319795369
+    second: MoveButtons_5
+  - first:
+      213: -4619128944943266411
+    second: MoveButtons_6
+  - first:
+      213: 3928685310364114028
+    second: MoveButtons_7
+  - first:
+      213: -7077067067941628339
+    second: MoveButtons_8
+  - first:
+      213: -8104052242353114744
+    second: MoveButtons_9
+  - first:
+      213: 2491361513665203788
+    second: MoveButtons_10
+  - first:
+      213: 4838252126837520418
+    second: MoveButtons_11
+  - first:
+      213: 6938278743997433231
+    second: MoveButtons_12
+  - first:
+      213: -5495754875413343953
+    second: MoveButtons_13
+  - first:
+      213: -363994571957397251
+    second: MoveButtons_14
+  - first:
+      213: 7079049711356124096
+    second: MoveButtons_15
+  - first:
+      213: -2516148462871868473
+    second: MoveButtons_16
+  - first:
+      213: -4716973781428040750
+    second: MoveButtons_17
+  - first:
+      213: -7838429108151670300
+    second: MoveButtons_0
+  - first:
+      213: 2806228900627973526
+    second: MoveButtons_1
+  - first:
+      213: -777274437090651505
+    second: MoveButtons_2
+  - first:
+      213: 3157055571859808879
+    second: MoveButtons_3
+  - first:
+      213: 2405643685206599526
+    second: MoveButtons_4
+  - first:
+      213: 8445653506736062009
+    second: MoveButtons_5
+  - first:
+      213: 3378368410757879063
+    second: MoveButtons_6
+  - first:
+      213: 5040500243003163066
+    second: MoveButtons_7
+  - first:
+      213: 4530496645725686404
+    second: MoveButtons_8
+  - first:
+      213: 1694647812534174329
+    second: MoveButtons_9
+  - first:
+      213: 4960173322969063547
+    second: MoveButtons_10
+  - first:
+      213: -1666117275193324908
+    second: MoveButtons_11
+  - first:
+      213: -6953839624478731092
+    second: MoveButtons_12
+  - first:
+      213: -6314805839436893659
+    second: MoveButtons_13
+  - first:
+      213: -5949384154002505108
+    second: MoveButtons_14
+  - first:
+      213: 1103174589446414959
+    second: MoveButtons_15
+  - first:
+      213: -4671036630613617918
+    second: MoveButtons_16
+  - first:
+      213: 4916639051960397581
+    second: MoveButtons_17
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 96
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: MoveButtons_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 644
+        width: 315
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f622fd8d05d10db20800000000000000
+      internalID: 3157055571859808879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MoveButtons_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 506
+        width: 315
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 715df939b2062ee20800000000000000
+      internalID: 3378368410757879063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MoveButtons_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 368
+        width: 315
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9720e75f439948710800000000000000
+      internalID: 1694647812534174329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MoveButtons_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 230
+        width: 315
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca4d8ed54bffe7f90800000000000000
+      internalID: -6953839624478731092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MoveButtons_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 92
+        width: 315
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f62e039b1734f4f00800000000000000
+      internalID: 1103174589446414959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MoveButtons_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 736
+        width: 315
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 042f67d4d8b071f60800000000000000
+      internalID: 8004879564192281152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MoveButtons_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 690
+        width: 315
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 526b5107d66b51310800000000000000
+      internalID: 1375205842379716133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MoveButtons_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 552
+        width: 315
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a871ebd6cb750a50800000000000000
+      internalID: 6486726932319795369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MoveButtons_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 414
+        width: 315
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4659b36ff439cd90800000000000000
+      internalID: -7077067067941628339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MoveButtons_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 276
+        width: 315
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 228bde9dcace42340800000000000000
+      internalID: 4838252126837520418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MoveButtons_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 138
+        width: 315
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df81f468dd4d2faf0800000000000000
+      internalID: -363994571957397251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MoveButtons_17
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 315
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2db862f5651f98eb0800000000000000
+      internalID: -4716973781428040750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MoveButtons_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 782
+        width: 315
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e9a983814e483390800000000000000
+      internalID: -7838429108151670300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MoveButtons_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 598
+        width: 315
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6be704d7e2d30cf50800000000000000
+      internalID: 6899581899010768566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MoveButtons_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 460
+        width: 315
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6c5c86897e758630800000000000000
+      internalID: 3928685310364114028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MoveButtons_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 322
+        width: 315
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4e081dc818139220800000000000000
+      internalID: 2491361513665203788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MoveButtons_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 184
+        width: 315
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f21dd5efe082bb3b0800000000000000
+      internalID: -5495754875413343953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MoveButtons_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 46
+        width: 315
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cb806cdd48d41dd0800000000000000
+      internalID: -2516148462871868473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
