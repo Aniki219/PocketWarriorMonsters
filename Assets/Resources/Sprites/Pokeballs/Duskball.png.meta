@@ -1,7 +1,58 @@
 fileFormatVersion: 2
 guid: 31efb6f257358b948a2e4b76def8abc1
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 2356929209122154962
+    second: Duskball_0
+  - first:
+      213: 59280376842590384
+    second: Duskball_1
+  - first:
+      213: -5100740672865201904
+    second: Duskball_2
+  - first:
+      213: -3389679255765137717
+    second: Duskball_3
+  - first:
+      213: 5604496579359315727
+    second: Duskball_4
+  - first:
+      213: 7828283785600978905
+    second: Duskball_5
+  - first:
+      213: 4432015332915628479
+    second: Duskball_6
+  - first:
+      213: -6333203192898409330
+    second: Duskball_7
+  - first:
+      213: 2739946065148106911
+    second: Duskball_8
+  - first:
+      213: -2839918641906140650
+    second: Duskball_9
+  - first:
+      213: -8598436624129333192
+    second: Duskball_10
+  - first:
+      213: 6620181870713765657
+    second: Duskball_11
+  - first:
+      213: 1596635049585905096
+    second: Duskball_12
+  - first:
+      213: 2102592539026247557
+    second: Duskball_13
+  - first:
+      213: 4176813807378871003
+    second: Duskball_14
+  - first:
+      213: -8890348538910545598
+    second: Duskball_15
+  - first:
+      213: 8302456260274548629
+    second: Duskball_16
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -87,7 +138,364 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Duskball_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 645.64703
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d9e77ec0ae75b020800000000000000
+      internalID: 2356929209122154962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Duskball_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 605.64703
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b89adb403b92d000800000000000000
+      internalID: 59280376842590384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Duskball_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 565.64703
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0119b7602678639b0800000000000000
+      internalID: -5100740672865201904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Duskball_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 525.64703
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc6cb991da075f0d0800000000000000
+      internalID: -3389679255765137717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Duskball_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 485.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f079a9de1fb27cd40800000000000000
+      internalID: 5604496579359315727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Duskball_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 445.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9df42b180a6a3ac60800000000000000
+      internalID: 7828283785600978905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Duskball_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 405.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb94585a67ea18d30800000000000000
+      internalID: 4432015332915628479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Duskball_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 365.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8cabe43041fb18a0800000000000000
+      internalID: -6333203192898409330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Duskball_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 325.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f98d1eced6e360620800000000000000
+      internalID: 2739946065148106911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Duskball_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 285.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61abc2eaa059698d0800000000000000
+      internalID: -2839918641906140650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Duskball_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 245.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 838ef0362773ca880800000000000000
+      internalID: -8598436624129333192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Duskball_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 205.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91fff50165c9fdb50800000000000000
+      internalID: 6620181870713765657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Duskball_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 165.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8cd81864e13682610800000000000000
+      internalID: 1596635049585905096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Duskball_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 125.647064
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58fcb0436c8ed2d10800000000000000
+      internalID: 2102592539026247557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Duskball_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 85.647064
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd2b3c1370607f930800000000000000
+      internalID: 4176813807378871003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Duskball_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 45.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 249e2d06b132f9480800000000000000
+      internalID: -8890348538910545598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Duskball_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5.6470604
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59fe1ecfaff383370800000000000000
+      internalID: 8302456260274548629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

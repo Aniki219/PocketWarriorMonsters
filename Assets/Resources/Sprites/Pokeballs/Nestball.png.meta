@@ -1,7 +1,58 @@
 fileFormatVersion: 2
 guid: cfc759c1dba1bba4198d4236b0b83271
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -6959448552684538801
+    second: Nestball_0
+  - first:
+      213: -4183595401038685083
+    second: Nestball_1
+  - first:
+      213: 4894376288908732772
+    second: Nestball_2
+  - first:
+      213: -1224694026196425641
+    second: Nestball_3
+  - first:
+      213: 4078652267405401684
+    second: Nestball_4
+  - first:
+      213: 3932453175674834898
+    second: Nestball_5
+  - first:
+      213: -8570723037508964794
+    second: Nestball_6
+  - first:
+      213: -7261982251987293373
+    second: Nestball_7
+  - first:
+      213: -2588341386718883189
+    second: Nestball_8
+  - first:
+      213: 2300781686727923075
+    second: Nestball_9
+  - first:
+      213: -7044065340563783653
+    second: Nestball_10
+  - first:
+      213: -2574773390801618895
+    second: Nestball_11
+  - first:
+      213: 5891912234507787264
+    second: Nestball_12
+  - first:
+      213: -7453281146727594562
+    second: Nestball_13
+  - first:
+      213: 4717891049086097244
+    second: Nestball_14
+  - first:
+      213: -8112526511473468865
+    second: Nestball_15
+  - first:
+      213: -3991344357541873116
+    second: Nestball_16
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -87,7 +138,364 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Nestball_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 645.64703
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f44b1a00a621b6f90800000000000000
+      internalID: -6959448552684538801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nestball_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 605.64703
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56c912df522e0f5c0800000000000000
+      internalID: -4183595401038685083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nestball_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 565.64703
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 469ef71ad415ce340800000000000000
+      internalID: 4894376288908732772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nestball_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 525.64703
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 754e40a9543010fe0800000000000000
+      internalID: -1224694026196425641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nestball_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 485.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45e5a09a0a84a9830800000000000000
+      internalID: 4078652267405401684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nestball_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 445.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2df84f70451e29630800000000000000
+      internalID: 3932453175674834898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nestball_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 405.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64e65099eccae0980800000000000000
+      internalID: -8570723037508964794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nestball_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 365.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34b2b111e91483b90800000000000000
+      internalID: -7261982251987293373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nestball_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 325.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b82dd2fe83d541cd0800000000000000
+      internalID: -2588341386718883189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nestball_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 285.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 385542701c40eef10800000000000000
+      internalID: 2300781686727923075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nestball_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 245.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b100e01d4e37e3e90800000000000000
+      internalID: -7044065340563783653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nestball_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 205.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13834282e31944cd0800000000000000
+      internalID: -2574773390801618895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nestball_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 165.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00c5d99e5f644c150800000000000000
+      internalID: 5891912234507787264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nestball_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 125.647064
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb58f264940a09890800000000000000
+      internalID: -7453281146727594562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nestball_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 85.647064
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5795c5a9e0597140800000000000000
+      internalID: 4717891049086097244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nestball_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 45.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3a5facae148a6f80800000000000000
+      internalID: -8112526511473468865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nestball_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5.6470604
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42af4703475eb98c0800000000000000
+      internalID: -3991344357541873116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

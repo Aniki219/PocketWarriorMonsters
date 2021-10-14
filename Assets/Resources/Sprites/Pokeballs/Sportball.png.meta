@@ -1,7 +1,58 @@
 fileFormatVersion: 2
 guid: 729393e941d8e75449de7861160fad97
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 4436717380143826866
+    second: Sportball_0
+  - first:
+      213: 4981830505241545231
+    second: Sportball_1
+  - first:
+      213: 774618992516180424
+    second: Sportball_2
+  - first:
+      213: -8024438494938932081
+    second: Sportball_3
+  - first:
+      213: 906028984673202953
+    second: Sportball_4
+  - first:
+      213: 4797804499036352896
+    second: Sportball_5
+  - first:
+      213: 96228795329575470
+    second: Sportball_6
+  - first:
+      213: 5734528462688956399
+    second: Sportball_7
+  - first:
+      213: 7345188745912219245
+    second: Sportball_8
+  - first:
+      213: -6049630316059619915
+    second: Sportball_9
+  - first:
+      213: 4079983122354438394
+    second: Sportball_10
+  - first:
+      213: 2594494826013888237
+    second: Sportball_11
+  - first:
+      213: 1330602727127799410
+    second: Sportball_12
+  - first:
+      213: -7135279363716529944
+    second: Sportball_13
+  - first:
+      213: 7364887558880015138
+    second: Sportball_14
+  - first:
+      213: 6987581933160905898
+    second: Sportball_15
+  - first:
+      213: 8635904475155134399
+    second: Sportball_16
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -87,7 +138,364 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Sportball_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 645.64703
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b7464453f2629d30800000000000000
+      internalID: 4436717380143826866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sportball_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 605.64703
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0a802c1374032540800000000000000
+      internalID: 4981830505241545231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sportball_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 565.64703
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c9a23d9edfffba00800000000000000
+      internalID: 774618992516180424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sportball_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 525.64703
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8cd13344b773a090800000000000000
+      internalID: -8024438494938932081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sportball_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 485.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90377abaf8cd29c00800000000000000
+      internalID: 906028984673202953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sportball_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 445.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08135d2a5c9359240800000000000000
+      internalID: 4797804499036352896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sportball_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 405.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2a78ca549fd55100800000000000000
+      internalID: 96228795329575470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sportball_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 365.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fef21f40143259f40800000000000000
+      internalID: 5734528462688956399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sportball_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 325.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d667b487f3a5fe560800000000000000
+      internalID: 7345188745912219245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sportball_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 285.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bd05d4a7456b0ca0800000000000000
+      internalID: -6049630316059619915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sportball_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 245.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af0868978030f9830800000000000000
+      internalID: 4079983122354438394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sportball_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 205.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dee852c4c4f710420800000000000000
+      internalID: 2594494826013888237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sportball_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 165.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2765e976120477210800000000000000
+      internalID: 1330602727127799410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sportball_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 125.647064
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e0408819356afc90800000000000000
+      internalID: -7135279363716529944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sportball_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 85.647064
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 223bcb5c636553660800000000000000
+      internalID: 7364887558880015138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sportball_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 45.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aac3ef41fb0e8f060800000000000000
+      internalID: 6987581933160905898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sportball_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5.6470604
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb7f3db7d55e8d770800000000000000
+      internalID: 8635904475155134399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

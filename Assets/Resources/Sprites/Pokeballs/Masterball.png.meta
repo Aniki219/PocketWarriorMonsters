@@ -1,7 +1,58 @@
 fileFormatVersion: 2
 guid: 29cc594f1f3ce42489c6cb895f3066db
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -1320611264374006148
+    second: Masterball_0
+  - first:
+      213: -7481625490357036515
+    second: Masterball_1
+  - first:
+      213: -7936622217066093789
+    second: Masterball_2
+  - first:
+      213: 7921359588216219864
+    second: Masterball_3
+  - first:
+      213: -98833913108376096
+    second: Masterball_4
+  - first:
+      213: 4577147920835584708
+    second: Masterball_5
+  - first:
+      213: 7779923419892056913
+    second: Masterball_6
+  - first:
+      213: 2438748997008954748
+    second: Masterball_7
+  - first:
+      213: -2105993109538526597
+    second: Masterball_8
+  - first:
+      213: -6168027123810429491
+    second: Masterball_9
+  - first:
+      213: 8070488551709174927
+    second: Masterball_10
+  - first:
+      213: 1245345313422749368
+    second: Masterball_11
+  - first:
+      213: -6112054132116218452
+    second: Masterball_12
+  - first:
+      213: 797930706649777716
+    second: Masterball_13
+  - first:
+      213: 1124991372182401258
+    second: Masterball_14
+  - first:
+      213: 8755894580154733109
+    second: Masterball_15
+  - first:
+      213: 113329888483262689
+    second: Masterball_16
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -87,7 +138,364 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Masterball_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 645.64703
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7e9b9c4d0f3cade0800000000000000
+      internalID: -1320611264374006148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Masterball_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 605.64703
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1ad2c0814deb2890800000000000000
+      internalID: -7481625490357036515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Masterball_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 565.64703
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3236d43c4247bd190800000000000000
+      internalID: -7936622217066093789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Masterball_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 525.64703
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d823c983925eed60800000000000000
+      internalID: 7921359588216219864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Masterball_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 485.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e5d965641fd0aef0800000000000000
+      internalID: -98833913108376096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Masterball_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 445.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c2a2d188cb458f30800000000000000
+      internalID: 4577147920835584708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Masterball_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 405.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 153886e6127d7fb60800000000000000
+      internalID: 7779923419892056913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Masterball_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 365.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c751f0faa4d28d120800000000000000
+      internalID: 2438748997008954748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Masterball_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 325.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7a2986cc6206c2e0800000000000000
+      internalID: -2105993109538526597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Masterball_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 285.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc51e40b204c66aa0800000000000000
+      internalID: -6168027123810429491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Masterball_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 245.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8c6b781492200070800000000000000
+      internalID: 8070488551709174927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Masterball_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 205.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bea245e6fa584110800000000000000
+      internalID: 1245345313422749368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Masterball_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 165.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cad114f562f9d2ba0800000000000000
+      internalID: -6112054132116218452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Masterball_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 125.647064
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4368c3500c1d21b00800000000000000
+      internalID: 797930706649777716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Masterball_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 85.647064
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae0bf4a41b5cc9f00800000000000000
+      internalID: 1124991372182401258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Masterball_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 45.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53214ecdabf238970800000000000000
+      internalID: 8755894580154733109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Masterball_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5.6470604
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e0ca71eee0a29100800000000000000
+      internalID: 113329888483262689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

@@ -1,7 +1,58 @@
 fileFormatVersion: 2
 guid: 919acfcabfa17254ca3e28ac147735bd
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -83374088672959061
+    second: Safariball_0
+  - first:
+      213: -1638561862109033900
+    second: Safariball_1
+  - first:
+      213: -3609850314057788607
+    second: Safariball_2
+  - first:
+      213: -4164391996557734177
+    second: Safariball_3
+  - first:
+      213: -8812662385084396301
+    second: Safariball_4
+  - first:
+      213: 6880127946094538841
+    second: Safariball_5
+  - first:
+      213: 8789189696516440255
+    second: Safariball_6
+  - first:
+      213: 4343366694355420288
+    second: Safariball_7
+  - first:
+      213: -1380964385952783266
+    second: Safariball_8
+  - first:
+      213: 7575479967573055549
+    second: Safariball_9
+  - first:
+      213: 6741154192068885195
+    second: Safariball_10
+  - first:
+      213: -3423923605784322475
+    second: Safariball_11
+  - first:
+      213: 400358712338757584
+    second: Safariball_12
+  - first:
+      213: 7528425699515210324
+    second: Safariball_13
+  - first:
+      213: 5328462473987001804
+    second: Safariball_14
+  - first:
+      213: 5829668017769745735
+    second: Safariball_15
+  - first:
+      213: 8551171847381950962
+    second: Safariball_16
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -87,7 +138,364 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Safariball_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 645.64703
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba52d2545bbc7def0800000000000000
+      internalID: -83374088672959061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Safariball_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 605.64703
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45a0d7afaa8a249e0800000000000000
+      internalID: -1638561862109033900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Safariball_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 565.64703
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 143d042e34c37edc0800000000000000
+      internalID: -3609850314057788607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Safariball_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 525.64703
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fde42b30b8b1536c0800000000000000
+      internalID: -4164391996557734177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Safariball_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 485.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fc0993904223b580800000000000000
+      internalID: -8812662385084396301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Safariball_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 445.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 950f33c1aef1b7f50800000000000000
+      internalID: 6880127946094538841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Safariball_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 405.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb0c26c367979f970800000000000000
+      internalID: 8789189696516440255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Safariball_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 365.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08441521ffcb64c30800000000000000
+      internalID: 4343366694355420288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Safariball_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 325.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e54a1d72534d5dce0800000000000000
+      internalID: -1380964385952783266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Safariball_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 285.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d389746d4e2812960800000000000000
+      internalID: 7575479967573055549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Safariball_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 245.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcab66285046d8d50800000000000000
+      internalID: 6741154192068885195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Safariball_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 205.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55e962b0f97cb70d0800000000000000
+      internalID: -3423923605784322475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Safariball_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 165.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d73fafa02c5e8500800000000000000
+      internalID: 400358712338757584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Safariball_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 125.647064
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45a968159475a7860800000000000000
+      internalID: 7528425699515210324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Safariball_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 85.647064
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccd8ef0836082f940800000000000000
+      internalID: 5328462473987001804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Safariball_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 45.64706
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74d0f9ddc2427e050800000000000000
+      internalID: 5829668017769745735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Safariball_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5.6470604
+        width: 40
+        height: 40.35294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f1a5883d7ddba670800000000000000
+      internalID: 8551171847381950962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
