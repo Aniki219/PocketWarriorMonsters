@@ -31,4 +31,9 @@ public class FieldSlotController : MonoBehaviour
         string path = "Sprites/Pokemon/pokemon" + (front ? "" : "Backs");
         pokeSprite.sprite = Resources.LoadAll<Sprite>(path)[(int)(pokemon.name)];
     }
+
+    public void pokemonPlaySendIn()
+    {
+        pokeSprite.GetComponent<Animator>().SetTrigger("SendIn");
+    }
 }

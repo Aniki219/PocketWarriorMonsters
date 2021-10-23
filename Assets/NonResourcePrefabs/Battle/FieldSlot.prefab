@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 651939910}
   - component: {fileID: 651939909}
+  - component: {fileID: 4177494116454985698}
   m_Layer: 0
   m_Name: PokemonSprite
   m_TagString: Untagged
@@ -82,6 +83,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &4177494116454985698
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 651939908}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5a409fcba4789ff44b7678d7062557a2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4475725720107939959
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,6 +132,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 651939910}
+  - {fileID: 6063510054139426776}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -180,15 +201,92 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pokemon:
     name: 0
-    hp: 0
-    attack: 0
-    defense: 0
-    sp_attack: 0
-    sp_defense: 0
-    speed: 0
+    nature: {fileID: 0}
     current_hp: 0
     level: 0
     xp: 0
     type_1: {fileID: 0}
     type_2: {fileID: 0}
     status: {fileID: 0}
+--- !u!1001 &7830237505142767542
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4475725720107939953}
+    m_Modifications:
+    - target: {fileID: 4075614463760761135, guid: eaa4035953b8ca046aaeb8164e4483cf, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4075614463760761135, guid: eaa4035953b8ca046aaeb8164e4483cf, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4075614463760761135, guid: eaa4035953b8ca046aaeb8164e4483cf, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4075614463760761137, guid: eaa4035953b8ca046aaeb8164e4483cf, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4075614463760761137, guid: eaa4035953b8ca046aaeb8164e4483cf, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4075614464198887533, guid: eaa4035953b8ca046aaeb8164e4483cf, type: 3}
+      propertyPath: m_Name
+      value: ThrownPokeballParticle
+      objectReference: {fileID: 0}
+    - target: {fileID: 4075614464198887534, guid: eaa4035953b8ca046aaeb8164e4483cf, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4075614464198887534, guid: eaa4035953b8ca046aaeb8164e4483cf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.1499996
+      objectReference: {fileID: 0}
+    - target: {fileID: 4075614464198887534, guid: eaa4035953b8ca046aaeb8164e4483cf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.6825018
+      objectReference: {fileID: 0}
+    - target: {fileID: 4075614464198887534, guid: eaa4035953b8ca046aaeb8164e4483cf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4075614464198887534, guid: eaa4035953b8ca046aaeb8164e4483cf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4075614464198887534, guid: eaa4035953b8ca046aaeb8164e4483cf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4075614464198887534, guid: eaa4035953b8ca046aaeb8164e4483cf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4075614464198887534, guid: eaa4035953b8ca046aaeb8164e4483cf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4075614464198887534, guid: eaa4035953b8ca046aaeb8164e4483cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4075614464198887534, guid: eaa4035953b8ca046aaeb8164e4483cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4075614464198887534, guid: eaa4035953b8ca046aaeb8164e4483cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eaa4035953b8ca046aaeb8164e4483cf, type: 3}
+--- !u!4 &6063510054139426776 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4075614464198887534, guid: eaa4035953b8ca046aaeb8164e4483cf, type: 3}
+  m_PrefabInstance: {fileID: 7830237505142767542}
+  m_PrefabAsset: {fileID: 0}

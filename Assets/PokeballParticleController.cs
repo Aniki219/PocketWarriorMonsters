@@ -25,16 +25,19 @@ public class PokeballParticleController : MonoBehaviour
     }
 
     public PokeballType pokeballType = PokeballType.POKE;
+    public PokemonName spawnPokemon = PokemonName.BULBASAUR;
+
+    public FieldSlotController fieldSlot;
 
     // Start is called before the first frame update
     void Start()
     {
+        fieldSlot = GetComponentInParent<FieldSlotController>();
         GetComponentInChildren<Animator>().SetFloat("BallNumber", (int)pokeballType);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void createSpawnPokemon()
     {
-        
+        fieldSlot.pokemonPlaySendIn();
     }
 }
