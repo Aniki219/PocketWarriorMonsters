@@ -1,48 +1,90 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class BattleController : MonoBehaviour
 {
-    public List<BattleAction> startBattleBuffer;
-    public List<BattleAction> startTurnBuffer;
-    public List<BattleAction> swapPokemonBuffer;
-    public List<BattleAction> itemBuffer;
-    public List<BattleAction> priorityMoveBuffer;
-    public List<BattleAction> battleMoveBuffer;
-    public List<BattleAction> turnEndBuffer;
-
     public FieldSlotController[] allyFieldSlots = new FieldSlotController[3];
     public FieldSlotController[] enemyFieldSlots = new FieldSlotController[3];
 
     public GameObject BattleMessage;
 
-    public List<KeyValuePair<GameObject, UnityAction>> buttonActions;
-
-    private BattlePhase battlePhase = BattlePhase.PLAYER_PLANNING;
+    //I don't know what this is, but if we use it we should consider a dictionary.
+    //That's not a slam I mean the data type.
+    //public List<KeyValuePair<GameObject, UnityAction>> buttonActions;
 
     public enum BattlePhase
     {
+        BATTLE_START,
         PLAYER_PLANNING,
         ENEMY_PLANNING,
         BATTLE
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        startBattleBuffer = new List<BattleAction>();
-        startTurnBuffer = new List<BattleAction>();
-        swapPokemonBuffer = new List<BattleAction>();
-        itemBuffer = new List<BattleAction>();
-        priorityMoveBuffer = new List<BattleAction>();
-        battleMoveBuffer = new List<BattleAction>();
-        turnEndBuffer = new List<BattleAction>();
 
-        sendOutPokemon();
+    public enum BattleBuffer
+    {
+        START_BATTLE,
+        START_TURN,
+        SWAP_POKEMON,
+        ITEM,
+        PRIORITY_MOVE,
+        BATTLE_MOVE,
+        TURN_END
     }
 
-    // Update is called once per frame
+    private BattlePhase battlePhase = BattlePhase.BATTLE_START;
+    private Dictionary<BattleBuffer, List<BattleAction>> battleBuffer;
+
+    void Start()
+    {
+        //We have a bunch of queue types and priorities. This will all be managed by the Enum.
+        //Here we make a dictionary of buffers and initialize them all to empty lists.
+        //This we we can access each buffer by supplying a buffer type enum.
+        battleBuffer = new Dictionary<BattleBuffer, List<BattleAction>>();
+        for (int i = 0; i < System.Enum.GetNames(typeof(BattleBuffer)).Length; i++)
+        {
+            battleBuffer.Add(
+                (BattleBuffer)i,
+                new List<BattleAction>()
+            );
+        }
+
+        //Remove this one day
+        PlayerPokemon.instance.setPokemonStats();
+
+        sendOutPokemon();
+
+        changeBattlePhase(BattlePhase.PLAYER_PLANNING, 1.5f);
+    }
+
+    private IEnumerator changeBattlePhase(BattlePhase phase, float waitTime = 0)
+    {
+        yield return new WaitForSeconds(waitTime);
+        battlePhase = phase;
+        startBattlePhase();
+    }
+
+    void startBattlePhase()
+    {
+        switch(battlePhase)
+        {
+            case BattlePhase.PLAYER_PLANNING:
+                Debug.Log("Player Planning Phase");
+                //Make battle menu visible
+                //Start current pokemon counter
+                //Elsewhere
+                    //We need an update pokemon counter method which checks if the last pokemon
+                    //has selected a BattleAction. Then phase needs to switch
+                break;
+            case BattlePhase.ENEMY_PLANNING:
+                Debug.Log("Enemy Planning Phase");
+                break;
+            case BattlePhase.BATTLE:
+                Debug.Log("Battling Phase...");
+                break;
+        }
+    }
+
     void Update()
     {
         if (InputManager.getKeyPressed("Space"))
@@ -53,15 +95,60 @@ public class BattleController : MonoBehaviour
 
     void sendOutPokemon()
     {
-        MoveData move = MoveDataReader.getMoveData(Moves.AERIAL_ACE);
-        Debug.Log(move.name);
         //Player Pokemon
-        List<Pokemon> pokemonList = PlayerPokemon.instance.pokemon;
-        int num = pokemonList.Count;
+        List<Pokemon> playerPokemon = PlayerPokemon.instance.pokemon;
+        int num = playerPokemon.Count;
         for (int i = 0; i < num && i < 3; i++)
         {
-            allyFieldSlots[i].setPokemon(pokemonList[i], false);
-            allyFieldSlots[i].playBallAnimation();
+            allyFieldSlots[i].setPokemon(playerPokemon[i], false);
+            allyFieldSlots[i].Invoke("playBallAnimation", 0.5f + 0.25f * i);
         }
+
+        //Enemy Pokemon
+        for (int i = 0; i < num && i < 3; i++)
+        {
+            int level = Random.Range(1, 100);
+            PokemonName randomPokemonName = (PokemonName)(Random.Range(1, 490));
+            Pokemon randomPokemon = Pokemon.fromData(PokedexDataReader.getPokemonData(randomPokemonName), level);
+            enemyFieldSlots[i].setPokemon(randomPokemon, true);
+            enemyFieldSlots[i].pokemonPlaySendIn();
+        }
+    }
+
+    public void addBattleActionToQueue(BattleAction battleAction, BattleBuffer? overrideBuffer = null)
+    {
+        /*We can automatically assign the correct buffer by asking the BattleAction which buffer
+         * it belongs to. I think this is sufficient but just incase we have an overrideBuffer
+         * parameter which can sort out ambiguities
+         */
+        BattleBuffer bufferEnum = (overrideBuffer.HasValue) ? overrideBuffer.Value : 
+            battleAction.getBattleBuffer();
+
+        if (battleAction.Equals(typeof(BattleMove)))
+        {
+            if (battlePhase.Equals(BattlePhase.PLAYER_PLANNING))
+            {
+                //Inc player poke counter
+            } else
+            {
+                //Inv enemy poke counter
+                //Maybe we dont need this since all enemy pokemon can just add their move at the same
+                //time...
+            }
+        }
+        battleBuffer[bufferEnum].Add(battleAction);
+    }
+
+    private void clearQueues()
+    {
+        foreach(KeyValuePair<BattleBuffer, List<BattleAction>> entry in battleBuffer)
+        {
+            entry.Value.Clear();
+        }
+    }
+
+    private void clearQueue(BattleBuffer buffer)
+    {
+        battleBuffer[buffer].Clear();
     }
 }

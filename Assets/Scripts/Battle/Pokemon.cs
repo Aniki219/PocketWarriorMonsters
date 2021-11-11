@@ -8,10 +8,8 @@ public class Pokemon
     [SearchableEnum]
     public PokemonName name;
 
-
-
     List<PokemonStat> stats;
-    public List<PokemonMove> moves;
+    public List<StandardMove> moves;
 
     public PokemonNature nature;
 
@@ -37,13 +35,31 @@ public class Pokemon
             new PokemonStat(Stats.SP_ATTACK, sp_attack),
             new PokemonStat(Stats.SP_DEFENSE, sp_defense),
             new PokemonStat(Stats.SPEED, speed),
-            new PokemonStat(Stats.LEVEL, level)
+            new PokemonStat(Stats.LEVEL, level),
+            new PokemonStat(Stats.CRIT_CHANCE, 0)
         };
         
         this.current_hp = hp;
 
         this.level = level;
         this.xp = xp;
+
+        //moves.Add(new StandardMove(Moves.TACKLE, this));
+    }
+
+    public static Pokemon fromData(PokemonData data, int level = 1, int xp = 0)
+    {
+        PokemonName name = (PokemonName)Enum.Parse(typeof(PokemonName), data.name, true);
+
+        return new Pokemon(name,
+            data.hp,
+            data.attack,
+            data.defense,
+            data.spattack,
+            data.spdefense,
+            data.speed,
+            level,
+            xp);
     }
 
     public static Pokemon copy(Pokemon pokemon)
@@ -61,15 +77,25 @@ public class Pokemon
 
     public int getStat(Stats stat)
     {
-        //    PokemonStat returnStat = stats.Find(s => s.statName == stat);
 
-        //    if (returnStat == null)
-        //    {
-        //        throw new Exception("Pokemon: " + name + " does not contain a stat for " + stat);
-        //    }
+        PokemonStat returnStat = stats.Find(s => s.statName == stat);
 
-        //    return returnStat.amount;
-        //}
-        return 999;
+        if (returnStat == null)
+        {
+            throw new Exception("Pokemon: " + name + " does not contain a stat for " + stat);
+        }
+
+        return returnStat.amount;
+
+    }
+
+    public override string ToString()
+    {
+        return getStat(Stats.ATTACK).ToString();
+    }
+
+    public List<PokemonType> getTypes()
+    {
+        return new List<PokemonType> { type_1, type_2 };
     }
 }

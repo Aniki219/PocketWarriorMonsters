@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26411ee9798be2346a36a92e59856a65, type: 3}
+  m_Name: Water
+  m_EditorClassIdentifier: 
+  typeEnum: 10
+  superEffectiveAgainst:
+  - {fileID: 11400000, guid: fa4dd0be38ab4134da4f80de3c42dfad, type: 2}
+  - {fileID: 11400000, guid: 42818c8582305084fac52b1c13311ce4, type: 2}
+  - {fileID: 11400000, guid: cbaac59fb858da04b9b3ed8a8dc4f97e, type: 2}
+  notVeryEffectiveAgainst:
+  - {fileID: 11400000, guid: 124c13441f564f44da6ae301561dbe45, type: 2}
+  - {fileID: 11400000}
+  - {fileID: 11400000, guid: 73f6e39366110e24c937f318910a9127, type: 2}
+  doesNotEffectList: []

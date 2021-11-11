@@ -1,0 +1,538 @@
+fileFormatVersion: 2
+guid: 71414935e87fd6b4eb81895a21264c4c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5613464118015969576
+    second: SelectedMoveButtons_0
+  - first:
+      213: 3596675424322842736
+    second: SelectedMoveButtons_1
+  - first:
+      213: -7602228656579374611
+    second: SelectedMoveButtons_2
+  - first:
+      213: 3905295182646743931
+    second: SelectedMoveButtons_3
+  - first:
+      213: 7319495225847696826
+    second: SelectedMoveButtons_4
+  - first:
+      213: -8163314136830576812
+    second: SelectedMoveButtons_5
+  - first:
+      213: 298350531711715137
+    second: SelectedMoveButtons_6
+  - first:
+      213: 7871918274379442598
+    second: SelectedMoveButtons_7
+  - first:
+      213: 8844709102898801377
+    second: SelectedMoveButtons_8
+  - first:
+      213: -8225032447796125250
+    second: SelectedMoveButtons_9
+  - first:
+      213: 5655459047236273876
+    second: SelectedMoveButtons_10
+  - first:
+      213: -2352165625160653164
+    second: SelectedMoveButtons_11
+  - first:
+      213: 112433532651544744
+    second: SelectedMoveButtons_12
+  - first:
+      213: -4742779608551816400
+    second: SelectedMoveButtons_13
+  - first:
+      213: -1976455404880763289
+    second: SelectedMoveButtons_14
+  - first:
+      213: 3451971858397490933
+    second: SelectedMoveButtons_15
+  - first:
+      213: 7776840791818142210
+    second: SelectedMoveButtons_16
+  - first:
+      213: 2512546047245598644
+    second: SelectedMoveButtons_17
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 96
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SelectedMoveButtons_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 782
+        width: 315
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8294eb9bfd707ed40800000000000000
+      internalID: 5613464118015969576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SelectedMoveButtons_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 736
+        width: 315
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 070f32f0e35f9e130800000000000000
+      internalID: 3596675424322842736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SelectedMoveButtons_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 690
+        width: 315
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de19a4fa0557f7690800000000000000
+      internalID: -7602228656579374611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SelectedMoveButtons_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 644
+        width: 315
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7314b80745623630800000000000000
+      internalID: 3905295182646743931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SelectedMoveButtons_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 598
+        width: 315
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abdc1d7a022149560800000000000000
+      internalID: 7319495225847696826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SelectedMoveButtons_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 552
+        width: 315
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 457f94c2b0516be80800000000000000
+      internalID: -8163314136830576812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SelectedMoveButtons_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 506
+        width: 315
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 147c9355a34f32400800000000000000
+      internalID: 298350531711715137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SelectedMoveButtons_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 460
+        width: 315
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a9ea4d96fbae3d60800000000000000
+      internalID: 7871918274379442598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SelectedMoveButtons_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 414
+        width: 315
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ea62fb5118beba70800000000000000
+      internalID: 8844709102898801377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SelectedMoveButtons_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 368
+        width: 315
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb1ec0b1190dadd80800000000000000
+      internalID: -8225032447796125250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SelectedMoveButtons_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 322
+        width: 315
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d689402a0a3c7e40800000000000000
+      internalID: 5655459047236273876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SelectedMoveButtons_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 276
+        width: 315
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4962a6383dd6b5fd0800000000000000
+      internalID: -2352165625160653164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SelectedMoveButtons_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 230
+        width: 315
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a0a986c3b17f8100800000000000000
+      internalID: 112433532651544744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SelectedMoveButtons_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 184
+        width: 315
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0338d4803134e2eb0800000000000000
+      internalID: -4742779608551816400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SelectedMoveButtons_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 138
+        width: 315
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7666eade7483294e0800000000000000
+      internalID: -1976455404880763289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SelectedMoveButtons_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 92
+        width: 315
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fe6d6aad1ed7ef20800000000000000
+      internalID: 3451971858397490933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SelectedMoveButtons_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 46
+        width: 315
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20286172f73eceb60800000000000000
+      internalID: 7776840791818142210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SelectedMoveButtons_17
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 315
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bfb2e3615b5ed220800000000000000
+      internalID: 2512546047245598644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

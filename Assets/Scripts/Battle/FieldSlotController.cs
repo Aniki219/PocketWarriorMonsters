@@ -5,6 +5,7 @@ using UnityEngine;
 public class FieldSlotController : MonoBehaviour
 {
     public Pokemon pokemon;
+    private Animator pokeball;
     private SpriteRenderer pokeSprite;
 
     // Start is called before the first frame update
@@ -12,6 +13,8 @@ public class FieldSlotController : MonoBehaviour
     {
         pokeSprite = transform.Find("PokemonSprite")
             .GetComponent<SpriteRenderer>();
+        pokeball = transform.Find("ThrownPokeballParticle")
+            .GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -22,7 +25,8 @@ public class FieldSlotController : MonoBehaviour
 
     public void playBallAnimation()
     {
-
+        pokeball.SetFloat("BallNumber", Random.Range(0, 17));
+        pokeball.SetTrigger("Throw");
     }
 
     public void setPokemon(Pokemon pokemonData, bool front = true)
