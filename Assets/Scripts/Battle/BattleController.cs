@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using Febucci.UI;
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class BattleController : MonoBehaviour
@@ -34,9 +36,12 @@ public class BattleController : MonoBehaviour
 
     private BattlePhase battlePhase = BattlePhase.BATTLE_START;
     private Dictionary<BattleBuffer, List<BattleAction>> battleBuffer;
-
+    TextGenerator generator;
+    TextGenerationSettings settings;
     void Start()
     {
+        List<string> battleMessageScript = ScriptHelper.Parse("I need an equally long but different string which i. Hope will come out to be about this long. But now I will add what should be a third and fourth line to the mix and see what happens with that.", 532);
+        BattleMessage.GetComponentInChildren<TextAnimator>().SetText(battleMessageScript[0], true);
         //We have a bunch of queue types and priorities. This will all be managed by the Enum.
         //Here we make a dictionary of buffers and initialize them all to empty lists.
         //This we we can access each buffer by supplying a buffer type enum.
@@ -61,7 +66,7 @@ public class BattleController : MonoBehaviour
     {
         yield return new WaitForSeconds(waitTime);
         battlePhase = phase;
-        startBattlePhase();
+        //StartCoroutine(startBattlePhase());
     }
 
     void startBattlePhase()
@@ -93,18 +98,11 @@ public class BattleController : MonoBehaviour
         }
     }
 
-    void sendOutPokemon()
+    public void sendOutPokemon()
     {
-        //Player Pokemon
-        List<Pokemon> playerPokemon = PlayerPokemon.instance.pokemon;
-        int num = playerPokemon.Count;
-        for (int i = 0; i < num && i < 3; i++)
-        {
-            allyFieldSlots[i].setPokemon(playerPokemon[i], false);
-            allyFieldSlots[i].Invoke("playBallAnimation", 0.5f + 0.25f * i);
-        }
 
         //Enemy Pokemon
+        int num = 3;
         for (int i = 0; i < num && i < 3; i++)
         {
             int level = Random.Range(1, 100);
@@ -112,6 +110,17 @@ public class BattleController : MonoBehaviour
             Pokemon randomPokemon = Pokemon.fromData(PokedexDataReader.getPokemonData(randomPokemonName), level);
             enemyFieldSlots[i].setPokemon(randomPokemon, true);
             enemyFieldSlots[i].pokemonPlaySendIn();
+        }
+
+        //setBattleMessageText()
+
+        //Player Pokemon
+        List<Pokemon> playerPokemon = PlayerPokemon.instance.pokemon;
+        num = playerPokemon.Count;
+        for (int i = 0; i < num && i < 3; i++)
+        {
+            allyFieldSlots[i].setPokemon(playerPokemon[i], false);
+            allyFieldSlots[i].Invoke("playBallAnimation", 0.5f + 0.25f * i);
         }
     }
 
