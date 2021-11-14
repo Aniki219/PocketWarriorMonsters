@@ -17,63 +17,65 @@ public class ScriptHelper
 
         settings.font = Resources.Load<Font>("Fonts/NintendoFont");
 
+        //We return a list of strings, each representing a single line of text.
         List<string> messages = new List<string>();
 
-        int startIndex = 0;
-        int line = 0;
-        string message = "";
-        for (int i = 0; i < script.Length; i++)
+        //First we split the input text into an array of words
+        string[] words = script.Split(' ');
+
+        //trueString is the text that compirses the entire line
+        //cleanString removes any <tags> and is used for calculating line width
+        string trueString = "";
+        string cleanString = "";
+        foreach (string word in words)
         {
-            while (startIndex < script.Length && script[startIndex] == ' ')
+            //First we check if adding the new word to the cleanString will exceed
+            //the maximum text width.
+            //We need to ignore any <tags> since their length should not effect the cutoff
+            string checkString = cleanString + (word.Contains('<') ? "" : word);
+            if (generator.GetPreferredWidth(checkString, settings) >= maxWidth)
             {
-                startIndex++;
+                //If we exceed the length of a single line, we add a breakpoint to the
+                //return string, and start a new line by clearing the cleanString
+                trueString += "<br>";
+                cleanString = "";
             }
-
-            string substring = script.Substring(startIndex, i - startIndex);
-            if (generator.GetPreferredWidth(substring, settings) >= maxWidth)
+            //Then we add the new word to the trueString
+            trueString += word + (word.Contains('<') ? "" : " ");
+            //..and if it isn't a tag we also add it to the cleanString
+            if (!word.Contains('<'))
             {
-                string stopCharacters = ".?!" + ((line == 0) ? " " : "");
-
-                int r = i;
-                while (r > startIndex && !stopCharacters.Contains(script[r]))
-                {
-                    r--;
-                }
-                if (r != startIndex)
-                {
-                    message += substring.Substring(0, r - startIndex) + script[r] + "<br>";
-                }
-                else
-                {
-                    message += substring.Substring(0, i - startIndex);
-                }
-                startIndex = r+1;
-
-                if (line == 1)
-                {
-                    messages.Add(message);
-                    message = "";
-                }
-                line++;
-                line %= 2;
-                
-            }
-            else
+                cleanString += word + " ";
+            } else
             {
-                if (i == script.Length - 1)
-                {
-                    message += script.Substring(startIndex, i - startIndex);
-                    messages.Add(message);
+                //If it was a tag and specifically the <br> tag, then we're starting a new line
+                //and thus need to reset the cleanString for length calculations
+                if (word.Contains("<br>"))
+                { 
+                    cleanString = "";
                 }
             }
         }
+        //At this point we have the trueString with all of the <br>'s set
+        //We now use the <br>'s as a delimiter to split trueString into an array of lines
+        string[] delim = new string[] { "<br>" };
+        string[] lines = trueString.Split(delim, StringSplitOptions.None);
 
-        foreach (string m in messages)
+        //We add each individual line as an entry to the return list
+        foreach (string line in lines)
         {
-            Debug.Log(m);
+            //We also need to add the newline character back to the end of each line.
+            messages.Add(line + "<br>");
         }
 
-        return messages;
+        //Debug
+        //foreach (string m in messages)
+        //{
+        //    Debug.Log(m);
+        //}
+
+        //We return all of the lines in a List
+        return new List<string>(messages);
     }
 }
 

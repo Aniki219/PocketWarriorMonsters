@@ -9,7 +9,7 @@ public class BattleController : MonoBehaviour
     public FieldSlotController[] allyFieldSlots = new FieldSlotController[3];
     public FieldSlotController[] enemyFieldSlots = new FieldSlotController[3];
 
-    public GameObject BattleMessage;
+    public BattleMessageController BattleMessage;
 
     //I don't know what this is, but if we use it we should consider a dictionary.
     //That's not a slam I mean the data type.
@@ -40,8 +40,6 @@ public class BattleController : MonoBehaviour
     TextGenerationSettings settings;
     void Start()
     {
-        List<string> battleMessageScript = ScriptHelper.Parse("I need an equally long but different string which i. Hope will come out to be about this long. But now I will add what should be a third and fourth line to the mix and see what happens with that.", 532);
-        BattleMessage.GetComponentInChildren<TextAnimator>().SetText(battleMessageScript[0], true);
         //We have a bunch of queue types and priorities. This will all be managed by the Enum.
         //Here we make a dictionary of buffers and initialize them all to empty lists.
         //This we we can access each buffer by supplying a buffer type enum.
@@ -98,8 +96,9 @@ public class BattleController : MonoBehaviour
         }
     }
 
-    public void sendOutPokemon()
+    public async void sendOutPokemon()
     {
+        string script = "Wild ";
 
         //Enemy Pokemon
         int num = 3;
@@ -110,18 +109,42 @@ public class BattleController : MonoBehaviour
             Pokemon randomPokemon = Pokemon.fromData(PokedexDataReader.getPokemonData(randomPokemonName), level);
             enemyFieldSlots[i].setPokemon(randomPokemon, true);
             enemyFieldSlots[i].pokemonPlaySendIn();
-        }
 
-        //setBattleMessageText()
+            script += randomPokemonName;
+            if (num > 1 && i < num - 1)
+            {
+                script += ", ";
+                if (i == num - 2)
+                {
+                    script += "and ";
+                }
+            }
+        }
+        script += " appeared!<br>";
+
+        await BattleMessage.performScript(script);
 
         //Player Pokemon
+        script = "Atlas sends out ";
         List<Pokemon> playerPokemon = PlayerPokemon.instance.pokemon;
         num = playerPokemon.Count;
         for (int i = 0; i < num && i < 3; i++)
         {
             allyFieldSlots[i].setPokemon(playerPokemon[i], false);
             allyFieldSlots[i].Invoke("playBallAnimation", 0.5f + 0.25f * i);
+
+            script += playerPokemon[i].name;
+            if (num > 1 && i < num - 1)
+            {
+                script += ", ";
+                if (i == num - 2)
+                {
+                    script += "and ";
+                }
+            }
         }
+        script += "!";
+        await BattleMessage.performScript(script);
     }
 
     public void addBattleActionToQueue(BattleAction battleAction, BattleBuffer? overrideBuffer = null)
