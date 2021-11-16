@@ -33,6 +33,7 @@ public class BattleMove : BattleAction
     {
         this.move = move;
         this.targets = targets;
+        this.source = move.getPokemon();
 
         didCrit = Random.Range(0, 1.0f) > 6.25f * (source.getStat(Stats.CRIT_CHANCE) + 1) / 100.0f;
 
@@ -124,5 +125,10 @@ public class BattleMove : BattleAction
         }
 
         return effectiveness;
+    }
+
+    public override string ToString()
+    {
+        return "BattleMove: " + move.getName();
     }
 }

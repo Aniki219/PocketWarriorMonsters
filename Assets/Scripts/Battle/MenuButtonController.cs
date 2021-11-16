@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -10,12 +11,25 @@ public class MenuButtonController : MonoBehaviour, ISelectHandler, IDeselectHand
     private Color defaultTextColor = Color.black;
     private Text buttonText;
     private Transform menuSelector;
+    private Animator anim;
+
+    public enum BattleMenuAction
+    {
+        FIGHT,
+        POKEMON,
+        ITEM,
+        RUN
+    }
+    [SerializeField] BattleMenuAction battleAction;
+
+    public static UnityEvent<BattleMenuAction> menuButtonSelected = new UnityEvent<BattleMenuAction>();
 
     private void Start()
     {
+        anim = GetComponent<Animator>();
         buttonText = GetComponentInChildren<Text>();
         defaultTextColor = buttonText.color;
-        menuSelector = transform.Find("MenuSelector");
+        menuSelector = transform.parent.Find("MenuSelector");
         menuSelector.gameObject.SetActive(false);
     }
 
@@ -33,6 +47,12 @@ public class MenuButtonController : MonoBehaviour, ISelectHandler, IDeselectHand
 
     public void OnSubmit(BaseEventData eventData)
     {
-        GetComponent<Animation>().Play();
+        anim.SetTrigger("Press");
+        menuButtonSelected.Invoke(battleAction);
+    }
+
+    private void OnDisable()
+    {
+        menuSelector.gameObject.SetActive(false);
     }
 }

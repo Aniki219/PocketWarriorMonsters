@@ -1,6 +1,7 @@
 ﻿using Febucci.UI;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 
@@ -10,6 +11,9 @@ public class BattleController : MonoBehaviour
     public FieldSlotController[] enemyFieldSlots = new FieldSlotController[3];
 
     public BattleMessageController BattleMessage;
+    public BattleMenuController BattleMenu;
+
+    private bool battleOver;
 
     //I don't know what this is, but if we use it we should consider a dictionary.
     //That's not a slam I mean the data type.
@@ -34,7 +38,7 @@ public class BattleController : MonoBehaviour
         TURN_END
     }
 
-    private BattlePhase battlePhase = BattlePhase.BATTLE_START;
+    private BattlePhase battlePhase;
     private Dictionary<BattleBuffer, List<BattleAction>> battleBuffer;
     TextGenerator generator;
     TextGenerationSettings settings;
@@ -55,48 +59,52 @@ public class BattleController : MonoBehaviour
         //Remove this one day
         PlayerPokemon.instance.setPokemonStats();
 
-        sendOutPokemon();
-
-        changeBattlePhase(BattlePhase.PLAYER_PLANNING, 1.5f);
+        //Entry point for the battle scene
+        changeBattlePhase(BattlePhase.BATTLE_START);
+        //doBattle();
     }
 
-    private IEnumerator changeBattlePhase(BattlePhase phase, float waitTime = 0)
+    /* This is the setup method for each battle phase.
+     * the doBattle method acts as the update method */
+    private void changeBattlePhase(BattlePhase phase)
     {
-        yield return new WaitForSeconds(waitTime);
         battlePhase = phase;
-        //StartCoroutine(startBattlePhase());
+        doBattle();
     }
 
-    void startBattlePhase()
+    private async void doBattle()
     {
         switch(battlePhase)
         {
+            case BattlePhase.BATTLE_START:
+                battleOver = false;
+                await Task.Delay(250);
+                await sendOutPokemon();
+                changeBattlePhase(BattlePhase.PLAYER_PLANNING);
+                break;
             case BattlePhase.PLAYER_PLANNING:
                 Debug.Log("Player Planning Phase");
-                //Make battle menu visible
-                //Start current pokemon counter
-                //Elsewhere
-                    //We need an update pokemon counter method which checks if the last pokemon
-                    //has selected a BattleAction. Then phase needs to switch
+                //Get all player battle actions
+                List<BattleAction> playerBattleActions = await BattleMenu.SelectActions();
+                //Add them all to their respective queue
+                foreach (BattleAction action in playerBattleActions)
+                {
+                    addBattleActionToQueue(action);
+                }
+                changeBattlePhase(BattlePhase.ENEMY_PLANNING);
                 break;
             case BattlePhase.ENEMY_PLANNING:
                 Debug.Log("Enemy Planning Phase");
+                changeBattlePhase(BattlePhase.BATTLE);
                 break;
             case BattlePhase.BATTLE:
                 Debug.Log("Battling Phase...");
+                printBattleActions();
                 break;
         }
     }
 
-    void Update()
-    {
-        if (InputManager.getKeyPressed("Space"))
-        {
-            BattleMessage.GetComponent<Animator>().SetTrigger("Next");
-        }
-    }
-
-    public async void sendOutPokemon()
+    public async Task sendOutPokemon()
     {
         string script = "Wild ";
 
@@ -169,6 +177,18 @@ public class BattleController : MonoBehaviour
             }
         }
         battleBuffer[bufferEnum].Add(battleAction);
+    }
+
+    private void printBattleActions()
+    {
+        foreach (KeyValuePair<BattleBuffer, List<BattleAction>> entry in battleBuffer)
+        {
+            Debug.Log(entry.Key);
+            foreach (BattleAction action in entry.Value)
+            {
+                Debug.Log(action.ToString());
+            }
+        }
     }
 
     private void clearQueues()

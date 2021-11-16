@@ -136,6 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveEnum: 0
+  menuSelector: {fileID: 3562592834429618476}
 --- !u!1 &3562592834429618451
 GameObject:
   m_ObjectHideFlags: 0

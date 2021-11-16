@@ -41,6 +41,14 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Cancel"",
+                    ""type"": ""Button"",
+                    ""id"": ""3c6db420-8eba-4ff5-ba47-7d7a7d7c33b2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -120,6 +128,17 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""action"": ""Confirm"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8a207494-2718-4dad-8886-5437347bdd74"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -137,6 +156,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_Keyboard_Movement = m_Keyboard.FindAction("Movement", throwIfNotFound: true);
         m_Keyboard_Space = m_Keyboard.FindAction("Space", throwIfNotFound: true);
         m_Keyboard_Confirm = m_Keyboard.FindAction("Confirm", throwIfNotFound: true);
+        m_Keyboard_Cancel = m_Keyboard.FindAction("Cancel", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -189,6 +209,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private readonly InputAction m_Keyboard_Movement;
     private readonly InputAction m_Keyboard_Space;
     private readonly InputAction m_Keyboard_Confirm;
+    private readonly InputAction m_Keyboard_Cancel;
     public struct KeyboardActions
     {
         private @InputMaster m_Wrapper;
@@ -196,6 +217,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         public InputAction @Movement => m_Wrapper.m_Keyboard_Movement;
         public InputAction @Space => m_Wrapper.m_Keyboard_Space;
         public InputAction @Confirm => m_Wrapper.m_Keyboard_Confirm;
+        public InputAction @Cancel => m_Wrapper.m_Keyboard_Cancel;
         public InputActionMap Get() { return m_Wrapper.m_Keyboard; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -214,6 +236,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Confirm.started -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnConfirm;
                 @Confirm.performed -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnConfirm;
                 @Confirm.canceled -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnConfirm;
+                @Cancel.started -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnCancel;
+                @Cancel.performed -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnCancel;
+                @Cancel.canceled -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnCancel;
             }
             m_Wrapper.m_KeyboardActionsCallbackInterface = instance;
             if (instance != null)
@@ -227,6 +252,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Confirm.started += instance.OnConfirm;
                 @Confirm.performed += instance.OnConfirm;
                 @Confirm.canceled += instance.OnConfirm;
+                @Cancel.started += instance.OnCancel;
+                @Cancel.performed += instance.OnCancel;
+                @Cancel.canceled += instance.OnCancel;
             }
         }
     }
@@ -245,5 +273,6 @@ public class @InputMaster : IInputActionCollection, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnSpace(InputAction.CallbackContext context);
         void OnConfirm(InputAction.CallbackContext context);
+        void OnCancel(InputAction.CallbackContext context);
     }
 }

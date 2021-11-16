@@ -41,7 +41,7 @@ public class ScriptHelper
                 cleanString = "";
             }
             //Then we add the new word to the trueString
-            trueString += word + (word.Contains('<') ? "" : " ");
+            trueString += word + " ";//(word.Contains("<br>") ? "" : " ");
             //..and if it isn't a tag we also add it to the cleanString
             if (!word.Contains('<'))
             {
@@ -65,7 +65,8 @@ public class ScriptHelper
         foreach (string line in lines)
         {
             //We also need to add the newline character back to the end of each line.
-            messages.Add(line + "<br>");
+            //TrimStart removes the leading spaces
+            messages.Add(line.TrimStart() + "<br>");
         }
 
         //Debug

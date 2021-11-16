@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class MoveButtonController : MonoBehaviour, ISubmitHandler
+public class MoveButtonController : MonoBehaviour, ISubmitHandler, ICancelHandler, ISelectHandler, IDeselectHandler
 {
     private BattleController battleController;
     [SerializeField][SearchableEnum] private Moves moveEnum;
@@ -14,6 +15,11 @@ public class MoveButtonController : MonoBehaviour, ISubmitHandler
     private Text ppText;
     private Image sprite;
     private Button button;
+
+    //TODO: We should really make an abstract button class...
+    public Transform menuSelector;
+
+    public static UnityEvent<PokemonMove> moveButtonSelected = new UnityEvent<PokemonMove>();
 
     private void Start()
     {
@@ -40,12 +46,11 @@ public class MoveButtonController : MonoBehaviour, ISubmitHandler
         ppText.text = move.getCurrentPp() + "/" + move.getPp();
 
         Sprite[] moveButtons = Resources.LoadAll<Sprite>("Sprites/Battle/UI/MoveButtonsSprites");
+        Sprite[] selectedMoveButtons = Resources.LoadAll<Sprite>("Sprites/Battle/UI/SelectedMoveButtonsSprites");
         sprite.sprite = moveButtons[(int)move.getType().getTypeEnum()];
-    }
-
-    public void deleteme()
-    {
-        PokemonType.get(TypeEnum.FIRE);
+        SpriteState spriteState = button.spriteState;
+        spriteState.selectedSprite = selectedMoveButtons[(int)move.getType().getTypeEnum()];
+        button.spriteState = spriteState;
     }
 
     /* When a button is pressed we start a coroutine that handles
@@ -60,21 +65,26 @@ public class MoveButtonController : MonoBehaviour, ISubmitHandler
         {
             Debug.Log("No PP left for that move!");
         }
-        StartCoroutine(selectTargetsAddToQueue());
+        moveButtonSelected.Invoke(move);
     }
 
-    private IEnumerator selectTargetsAddToQueue() {
-        List<FieldSlotController> targets = new List<FieldSlotController>();
+    void ICancelHandler.OnCancel(BaseEventData eventData)
+    {
+        moveButtonSelected.Invoke(null);
+    }
 
-        Debug.Log("Select target. Press 'A'.");
-        targets.Add(battleController.enemyFieldSlots[1]);
+    public void OnSelect(BaseEventData eventData)
+    {
+        menuSelector.gameObject.SetActive(true);
+    }
 
-        while (!InputManager.getKeyPressed("Confirm")) {
-            yield return new WaitForEndOfFrame();
-        }
-        Debug.Log("Target selected");
+    public void OnDeselect(BaseEventData eventData)
+    {
+        menuSelector.gameObject.SetActive(false);
+    }
 
-        BattleMove battleMove = new BattleMove(move, targets);
-        battleController.addBattleActionToQueue(battleMove);
+    private void OnDisable()
+    {
+        menuSelector.gameObject.SetActive(false);
     }
 }

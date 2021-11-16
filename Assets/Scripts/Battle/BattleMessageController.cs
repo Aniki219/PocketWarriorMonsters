@@ -8,13 +8,30 @@ using UnityEngine.Events;
 public class BattleMessageController : MonoBehaviour
 {
     private SpriteRenderer nextIcon;
+    private Transform textObject;
     private TextAnimatorPlayer player;
     private Animator anim;
+
+    public int maxWidth = 450;
+    public int numberOfLines = 1;
+
+    //Typewriter speeds
+    float fastSpeed = 4;
+    float regularSpeed = 1;
+
     void Start()
     {
         nextIcon = transform.Find("nextIcon").GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        player = GetComponentInChildren<TextAnimatorPlayer>();
+        textObject = transform.Find("Text");
+        textObject.gameObject.SetActive(true);
+        player = textObject.GetComponent<TextAnimatorPlayer>();
+    }
+
+    private void Update()
+    {
+        //We can speedup the typewriter animation by holding "Confirm"
+        player.SetTypewriterSpeed(InputManager.getKey("Confirm") ? fastSpeed : regularSpeed);
     }
 
     /* This function must call the animator trigger "Start" and "End" to make the 
@@ -33,34 +50,36 @@ public class BattleMessageController : MonoBehaviour
 
         //The script comes as a list of strings. Each string should correspond to
         //one line of text.
-        List<string> battleMessageScript = ScriptHelper.Parse(script, 500);
+        List<string> battleMessageScript = ScriptHelper.Parse(script, maxWidth);
 
         //Since the BattleMessage contains two lines of text at maximum
         //we increment by 2 lines at a time.
-        for (int i = 0; i < battleMessageScript.Count; i+=2)
+        for (int i = 0; i < battleMessageScript.Count; i+=numberOfLines)
         {
-            string line1 = battleMessageScript[i];
-            if (line1.Equals("<br>"))
+            string finaltext = battleMessageScript[i];
+            if (finaltext.Equals("<br>"))
             {
                 //Here we want to go to the next line and skip this
                 //blank line. Since we increment by 2 we can first decrement by 1
                 //to offset this
-                i--;
+                i -= numberOfLines - 1;
                 continue;
             }
 
             //There may not be a second line so we must check first
             //It doesn't matter if line 2 is just <br>. In fact we must display it
             //or it may grab another line that shouldn't be here yet
-            string line2 = "";
-            if (battleMessageScript.Count > i+1)
+            for (int j = 1; j < numberOfLines; j++)
             {
-                line2 = battleMessageScript[i + 1];
+                if (battleMessageScript.Count > i + j)
+                {
+                    finaltext += battleMessageScript[i + j];
+                }
             }
-            player.ShowText(line1 + line2);
+            player.ShowText(finaltext);
 
-            //TODO: wait for message to finish writing...
-            await WaitForEvent.getTask(player.onTextShowed);
+            //Wait for message to finish writing
+            await WaitFor.Event(player.onTextShowed);
 
             //if (battleMessageScript.Count >= i + 2)
             //{
@@ -69,9 +88,13 @@ public class BattleMessageController : MonoBehaviour
 
             //After showing these two lines we display the nextIcon and wait for the
             //player to press 'A'.
-            await WaitForButtonPress.getTask("Confirm");
+            await WaitFor.ButtonPress("Confirm");
 
             nextIcon.enabled = false;
+
+            //Adding this little delay at the end helps with the speedup control
+            //Tapping "Confirm" shouldn't cause the text to write quickly like holding does
+            await Task.Delay(100);
         }
         //Tells the message box to FadeOut shortly after removing text
         player.textAnimator.SetText("", true);

@@ -12,4 +12,9 @@ public abstract class BattleAction
     */
     protected BattleBuffer battleBuffer;
     public BattleBuffer getBattleBuffer() { return battleBuffer; }
+
+    public override string ToString()
+    {
+        return "Generic BattleAction: " + battleBuffer.ToString();
+    }
 }
