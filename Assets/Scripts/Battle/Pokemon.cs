@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 [Serializable]
@@ -7,9 +8,10 @@ public class Pokemon
 {
     [SearchableEnum]
     public PokemonName name;
+    public string displayName;
 
     List<PokemonStat> stats;
-    public List<StandardMove> moves;
+    public List<PokemonMove> moves;
 
     public PokemonNature nature;
 
@@ -23,10 +25,15 @@ public class Pokemon
 
     public PokemonStatus status;
 
-    public Pokemon(PokemonName name, int hp, int attack,
+    public Pokemon(PokemonName name, PokemonType type1, PokemonType type2, int hp, int attack,
         int defense, int sp_attack, int sp_defense, int speed, int level, int xp)
     {
+        TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
         this.name = name;
+        displayName = textInfo.ToTitleCase(name.ToString().ToLower());
+
+        type_1 = type1;
+        type_2 = type2;
 
         stats = new List<PokemonStat> {
             new PokemonStat(Stats.HP, hp),
@@ -39,8 +46,14 @@ public class Pokemon
             new PokemonStat(Stats.CRIT_CHANCE, 0)
         };
         
-        this.current_hp = hp;
+        current_hp = hp;
 
+        moves = new List<PokemonMove>();
+        moves.Add(new StandardMove(Moves.ABSORB, this));
+        moves.Add(new StandardMove(Moves.BLAST_BURN, this));
+        moves.Add(new StandardMove(Moves.DIZZY_PUNCH, this));
+        moves.Add(new StandardMove(Moves.FLAMETHROWER, this));
+        
         this.level = level;
         this.xp = xp;
 
@@ -51,7 +64,12 @@ public class Pokemon
     {
         PokemonName name = (PokemonName)Enum.Parse(typeof(PokemonName), data.name, true);
 
+        PokemonType type1 = PokemonType.get(data.type1);
+        PokemonType type2 = PokemonType.get(data.type2);
+
         return new Pokemon(name,
+            type1,
+            type2,
             data.hp,
             data.attack,
             data.defense,
@@ -65,6 +83,8 @@ public class Pokemon
     public static Pokemon copy(Pokemon pokemon)
     {
         return new Pokemon(pokemon.name,
+            pokemon.type_1,
+            pokemon.type_2,
             pokemon.getStat(Stats.HP),
             pokemon.getStat(Stats.ATTACK),
             pokemon.getStat(Stats.DEFENSE),

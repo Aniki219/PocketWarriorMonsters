@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,13 +28,22 @@ public abstract class PokemonMove
         this.moveEnum = moveEnum;
 
         MoveData data = MoveDataReader.getMoveData(moveEnum);
-        name = data.name;
+
+        TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+        name = data.name.ToLower();
+        name = name.Replace('_', ' ');
+        name = textInfo.ToTitleCase(name);
         type = PokemonType.get((TypeEnum)Enum.Parse(typeof(TypeEnum), data.type.ToUpper()));
         category = (MoveCategory)Enum.Parse(typeof(MoveCategory), data.category.ToUpper());
         pp = data.pp;
         currentPp = data.pp;
         power = data.power;
         accuracy = data.accuracy;
+    }
+
+    public void setPokemon(Pokemon pokemon)
+    {
+        this.pokemon = pokemon;
     }
 
     public string getName()

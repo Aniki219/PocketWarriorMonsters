@@ -99,6 +99,7 @@ public class BattleController : MonoBehaviour
                 break;
             case BattlePhase.BATTLE:
                 Debug.Log("Battling Phase...");
+                await readBattleActionsScript();
                 printBattleActions();
                 break;
         }
@@ -118,7 +119,7 @@ public class BattleController : MonoBehaviour
             enemyFieldSlots[i].setPokemon(randomPokemon, true);
             enemyFieldSlots[i].pokemonPlaySendIn();
 
-            script += randomPokemonName;
+            script += randomPokemon.displayName;
             if (num > 1 && i < num - 1)
             {
                 script += ", ";
@@ -141,7 +142,7 @@ public class BattleController : MonoBehaviour
             allyFieldSlots[i].setPokemon(playerPokemon[i], false);
             allyFieldSlots[i].Invoke("playBallAnimation", 0.5f + 0.25f * i);
 
-            script += playerPokemon[i].name;
+            script += playerPokemon[i].displayName;
             if (num > 1 && i < num - 1)
             {
                 script += ", ";
@@ -164,18 +165,6 @@ public class BattleController : MonoBehaviour
         BattleBuffer bufferEnum = (overrideBuffer.HasValue) ? overrideBuffer.Value : 
             battleAction.getBattleBuffer();
 
-        if (battleAction.Equals(typeof(BattleMove)))
-        {
-            if (battlePhase.Equals(BattlePhase.PLAYER_PLANNING))
-            {
-                //Inc player poke counter
-            } else
-            {
-                //Inv enemy poke counter
-                //Maybe we dont need this since all enemy pokemon can just add their move at the same
-                //time...
-            }
-        }
         battleBuffer[bufferEnum].Add(battleAction);
     }
 
@@ -187,6 +176,17 @@ public class BattleController : MonoBehaviour
             foreach (BattleAction action in entry.Value)
             {
                 Debug.Log(action.ToString());
+            }
+        }
+    }
+
+    private async Task readBattleActionsScript()
+    {
+        foreach (KeyValuePair<BattleBuffer, List<BattleAction>> entry in battleBuffer)
+        {
+            foreach (BattleAction action in entry.Value)
+            {
+                await BattleMessage.performScript(action.script());
             }
         }
     }

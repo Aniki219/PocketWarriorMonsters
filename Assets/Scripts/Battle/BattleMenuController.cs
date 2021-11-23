@@ -9,6 +9,8 @@ using static MenuButtonController;
 
 public class BattleMenuController : MonoBehaviour
 {
+    //delte this
+    public List<FieldSlotController> enemies;
     public MoveMenuController moveMenu;
     private BattleController battleController;
     private Animator anim;
@@ -22,7 +24,7 @@ public class BattleMenuController : MonoBehaviour
 
     /* Bring up the BattleMenu with an animation
      * Also set the buttons to interactable and select the first one. */
-    public async Task Show()
+    public async Task Show(int allyIndex)
     {
         anim.SetTrigger("Appear");
         foreach (Button b in buttons)
@@ -41,6 +43,16 @@ public class BattleMenuController : MonoBehaviour
         {
             b.interactable = false;
         }
+        await Task.Yield();
+    }
+
+    public async Task Disable()
+    {
+        foreach (Button b in buttons)
+        {
+            b.interactable = false;
+        }
+        await Task.Yield();
     }
 
     /* Here we go.
@@ -62,14 +74,14 @@ public class BattleMenuController : MonoBehaviour
         for (int i = 0; i < battleController.allyFieldSlots.Length;)
         {
             //Make battle menu visible
-            await Show();
+            await Show(i);
             //Select Action for the ith pokemon
             BattleMenuAction choice = await WaitFor.Event(MenuButtonController.menuButtonSelected);
             await Hide();
             switch (choice)
             {
                 case BattleMenuAction.FIGHT:
-                    BattleMove move = await SelectMove();
+                    BattleMove move = await SelectMove(i);
                     if (move == null)
                     {
                         //player canceled move
@@ -114,13 +126,13 @@ public class BattleMenuController : MonoBehaviour
      * If we are selecting a target we go back to selecting a move for the current pokemon
      * Once a move and targets have been selected for each allied pokemon, we return a list
      * of BattleMoves to be added to the BattleController */
-    public async Task<BattleMove> SelectMove()
+    public async Task<BattleMove> SelectMove(int allyIndex)
     {
     //goto point
     SelectMove:
 
         //Show move buttons
-        moveMenu.Show();
+        moveMenu.Show(allyIndex);
 
         //Hide and reset target selection
         PokemonMove move = await WaitFor.Event(MoveButtonController.moveButtonSelected);
@@ -129,14 +141,18 @@ public class BattleMenuController : MonoBehaviour
             //player pressed cancel
             return null;
         }
-        List<FieldSlotController> targets = new List<FieldSlotController>(); // await WaitFor.Event(targetButtonSelected);
+        //Wait for button press animation
+        await Task.Delay(200);
+        moveMenu.Hide();
+
+        List<FieldSlotController> targets = enemies; // await WaitFor.Event(targetButtonSelected);
         if (targets == null)
         {
             //player cancelled
             goto SelectMove;
         }
 
-        moveMenu.Hide();
+        
         return new BattleMove(move, targets);
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -50,7 +51,7 @@ public class PokemonType : ScriptableObject
 
     public bool isNotEffective(TypeEnum againstType)
     {
-        return superEffectiveAgainst.Contains(get(againstType));
+        return notVeryEffectiveAgainst.Contains(get(againstType));
     }
 
     public bool doesNotEffect(TypeEnum againstType)
@@ -65,14 +66,13 @@ public class PokemonType : ScriptableObject
 
     public bool isNotEffective(PokemonType againstType)
     {
-        return superEffectiveAgainst.Contains(againstType);
+        return notVeryEffectiveAgainst.Contains(againstType);
     }
 
     public bool doesNotEffect(PokemonType againstType)
     {
         return doesNotEffectList.Contains(againstType);
     }
-
 
     /* These static methods allow us to use PokemonTypes almost like
      * an enum. These types are scriptable objects and exist as
@@ -103,6 +103,12 @@ public class PokemonType : ScriptableObject
             throw new System.Exception("Did not find " +
                 "PokemonType entry for " + type.ToString());
         }
+    }
+
+    public static PokemonType get(string typeName)
+    {
+        TypeEnum typeEnum = (TypeEnum)Enum.Parse(typeof(TypeEnum), typeName.ToUpper());
+        return get(typeEnum);
     }
 }
 

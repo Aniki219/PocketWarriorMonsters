@@ -18,6 +18,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cee818c978540cc4abe163def31f4d8a, type: 2}
   notVeryEffectiveAgainst:
   - {fileID: 11400000, guid: f0efa69c7a14488479724f2156a3e04f, type: 2}
-  - {fileID: 11400000, guid: 73f6e39366110e24c937f318910a9127, type: 2}
+  - {fileID: 11400000, guid: 41f7cd986970c0642b65ec42e7ea757c, type: 2}
   - {fileID: 11400000}
   doesNotEffectList: []

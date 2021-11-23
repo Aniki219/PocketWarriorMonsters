@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 294658481984306033}
   - component: {fileID: 334471509232834300}
   - component: {fileID: 6147063287510283158}
+  - component: {fileID: 6427208602349386991}
   m_Layer: 5
   m_Name: MoveButton
   m_TagString: Untagged
@@ -137,6 +138,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveEnum: 0
   menuSelector: {fileID: 3562592834429618476}
+--- !u!95 &6427208602349386991
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140973609339126192}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 57d1bfe71027fc145991dff2ed693ae8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3562592834429618451
 GameObject:
   m_ObjectHideFlags: 0

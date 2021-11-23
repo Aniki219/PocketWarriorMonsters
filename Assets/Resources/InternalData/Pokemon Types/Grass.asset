@@ -16,9 +16,9 @@ MonoBehaviour:
   superEffectiveAgainst:
   - {fileID: 11400000, guid: f3d4fd7d1359b6841b6e98e0cad27e4e, type: 2}
   - {fileID: 11400000, guid: 42818c8582305084fac52b1c13311ce4, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: cbaac59fb858da04b9b3ed8a8dc4f97e, type: 2}
   notVeryEffectiveAgainst:
-  - {fileID: 11400000, guid: f0efa69c7a14488479724f2156a3e04f, type: 2}
+  - {fileID: 11400000, guid: fa4dd0be38ab4134da4f80de3c42dfad, type: 2}
   - {fileID: 11400000, guid: b61492cc963d07648b27c6e3997b30d9, type: 2}
   - {fileID: 11400000, guid: bd7f0108f2ea4e0459eb92654a473c59, type: 2}
   - {fileID: 11400000, guid: 90b680084eddab94e955c30b9426473c, type: 2}

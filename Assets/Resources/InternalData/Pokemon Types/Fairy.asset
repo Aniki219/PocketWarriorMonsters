@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   typeEnum: 17
   superEffectiveAgainst:
-  - {fileID: 11400000, guid: fa4dd0be38ab4134da4f80de3c42dfad, type: 2}
-  - {fileID: 11400000, guid: 90b680084eddab94e955c30b9426473c, type: 2}
-  - {fileID: 11400000, guid: d293bc992ee588640b086c57098acc23, type: 2}
-  notVeryEffectiveAgainst:
   - {fileID: 11400000, guid: f0efa69c7a14488479724f2156a3e04f, type: 2}
   - {fileID: 11400000, guid: 73f6e39366110e24c937f318910a9127, type: 2}
   - {fileID: 11400000, guid: 880018da9a6b44e498139af479a11924, type: 2}
+  notVeryEffectiveAgainst:
+  - {fileID: 11400000, guid: fa4dd0be38ab4134da4f80de3c42dfad, type: 2}
+  - {fileID: 11400000, guid: 90b680084eddab94e955c30b9426473c, type: 2}
+  - {fileID: 11400000, guid: d293bc992ee588640b086c57098acc23, type: 2}
   doesNotEffectList: []

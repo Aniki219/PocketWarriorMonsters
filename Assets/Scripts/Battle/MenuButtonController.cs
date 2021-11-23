@@ -12,6 +12,7 @@ public class MenuButtonController : MonoBehaviour, ISelectHandler, IDeselectHand
     private Text buttonText;
     private Transform menuSelector;
     private Animator anim;
+    private Button button;
 
     public enum BattleMenuAction
     {
@@ -26,6 +27,7 @@ public class MenuButtonController : MonoBehaviour, ISelectHandler, IDeselectHand
 
     private void Start()
     {
+        button = GetComponent<Button>();
         anim = GetComponent<Animator>();
         buttonText = GetComponentInChildren<Text>();
         defaultTextColor = buttonText.color;

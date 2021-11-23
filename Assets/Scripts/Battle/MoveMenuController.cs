@@ -9,21 +9,30 @@ using UnityEngine.UI;
 public class MoveMenuController : MonoBehaviour
 {
     private Animator anim;
+    private BattleController battleController;
     [SerializeField] private Button[] buttons;
 
     private void Start()
     {
+        battleController = transform.parent.GetComponentInChildren<BattleController>();
         anim = GetComponent<Animator>();
     }
 
     /* Bring up the BattleMenu with an animation
      * Also set the buttons to interactable and select the first one. */
-    public void Show()
+    public void Show(int allyIndex)
     {
-        foreach (Button b in buttons)
+        for (int i = 0; i < buttons.Length; i++)
         {
+            Button b = buttons[i];
             b.gameObject.SetActive(true);
             b.interactable = true;
+
+            MoveButtonController mbc = b.gameObject.GetComponent<MoveButtonController>();
+            Pokemon source = battleController.allyFieldSlots[allyIndex].pokemon;
+            PokemonMove move = source.moves[i];
+
+            mbc.setMove(move);
         }
         buttons[0].Select();
     }
@@ -34,6 +43,14 @@ public class MoveMenuController : MonoBehaviour
         foreach (Button b in buttons)
         {
             b.gameObject.SetActive(false);
+            b.interactable = false;
+        }
+    }
+
+    public void Disable()
+    {
+        foreach (Button b in buttons)
+        {
             b.interactable = false;
         }
     }

@@ -20,6 +20,7 @@ using static BattleController;
  * */
 public class BattleMove : BattleAction
 {
+    private const float BASECRIT = 1.5f;
     private PokemonMove move;
     private List<FieldSlotController> targets;
     private Pokemon source;
@@ -35,38 +36,42 @@ public class BattleMove : BattleAction
         this.targets = targets;
         this.source = move.getPokemon();
 
-        didCrit = Random.Range(0, 1.0f) > 6.25f * (source.getStat(Stats.CRIT_CHANCE) + 1) / 100.0f;
+        didCrit = Random.Range(0, 1.0f) <= 6.25f * (source.getStat(Stats.CRIT_CHANCE) + 1) / 100.0f;
 
         battleBuffer = BattleBuffer.BATTLE_MOVE;
     }
 
     public override string script()
     {
-        string script = string.Format("{0} used {1}. ", source.name, move.getName());
+        string script = string.Format("{0} used {1}.<br>", source.name, move.getName());
 
         foreach (FieldSlotController target in targets) {
             List<PokemonType> types = new List<PokemonType>() { target.pokemon.type_1, target.pokemon.type_2 };
 
             float effectiveness = calcTypeEffectiveness(move.getType(), types);
-            
+            Debug.Log(effectiveness);
             if (effectiveness == 0)
             {
-                script += "It does not effect enemy " + target.name + "! ";
+                script += "It does not effect enemy " + target.name + "!<br>";
             } else
             {
                 if (didCrit)
                 {
-                    script += "A critical hit! ";
+                    script += "A critical hit!<br>";
                 }
-                if (effectiveness > 1)
+                if (effectiveness > 1.0f)
                 {
-                    script += "It's super effective! ";
-                } else
-                {
-                    script += "It's not very effective... ";
+                    script += "It's super effective!<br> ";
                 }
-                script += string.Format("{0} took {1} damage.", 
-                    target.name, calcDamage(target.pokemon, targets.Count > 1));
+                if (effectiveness < 1.0f) {
+                    script += "It's not very effective...<br> ";
+                }
+                if (target.isEnemy)
+                {
+                    script += "Enemy ";
+                }
+                script += string.Format("{0} took {1} damage.<br>", 
+                    target.pokemon.displayName, calcDamage(target.pokemon, targets.Count > 1));
             }
 
             return script;
@@ -102,29 +107,29 @@ public class BattleMove : BattleAction
 
     float calcTypeEffectiveness(PokemonType attackType, List<PokemonType> targetTypes)
     {
-        float effectiveness = 1.0f;
+        //BASECRIT will be rasied to the power of effectiveness up to 2 down to -2
+        int effectiveness = 0;
         PokemonType type = move.getType();
 
         foreach (PokemonType targetType in targetTypes)
         {
             if (type.doesNotEffect(targetType))
             {
-                effectiveness *= 0;
-                break;
+                return 0;
             }
             if (type.isSuperEffective(targetType))
             {
-                effectiveness *= 1.5f;
+                effectiveness++;
                 continue;
             }
             if (type.isNotEffective(targetType))
             {
-                effectiveness /= 1.5f;
+                effectiveness--;
                 continue;
             }
         }
 
-        return effectiveness;
+        return Mathf.Pow(BASECRIT, effectiveness);
     }
 
     public override string ToString()

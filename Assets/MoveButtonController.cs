@@ -15,21 +15,21 @@ public class MoveButtonController : MonoBehaviour, ISubmitHandler, ICancelHandle
     private Text ppText;
     private Image sprite;
     private Button button;
+    private Animator anim;
 
     //TODO: We should really make an abstract button class...
     public Transform menuSelector;
 
     public static UnityEvent<PokemonMove> moveButtonSelected = new UnityEvent<PokemonMove>();
 
-    private void Start()
+    private void Init()
     {
         battleController = GetComponentInParent<BattleController>();
         moveText = transform.Find("MoveText").GetComponent<Text>();
         ppText = transform.Find("PPText").GetComponent<Text>();
         sprite = GetComponent<Image>();
         button = GetComponent<Button>();
-        move = new StandardMove(moveEnum, new Pokemon(PokemonName.ABOMASNOW, 1, 1, 1, 1, 1, 1, 1, 1));
-        setMove(move);
+        anim = GetComponent<Animator>();
     }
 
     /* We need to set this button to display the information
@@ -39,14 +39,16 @@ public class MoveButtonController : MonoBehaviour, ISubmitHandler, ICancelHandle
      * */
     public void setMove(PokemonMove move = null)
     {
+        Init();
         if (move == null) return;
 
         this.move = move;
+        
         moveText.text = move.getName();
         ppText.text = move.getCurrentPp() + "/" + move.getPp();
 
         Sprite[] moveButtons = Resources.LoadAll<Sprite>("Sprites/Battle/UI/MoveButtonsSprites");
-        Sprite[] selectedMoveButtons = Resources.LoadAll<Sprite>("Sprites/Battle/UI/SelectedMoveButtonsSprites");
+        Sprite[] selectedMoveButtons = moveButtons; // Resources.LoadAll<Sprite>("Sprites/Battle/UI/SelectedMoveButtonsSprites");
         sprite.sprite = moveButtons[(int)move.getType().getTypeEnum()];
         SpriteState spriteState = button.spriteState;
         spriteState.selectedSprite = selectedMoveButtons[(int)move.getType().getTypeEnum()];
@@ -61,6 +63,9 @@ public class MoveButtonController : MonoBehaviour, ISubmitHandler, ICancelHandle
         if (move.getCurrentPp() > 0)
         {
             move.decPp();
+            moveButtonSelected.Invoke(move);
+            anim.SetTrigger("Press");
+            GetComponentInParent<MoveMenuController>().Disable();
         } else
         {
             Debug.Log("No PP left for that move!");

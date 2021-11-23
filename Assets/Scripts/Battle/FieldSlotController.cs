@@ -8,6 +8,8 @@ public class FieldSlotController : MonoBehaviour
     private Animator pokeball;
     private SpriteRenderer pokeSprite;
 
+    public bool isEnemy = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,12 +17,6 @@ public class FieldSlotController : MonoBehaviour
             .GetComponent<SpriteRenderer>();
         pokeball = transform.Find("ThrownPokeballParticle")
             .GetComponentInChildren<Animator>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void playBallAnimation()
