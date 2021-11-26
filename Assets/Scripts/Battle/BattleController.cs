@@ -7,13 +7,16 @@ using UnityEngine;
 
 public class BattleController : MonoBehaviour
 {
-    public FieldSlotController[] allyFieldSlots = new FieldSlotController[3];
-    public FieldSlotController[] enemyFieldSlots = new FieldSlotController[3];
+    public List<FieldSlotController> allyFieldSlots = new List<FieldSlotController>();
+    public List<FieldSlotController> enemyFieldSlots = new List<FieldSlotController>();
 
     public BattleMessageController BattleMessage;
     public BattleMenuController BattleMenu;
 
     private bool battleOver;
+
+    public static int tick = 0;
+    public static int currentPokemonIndex = 0;
 
     //I don't know what this is, but if we use it we should consider a dictionary.
     //That's not a slam I mean the data type.
@@ -44,6 +47,7 @@ public class BattleController : MonoBehaviour
     TextGenerationSettings settings;
     void Start()
     {
+        TwoClock();
         //We have a bunch of queue types and priorities. This will all be managed by the Enum.
         //Here we make a dictionary of buffers and initialize them all to empty lists.
         //This we we can access each buffer by supplying a buffer type enum.
@@ -61,7 +65,6 @@ public class BattleController : MonoBehaviour
 
         //Entry point for the battle scene
         changeBattlePhase(BattlePhase.BATTLE_START);
-        //doBattle();
     }
 
     /* This is the setup method for each battle phase.
@@ -202,5 +205,15 @@ public class BattleController : MonoBehaviour
     private void clearQueue(BattleBuffer buffer)
     {
         battleBuffer[buffer].Clear();
+    }
+
+    private static async void TwoClock()
+    {
+        while (true)
+        {
+            await Task.Delay(250);
+            BattleController.tick++;
+            BattleController.tick %= 2;
+        }
     }
 }

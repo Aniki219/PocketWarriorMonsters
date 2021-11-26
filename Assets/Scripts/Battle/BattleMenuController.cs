@@ -1,32 +1,37 @@
-﻿using System;
+﻿using Febucci.UI;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
-using static MenuButtonController;
+using static BattleMenuButtonController;
 
 public class BattleMenuController : MonoBehaviour
 {
-    //delte this
-    public List<FieldSlotController> enemies;
     public MoveMenuController moveMenu;
+    public BattlePlanController battlePlan;
+    public TextAnimatorPlayer textPlayer;
     private BattleController battleController;
     private Animator anim;
+    [SerializeField] private Image currentPokemonImage;
+    private Sprite[] currentPokemonImages;
     [SerializeField] private Button[] buttons;
+    private CameraController cam;
 
     private void Start()
     {
         battleController = transform.parent.GetComponentInChildren<BattleController>();
         anim = GetComponent<Animator>();
+        cam = Camera.main.GetComponent<CameraController>();
     }
 
     /* Bring up the BattleMenu with an animation
      * Also set the buttons to interactable and select the first one. */
-    public async Task Show(int allyIndex)
+    public async Task Show()
     {
-        anim.SetTrigger("Appear");
+        anim.SetBool("Showing", true);
+        string pokeName = battleController.allyFieldSlots[BattleController.currentPokemonIndex].pokemon.displayName;
+        textPlayer.ShowText("Select a move for " + pokeName);
+        currentPokemonImages = Resources.LoadAll<Sprite>("Sprites/Pokemon/Overworld/" + pokeName.ToLower());
         foreach (Button b in buttons)
         {
             b.interactable = true;
@@ -38,7 +43,7 @@ public class BattleMenuController : MonoBehaviour
     /* Hide the BattleMenu with an aimation */
     public async Task Hide()
     {
-        anim.SetTrigger("Disappear");
+        anim.SetBool("Showing", false);
         foreach (Button b in buttons)
         {
             b.interactable = false;
@@ -69,19 +74,20 @@ public class BattleMenuController : MonoBehaviour
     public async Task<List<BattleAction>> SelectActions()
     {
         List<BattleAction> battleActions = new List<BattleAction>();
-
         //For each player pokemon we must choose an action
-        for (int i = 0; i < battleController.allyFieldSlots.Length;)
+        for (int i = 0; i < battleController.allyFieldSlots.Count;)
         {
+            BattleController.currentPokemonIndex = i;
+            cam.SetTarget(battleController.allyFieldSlots[i].transform.position);
             //Make battle menu visible
-            await Show(i);
+            await Show();
             //Select Action for the ith pokemon
-            BattleMenuAction choice = await WaitFor.Event(MenuButtonController.menuButtonSelected);
+            BattleMenuAction choice = await WaitFor.Event(BattleMenuButtonController.menuButtonSelected);
             await Hide();
             switch (choice)
             {
                 case BattleMenuAction.FIGHT:
-                    BattleMove move = await SelectMove(i);
+                    BattleMove move = await SelectMove();
                     if (move == null)
                     {
                         //player canceled move
@@ -115,6 +121,7 @@ public class BattleMenuController : MonoBehaviour
                     break;
             }
         }
+        cam.Reset();
         return battleActions;
     }
 
@@ -126,11 +133,16 @@ public class BattleMenuController : MonoBehaviour
      * If we are selecting a target we go back to selecting a move for the current pokemon
      * Once a move and targets have been selected for each allied pokemon, we return a list
      * of BattleMoves to be added to the BattleController */
-    public async Task<BattleMove> SelectMove(int allyIndex)
+    public async Task<BattleMove> SelectMove()
     {
+        int allyIndex = BattleController.currentPokemonIndex;
+        Pokemon pokemon = battleController.allyFieldSlots[allyIndex].pokemon;
+        PlanMoveController planMove = battlePlan.planMoves[allyIndex];
     //goto point
     SelectMove:
-
+        //Show the battlePlan UI
+        battlePlan.Show();
+        planMove.setPokemon(pokemon.displayName);
         //Show move buttons
         moveMenu.Show(allyIndex);
 
@@ -139,21 +151,36 @@ public class BattleMenuController : MonoBehaviour
         if (move == null)
         {
             //player pressed cancel
+            moveMenu.Hide();
+            battlePlan.Hide();
             return null;
         }
-        //Wait for button press animation
+        //Wait for move button press animation
         await Task.Delay(200);
+        
         moveMenu.Hide();
 
-        List<FieldSlotController> targets = enemies; // await WaitFor.Event(targetButtonSelected);
+        List<FieldSlotController> targets = battleController.enemyFieldSlots; // await WaitFor.Event(targetButtonSelected);
         if (targets == null)
         {
             //player cancelled
             goto SelectMove;
         }
+        planMove.setTargets(targets);
+        //Wait for target button press animation
+        await Task.Delay(200);
+        battlePlan.Hide();
 
-        
         return new BattleMove(move, targets);
     }
+
+    private void Update()
+    {
+        if (currentPokemonImages != null && currentPokemonImages.Length > 1) { 
+        currentPokemonImage.sprite =
+            currentPokemonImages[BattleController.tick];
+        }
+    }
 }
+
 

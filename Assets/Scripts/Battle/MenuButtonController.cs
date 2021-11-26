@@ -1,60 +1,71 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class MenuButtonController : MonoBehaviour, ISelectHandler, IDeselectHandler, ISubmitHandler
+public class MenuButtonController : MonoBehaviour, ISelectHandler, IDeselectHandler, ISubmitHandler, ICancelHandler
 {
-    public Color selectedTextColor = Color.white;
-    private Color defaultTextColor = Color.black;
-    private Text buttonText;
-    private Transform menuSelector;
-    private Animator anim;
-    private Button button;
+    [SerializeField] protected Color defaultTextColor = Color.black;
+    [SerializeField] protected Color selectedTextColor = Color.white;
 
-    public enum BattleMenuAction
+    [SerializeField] protected Text buttonText;
+    [SerializeField] protected Transform menuSelector;
+
+    protected Animator anim;
+    protected Button button;
+
+    protected virtual void Start()
     {
-        FIGHT,
-        POKEMON,
-        ITEM,
-        RUN
-    }
-    [SerializeField] BattleMenuAction battleAction;
-
-    public static UnityEvent<BattleMenuAction> menuButtonSelected = new UnityEvent<BattleMenuAction>();
-
-    private void Start()
-    {
+        if (buttonText != null) defaultTextColor = buttonText.color;
         button = GetComponent<Button>();
         anim = GetComponent<Animator>();
-        buttonText = GetComponentInChildren<Text>();
-        defaultTextColor = buttonText.color;
-        menuSelector = transform.parent.Find("MenuSelector");
-        menuSelector.gameObject.SetActive(false);
+        setMenuSelector(false);
+    }
+    public virtual void OnDeselect(BaseEventData eventData)
+    {
+        setButtonTextColor(defaultTextColor);
+        setMenuSelector(false);
     }
 
-    public void OnSelect(BaseEventData eventData)
+    public virtual void OnSelect(BaseEventData eventData)
     {
-        menuSelector.gameObject.SetActive(true);
-        buttonText.color = selectedTextColor;
+        setButtonTextColor(selectedTextColor);
+        setMenuSelector(true);
     }
 
-    public void OnDeselect(BaseEventData eventData)
+    public virtual void OnSubmit(BaseEventData eventData)
     {
-        buttonText.color = defaultTextColor;
-        menuSelector.gameObject.SetActive(false);
+        if (anim != null) anim.SetTrigger("Press");
     }
 
-    public void OnSubmit(BaseEventData eventData)
+    public virtual void OnCancel(BaseEventData eventData)
     {
-        anim.SetTrigger("Press");
-        menuButtonSelected.Invoke(battleAction);
+        throw new NotImplementedException();
     }
 
-    private void OnDisable()
+    public virtual void OnDisable()
     {
-        menuSelector.gameObject.SetActive(false);
+        setMenuSelector(false);
+    }
+
+    private void setMenuSelector(bool active)
+    {
+        if (menuSelector != null)
+        {
+            menuSelector.gameObject.SetActive(active);
+        }
+    }
+
+    private void setButtonTextColor(Color clr)
+    {
+        if (buttonText != null)
+        {
+            buttonText.color = clr;
+        }
     }
 }
+

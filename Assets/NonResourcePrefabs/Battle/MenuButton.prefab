@@ -250,7 +250,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdccbb2d0f05e544ea359f6817b29e1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultTextColor: {r: 0, g: 0, b: 0, a: 1}
   selectedTextColor: {r: 0, g: 0, b: 0, a: 0}
+  buttonText: {fileID: 2264844565004505099}
+  menuSelector: {fileID: 5088032}
+  battleAction: 0
 --- !u!95 &5679405553194682165
 Animator:
   serializedVersion: 3

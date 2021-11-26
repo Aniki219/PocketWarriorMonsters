@@ -9,6 +9,7 @@ public class FieldSlotController : MonoBehaviour
     private SpriteRenderer pokeSprite;
 
     public bool isEnemy = false;
+    public int slotNumber;
 
     // Start is called before the first frame update
     void Start()

@@ -8,20 +8,20 @@ using UnityEngine.UI;
 
 public class MoveMenuController : MonoBehaviour
 {
-    private Animator anim;
+    [SerializeField] private Animator anim;
     private BattleController battleController;
     [SerializeField] private Button[] buttons;
 
     private void Start()
     {
         battleController = transform.parent.GetComponentInChildren<BattleController>();
-        anim = GetComponent<Animator>();
     }
 
     /* Bring up the BattleMenu with an animation
      * Also set the buttons to interactable and select the first one. */
     public void Show(int allyIndex)
     {
+        anim.SetBool("Showing", true);
         for (int i = 0; i < buttons.Length; i++)
         {
             Button b = buttons[i];
@@ -40,6 +40,7 @@ public class MoveMenuController : MonoBehaviour
     /* Hide the BattleMenu with an aimation */
     public void Hide()
     {
+        anim.SetBool("Showing", false);
         foreach (Button b in buttons)
         {
             b.gameObject.SetActive(false);

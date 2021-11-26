@@ -5,31 +5,25 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class MoveButtonController : MonoBehaviour, ISubmitHandler, ICancelHandler, ISelectHandler, IDeselectHandler
+public class MoveButtonController : MenuButtonController
 {
-    private BattleController battleController;
     [SerializeField][SearchableEnum] private Moves moveEnum;
     private PokemonMove move;
 
     private Text moveText;
     private Text ppText;
     private Image sprite;
-    private Button button;
-    private Animator anim;
 
-    //TODO: We should really make an abstract button class...
-    public Transform menuSelector;
+    [SerializeField] private BattlePlanController battlePlan;
 
     public static UnityEvent<PokemonMove> moveButtonSelected = new UnityEvent<PokemonMove>();
 
-    private void Init()
+    protected override void Start()
     {
-        battleController = GetComponentInParent<BattleController>();
+        base.Start();
         moveText = transform.Find("MoveText").GetComponent<Text>();
         ppText = transform.Find("PPText").GetComponent<Text>();
         sprite = GetComponent<Image>();
-        button = GetComponent<Button>();
-        anim = GetComponent<Animator>();
     }
 
     /* We need to set this button to display the information
@@ -39,30 +33,26 @@ public class MoveButtonController : MonoBehaviour, ISubmitHandler, ICancelHandle
      * */
     public void setMove(PokemonMove move = null)
     {
-        Init();
         if (move == null) return;
 
         this.move = move;
         
         moveText.text = move.getName();
-        ppText.text = move.getCurrentPp() + "/" + move.getPp();
+        setPpText();
 
         Sprite[] moveButtons = Resources.LoadAll<Sprite>("Sprites/Battle/UI/MoveButtonsSprites");
-        Sprite[] selectedMoveButtons = moveButtons; // Resources.LoadAll<Sprite>("Sprites/Battle/UI/SelectedMoveButtonsSprites");
         sprite.sprite = moveButtons[(int)move.getType().getTypeEnum()];
-        SpriteState spriteState = button.spriteState;
-        spriteState.selectedSprite = selectedMoveButtons[(int)move.getType().getTypeEnum()];
-        button.spriteState = spriteState;
     }
 
     /* When a button is pressed we start a coroutine that handles
      * player input through dialogue, selecting a target, and finally
      * adding that move as a BattleAction to the BattleController */
-    public void OnSubmit(BaseEventData eventData)
+    public override void OnSubmit(BaseEventData eventData)
     {
         if (move.getCurrentPp() > 0)
         {
             move.decPp();
+            setPpText();
             moveButtonSelected.Invoke(move);
             anim.SetTrigger("Press");
             GetComponentInParent<MoveMenuController>().Disable();
@@ -73,23 +63,19 @@ public class MoveButtonController : MonoBehaviour, ISubmitHandler, ICancelHandle
         moveButtonSelected.Invoke(move);
     }
 
-    void ICancelHandler.OnCancel(BaseEventData eventData)
+    public override void OnCancel(BaseEventData eventData)
     {
         moveButtonSelected.Invoke(null);
     }
 
-    public void OnSelect(BaseEventData eventData)
+    public override void OnSelect(BaseEventData eventData)
     {
-        menuSelector.gameObject.SetActive(true);
+        base.OnSelect(eventData);
+        battlePlan.planMoves[BattleController.currentPokemonIndex].setMove(move);
     }
 
-    public void OnDeselect(BaseEventData eventData)
+    private void setPpText()
     {
-        menuSelector.gameObject.SetActive(false);
-    }
-
-    private void OnDisable()
-    {
-        menuSelector.gameObject.SetActive(false);
+        ppText.text = move.getCurrentPp() + "/" + move.getPp();
     }
 }

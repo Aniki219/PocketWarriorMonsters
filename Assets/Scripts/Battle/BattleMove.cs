@@ -49,7 +49,7 @@ public class BattleMove : BattleAction
             List<PokemonType> types = new List<PokemonType>() { target.pokemon.type_1, target.pokemon.type_2 };
 
             float effectiveness = calcTypeEffectiveness(move.getType(), types);
-            Debug.Log(effectiveness);
+
             if (effectiveness == 0)
             {
                 script += "It does not effect enemy " + target.name + "!<br>";
