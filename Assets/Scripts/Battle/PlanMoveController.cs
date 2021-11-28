@@ -13,6 +13,8 @@ public class PlanMoveController : MonoBehaviour
     [SerializeField] private Color fadeColor = Color.grey;
     [SerializeField] private int num;
 
+    public List<FieldSlotController> targets;
+
     Sprite[] pokeIconSprites;
 
 
@@ -51,17 +53,14 @@ public class PlanMoveController : MonoBehaviour
 
         moveText.text = "";
 
-        foreach (Image i in targetIcons)
-        {
-            i.enabled = false;
-            i.color = fadeColor;
-        }
+        targets.Clear();
+        setTargets();
     }
 
-    public void setPokemon(string name)
+    public void setPokemonIcon(string name)
     {
         pokemonIcon.enabled = true;
-        pokeIconSprites = Resources.LoadAll<Sprite>("Sprites/Pokemon/Overworld/" + name.ToLower());
+        pokeIconSprites = Pokemon.getOverworldSpritesheet(name);
     }
 
     public void setMove(PokemonMove move)
@@ -71,24 +70,45 @@ public class PlanMoveController : MonoBehaviour
         moveText.text = move.getName();
     }
 
-    public void setTargets(List<FieldSlotController> targets)
+    public void setTargets()
     {
-        for (int i = 0; i < targetIcons.Count; i++)
+        for (int i = 0; i < 6; i++)
         {
-            Image t = targetIcons[i];
-            if (i < 3) { t.enabled = true; }
-            t.color = fadeColor;
+            targetIcons[i].color = fadeColor;
+            if (i >= 3) { 
+                targetIcons[i].enabled = false;
+            }
         }
-        foreach (FieldSlotController target in targets)
+        foreach (FieldSlotController fc in targets)
         {
-            targetIcons[target.slotNumber].color = highlightColor;
-            if (target.slotNumber >= 3)
+            int i = fc.slotNumber;
+            if (!fc.isEnemy)
             {
-                foreach (Image t in targetIcons)
+                i += 3;
+                for (int j = 3; j < 6; j++)
                 {
-                    t.enabled = true;
+                    targetIcons[j].enabled = true;
                 }
             }
+            targetIcons[i].color = highlightColor;
+        }
+    }
+
+    public void addTarget(FieldSlotController target)
+    {
+        if (!targets.Contains(target))
+        {
+            targets.Add(target);
+            setTargets();
+        }
+    }
+
+    public void removeTarget(FieldSlotController target)
+    {
+        if (targets.Contains(target))
+        {
+            targets.Remove(target);
+            setTargets();
         }
     }
 }

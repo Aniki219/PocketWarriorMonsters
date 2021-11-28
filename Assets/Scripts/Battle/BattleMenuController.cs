@@ -8,20 +8,18 @@ using static BattleMenuButtonController;
 public class BattleMenuController : MonoBehaviour
 {
     public MoveMenuController moveMenu;
+    public TargetMenuController targetMenu;
     public BattlePlanController battlePlan;
     public TextAnimatorPlayer textPlayer;
-    private BattleController battleController;
+    [SerializeField] private BattleController battleController;
     private Animator anim;
     [SerializeField] private Image currentPokemonImage;
     private Sprite[] currentPokemonImages;
     [SerializeField] private Button[] buttons;
-    private CameraController cam;
 
     private void Start()
     {
-        battleController = transform.parent.GetComponentInChildren<BattleController>();
         anim = GetComponent<Animator>();
-        cam = Camera.main.GetComponent<CameraController>();
     }
 
     /* Bring up the BattleMenu with an animation
@@ -31,7 +29,7 @@ public class BattleMenuController : MonoBehaviour
         anim.SetBool("Showing", true);
         string pokeName = battleController.allyFieldSlots[BattleController.currentPokemonIndex].pokemon.displayName;
         textPlayer.ShowText("Select a move for " + pokeName);
-        currentPokemonImages = Resources.LoadAll<Sprite>("Sprites/Pokemon/Overworld/" + pokeName.ToLower());
+        currentPokemonImages = Pokemon.getOverworldSpritesheet(pokeName);
         foreach (Button b in buttons)
         {
             b.interactable = true;
@@ -64,21 +62,24 @@ public class BattleMenuController : MonoBehaviour
      * SelectAction first waits for a BattleMenuAction to be selected
      * these are FIGHT, POKEMON, ITEM, and RUN.
      * The player can only cancel if not on the first pokemon.
-     * Cancelling will require we reselct the action for the previous pokemon.
+     * Cancelling will require we reselect the action for the previous pokemon.
      * Each MenuButton fires a menuButtonSelected UnityEvent<BattleMenuAction>
      * this is the enum which contains FIGHT, ITEM, etc...
      * Once we have that we can call a new async function to handle that option. 
-     * We return a list of BattleActions, these can be pokemon moves, an item, running, 
-     * or swapping one pokemon for another.
+     * We return a list of BattleActions to the BattleController, these can be 
+     * pokemon moves, an item, running, or swapping one pokemon for another.
      */
     public async Task<List<BattleAction>> SelectActions()
     {
         List<BattleAction> battleActions = new List<BattleAction>();
-        //For each player pokemon we must choose an action
+        /* For each player pokemon we must choose an action
+         * Notice we dont  increment i automatically. We won't want to
+         * do this if the player does not select an action, i.e. they cancelled
+         * */
         for (int i = 0; i < battleController.allyFieldSlots.Count;)
         {
             BattleController.currentPokemonIndex = i;
-            cam.SetTarget(battleController.allyFieldSlots[i].transform.position);
+            BattleController.cam.SetTarget(battleController.allyFieldSlots[i].transform.position);
             //Make battle menu visible
             await Show();
             //Select Action for the ith pokemon
@@ -90,7 +91,7 @@ public class BattleMenuController : MonoBehaviour
                     BattleMove move = await SelectMove();
                     if (move == null)
                     {
-                        //player canceled move
+                        //player canceled move. Notice we dont increment i
                         break;
                     }
                     battleActions.Add(move);
@@ -121,7 +122,7 @@ public class BattleMenuController : MonoBehaviour
                     break;
             }
         }
-        cam.Reset();
+        BattleController.cam.Reset();
         return battleActions;
     }
 
@@ -135,16 +136,22 @@ public class BattleMenuController : MonoBehaviour
      * of BattleMoves to be added to the BattleController */
     public async Task<BattleMove> SelectMove()
     {
-        int allyIndex = BattleController.currentPokemonIndex;
-        Pokemon pokemon = battleController.allyFieldSlots[allyIndex].pokemon;
-        PlanMoveController planMove = battlePlan.planMoves[allyIndex];
-    //goto point
+        //Name shortening the index of the current pokemon (fieldSlot)
+        int i = BattleController.currentPokemonIndex;
+        //Name shortening the current pokemon
+        Pokemon pokemon = battleController.allyFieldSlots[i].pokemon;
+        //Name shortening the current planMove
+        PlanMoveController planMove = battlePlan.planMoves[i];
+
+    //For goto
     SelectMove:
+
         //Show the battlePlan UI
         battlePlan.Show();
-        planMove.setPokemon(pokemon.displayName);
+        planMove.setPokemonIcon(pokemon.displayName);
+        BattleController.cam.SetTarget(battleController.allyFieldSlots[i].transform.position);
         //Show move buttons
-        moveMenu.Show(allyIndex);
+        moveMenu.Show();
 
         //Hide and reset target selection
         PokemonMove move = await WaitFor.Event(MoveButtonController.moveButtonSelected);
@@ -153,24 +160,34 @@ public class BattleMenuController : MonoBehaviour
             //player pressed cancel
             moveMenu.Hide();
             battlePlan.Hide();
+            //We need to clear the planned move and targets for this pokemon
+            battlePlan.planMoves[i].Reset();
             return null;
         }
         //Wait for move button press animation
         await Task.Delay(200);
-        
         moveMenu.Hide();
+        await Task.Delay(100);
+        targetMenu.Show();
 
-        List<FieldSlotController> targets = battleController.enemyFieldSlots; // await WaitFor.Event(targetButtonSelected);
-        if (targets == null)
+        /* Wait for player to select a target.
+        * This returns a bool indicating whether a target was selected, or if
+        * the player cancelled during target selection
+        * */
+        bool selectedTarget = await WaitFor.Event(TargetButtonController.targetButtonSelected);
+        List<FieldSlotController> targets = battlePlan.planMoves[i].targets;
+        if (targets.Count == 0 || !selectedTarget)
         {
             //player cancelled
+            targetMenu.Hide();
             goto SelectMove;
         }
-        planMove.setTargets(targets);
         //Wait for target button press animation
         await Task.Delay(200);
+        targetMenu.Hide();
         battlePlan.Hide();
 
+        //We return a single battle move with a list of targets to the SelectActions method
         return new BattleMove(move, targets);
     }
 

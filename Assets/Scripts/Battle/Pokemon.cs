@@ -6,6 +6,7 @@ using UnityEngine;
 [Serializable]
 public class Pokemon
 {
+    public const string overworldPath = "Sprites/Pokemon/Overworld/";
     [SearchableEnum]
     public PokemonName name;
     public string displayName;
@@ -56,8 +57,6 @@ public class Pokemon
         
         this.level = level;
         this.xp = xp;
-
-        //moves.Add(new StandardMove(Moves.TACKLE, this));
     }
 
     public static Pokemon fromData(PokemonData data, int level = 1, int xp = 0)
@@ -97,7 +96,6 @@ public class Pokemon
 
     public int getStat(Stats stat)
     {
-
         PokemonStat returnStat = stats.Find(s => s.statName == stat);
 
         if (returnStat == null)
@@ -109,13 +107,71 @@ public class Pokemon
 
     }
 
-    public override string ToString()
+    public int getStatValue(Stats inStat)
     {
-        return getStat(Stats.ATTACK).ToString();
+        PokemonStat stat = stats.Find(s => s.statName == inStat);
+
+        if (stat == null)
+        {
+            throw new Exception("Pokemon: " + name + " does not contain a stat for " + stat);
+        }
+
+        int common = (int)Mathf.Floor(2 * stat.amount + stat.IVs + Mathf.Floor(stat.EVs / 4.0f) * level / 100.0f);
+
+        if (stat.statName.Equals(Stats.HP))
+        {
+            return common + level + 10;
+        } else
+        {
+            //TODO: Calculate Natures boost.
+            int natureBoost = 1;
+
+            return (common + 5) * natureBoost;
+        }
     }
+
+    //public override string ToString()
+    //{
+    //    return getStat(Stats.ATTACK).ToString();
+    //}
 
     public List<PokemonType> getTypes()
     {
         return new List<PokemonType> { type_1, type_2 };
     }
+
+    /* Here we create methods for getting the overworld sprites of a pokemon.
+     * You can call it directlly on a pokemon, or statically with a pokemon name
+     * enum or string.
+     * This pattern should be used for all common Resource.Load calls as there is now
+     * a single source containing the path string. Also it's annoying to write.
+     * */
+    #region Get Sprites
+    public Sprite[] getOverworldSpritesheet()
+    {
+        return Resources.LoadAll<Sprite>(overworldPath + displayName.ToLower());
+    }
+
+    public static Sprite[] getOverworldSpritesheet(PokemonName nameEnum)
+    {
+        return Resources.LoadAll<Sprite>(overworldPath + nameEnum.ToString().ToLower());
+    }
+
+    public static Sprite[] getOverworldSpritesheet(string name)
+    {
+        name = name.ToUpper();
+        PokemonName nameEnum;
+        if (Enum.TryParse(name, out nameEnum))
+        {
+            if (Enum.IsDefined(typeof(PokemonName), nameEnum)) {
+                return Resources.LoadAll<Sprite>(overworldPath + nameEnum.ToString().ToLower());
+            }
+            throw new Exception("PokmonName enum " + name + " is undefined!");
+        } else
+        {
+            Debug.LogWarning("No overworld sprite for pokemon " + name);
+            return Resources.LoadAll<Sprite>(overworldPath + "nidoqueen");
+        }      
+    }
+    #endregion
 }

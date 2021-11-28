@@ -6,16 +6,17 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MoveMenuController : MonoBehaviour
+/* This menu coontains the target buttons for moves. Most moves hit a single
+ * enemy and cannot hit allies, therefore we need only to SetActive the enemy
+ * targeting buttons.
+ * Eventually we will have to deal with multi-targetting abilities, and abilities
+ * that target allies specifically or may also hit allies.
+ * */
+public class TargetMenuController : MonoBehaviour
 {
     [SerializeField] private Animator anim;
-    private BattleController battleController;
+    [SerializeField] private BattleController battleController;
     [SerializeField] private Button[] buttons;
-
-    private void Start()
-    {
-        battleController = transform.parent.GetComponentInChildren<BattleController>();
-    }
 
     /* Bring up the BattleMenu with an animation
      * Also set the buttons to interactable and select the first one. */
@@ -25,14 +26,11 @@ public class MoveMenuController : MonoBehaviour
         for (int i = 0; i < buttons.Length; i++)
         {
             Button b = buttons[i];
-            b.gameObject.SetActive(true);
             b.interactable = true;
-
-            MoveButtonController mbc = b.gameObject.GetComponent<MoveButtonController>();
-            Pokemon source = battleController.allyFieldSlots[BattleController.currentPokemonIndex].pokemon;
-            PokemonMove move = source.moves[i];
-
-            mbc.setMove(move);
+            //TODO: Enable the actual available targets
+            //Will probably also need to set up button navigation
+            if (i < 3) { buttons[i].enabled = true; }
+            b.GetComponent<TargetButtonController>().setTargetInfo();
         }
         buttons[0].Select();
     }
@@ -43,15 +41,7 @@ public class MoveMenuController : MonoBehaviour
         anim.SetBool("Showing", false);
         foreach (Button b in buttons)
         {
-            b.gameObject.SetActive(false);
-            b.interactable = false;
-        }
-    }
-
-    public void Disable()
-    {
-        foreach (Button b in buttons)
-        {
+            b.enabled = false;
             b.interactable = false;
         }
     }

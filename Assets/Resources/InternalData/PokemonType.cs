@@ -81,7 +81,6 @@ public class PokemonType : ScriptableObject
      * TypeEnum. 
      * PokemonType.get(TypeEnun.FIRE)
      */
-
     [RuntimeInitializeOnLoadMethod]
     private static void loadTypesIntoMap() {
         PokemonType[] typesData =

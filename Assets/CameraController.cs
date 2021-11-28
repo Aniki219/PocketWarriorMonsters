@@ -37,7 +37,7 @@ public class CameraController : MonoBehaviour
 
         transform.position = Vector3.SmoothDamp(transform.position, clampedTargetLocation, ref moveVelocity, 0.25f);
 
-        ppuZoom = Mathf.SmoothDamp(ppuZoom, targetZoom, ref zoomVel, 0.2f);
+        ppuZoom = Mathf.Lerp(ppuZoom, targetZoom, 7*Time.deltaTime);
         ppcam.assetsPPU = Mathf.RoundToInt(ppuZoom);
     }
 

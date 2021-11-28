@@ -10,7 +10,9 @@ public class BattleMessageController : MonoBehaviour
     private SpriteRenderer nextIcon;
     private Transform textObject;
     private TextAnimatorPlayer player;
+    private TextAnimator textAnimator;
     private Animator anim;
+    [SerializeField] BattleController battleController;
 
     public int maxWidth = 450;
     public int numberOfLines = 1;
@@ -19,14 +21,46 @@ public class BattleMessageController : MonoBehaviour
     float fastSpeed = 4;
     float regularSpeed = 1;
 
-    void Start()
+    void Awake()
     {
         nextIcon = transform.Find("nextIcon").GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         textObject = transform.Find("Text");
         textObject.gameObject.SetActive(true);
         player = textObject.GetComponent<TextAnimatorPlayer>();
+        textAnimator = textObject.GetComponent<TextAnimator>();
+        textAnimator.onEvent += OnEvent;
     }
+
+    private void OnDestroy()
+    {
+        textAnimator.onEvent -= OnEvent;
+    }
+
+    private void OnEvent(string message)
+    {
+        switch (message)
+        {
+            case "zoom":
+                int i = BattleController.currentTargetIndex;
+                Debug.Log(i);
+                FieldSlotController target;
+                if (i < 3) {
+                    target = battleController.allyFieldSlots[i];
+                } else
+                {
+                    target = battleController.enemyFieldSlots[i-3];
+                }
+                BattleController.cam.SetTarget(target.transform.position);
+                break;
+            case "unzoom":
+                BattleController.cam.Reset();
+                break;
+            default:
+                throw new System.Exception("No handler for event " + message);
+        }
+    }
+
 
     private void Update()
     {

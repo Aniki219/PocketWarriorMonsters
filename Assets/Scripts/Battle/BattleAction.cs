@@ -1,9 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static BattleController;
 
-public abstract class BattleAction
+public abstract class BattleAction : IComparable<BattleAction>
 {
     public abstract string script();
 
@@ -16,5 +17,10 @@ public abstract class BattleAction
     public override string ToString()
     {
         return "Generic BattleAction: " + battleBuffer.ToString();
+    }
+
+    public virtual int CompareTo(BattleAction action)
+    {
+        return 0;
     }
 }

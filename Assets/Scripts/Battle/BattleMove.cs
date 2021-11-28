@@ -30,22 +30,63 @@ public class BattleMove : BattleAction
     private PokemonStatus status;
     private int statusChance;
 
+    private Dictionary<FieldSlotController, int> targetDamages;
+
     public BattleMove(PokemonMove move, List<FieldSlotController> targets)
     {
         this.move = move;
         this.targets = targets;
-        this.source = move.getPokemon();
+        source = move.getPokemon();
 
-        didCrit = Random.Range(0, 1.0f) <= 6.25f * (source.getStat(Stats.CRIT_CHANCE) + 1) / 100.0f;
+        setTargetDamages();
 
         battleBuffer = BattleBuffer.BATTLE_MOVE;
     }
 
+    private void setTargetDamages()
+    {
+        targetDamages = new Dictionary<FieldSlotController, int>();
+        didCrit = Random.Range(0, 1.0f) <= 6.25f * (source.getStat(Stats.CRIT_CHANCE) + 1) / 100.0f;
+        foreach (FieldSlotController target in targets)
+        {
+            targetDamages.Add(target, calcDamage(target.pokemon, targets.Count > 1));
+        }
+    }
+
+    public int getDamage(FieldSlotController target)
+    {
+        if (targetDamages.ContainsKey(target))
+        {
+            return targetDamages[target];
+        } else
+        {
+            throw new System.Exception("Target: " + target.pokemon.name + " was not damaged by" +
+                " move: " + move.getName());
+        }
+    }
+
+    public PokemonMove getMove()
+    {
+        return move;
+    }
+
+    public List<FieldSlotController> getTargets()
+    {
+        return targets;
+    }
+
+    public Pokemon getPokemon()
+    {
+        return source;
+    }
+
     public override string script()
     {
-        string script = string.Format("{0} used {1}.<br>", source.name, move.getName());
+        string script = string.Format("{0} used {1}<?zoom>.<br>", source.name, move.getName());
 
         foreach (FieldSlotController target in targets) {
+            BattleController.currentTargetIndex = target.slotNumber + (target.isEnemy ? 3 : 0);
+
             List<PokemonType> types = new List<PokemonType>() { target.pokemon.type_1, target.pokemon.type_2 };
 
             float effectiveness = calcTypeEffectiveness(move.getType(), types);
@@ -71,7 +112,7 @@ public class BattleMove : BattleAction
                     script += "Enemy ";
                 }
                 script += string.Format("{0} took {1} damage.<br>", 
-                    target.pokemon.displayName, calcDamage(target.pokemon, targets.Count > 1));
+                    target.pokemon.displayName, getDamage(target));
             }
 
             return script;
@@ -134,6 +175,14 @@ public class BattleMove : BattleAction
 
     public override string ToString()
     {
-        return "BattleMove: " + move.getName();
+        return "BattleMove: " + move.getName() + " with speed: " + source.getStatValue(Stats.SPEED);
+    }
+
+    public override int CompareTo(BattleAction action)
+    {
+        if (!action.GetType().Equals(typeof(BattleMove))) return 0;
+        BattleMove battleMove = (BattleMove)action;
+        Pokemon pokemon = battleMove.getPokemon();
+        return pokemon.getStatValue(Stats.SPEED).CompareTo(source.getStatValue(Stats.SPEED));
     }
 }
