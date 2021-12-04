@@ -22,6 +22,13 @@ public abstract class PokemonMove
     protected int power;
     protected int accuracy;
 
+    public PokemonMove(Pokemon pokemon, Moves moveEnum)
+    {
+        this.pokemon = pokemon;
+        this.moveEnum = moveEnum;
+        getStats(moveEnum);
+    }
+
     //Gets the JSON Data for the Move
     protected void getStats(Moves moveEnum)
     {
@@ -95,6 +102,11 @@ public abstract class PokemonMove
     public Pokemon getPokemon()
     {
         return pokemon;
+    }
+
+    public virtual string getScript()
+    {
+        return "none";
     }
 }
 

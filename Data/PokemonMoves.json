@@ -2023,6 +2023,14 @@
         "pp": 5,
         "power": 120,
         "accuracy": 100
+    },
+    {
+        "name": "HITSELF",
+        "type": "None",
+        "category": "Physical",
+        "pp": 0,
+        "power": 40,
+        "accuracy": 0
     }
 ]
 }

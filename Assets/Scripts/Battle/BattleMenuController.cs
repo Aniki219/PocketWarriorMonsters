@@ -78,6 +78,12 @@ public class BattleMenuController : MonoBehaviour
          * */
         for (int i = 0; i < battleController.allyFieldSlots.Count;)
         {
+            //Skip the turn of any fieldSlots that don't have available pokemon
+            if (!battleController.allyFieldSlots[i].isAvailable())
+            {
+                i++;
+                continue;
+            }
             BattleController.currentPokemonIndex = i;
             BattleController.cam.SetTarget(battleController.allyFieldSlots[i].transform.position);
             //Make battle menu visible
@@ -138,8 +144,10 @@ public class BattleMenuController : MonoBehaviour
     {
         //Name shortening the index of the current pokemon (fieldSlot)
         int i = BattleController.currentPokemonIndex;
+        //Storing the source of the action
+        FieldSlotController source = battleController.allyFieldSlots[i];
         //Name shortening the current pokemon
-        Pokemon pokemon = battleController.allyFieldSlots[i].pokemon;
+        Pokemon pokemon = source.pokemon;
         //Name shortening the current planMove
         PlanMoveController planMove = battlePlan.planMoves[i];
 

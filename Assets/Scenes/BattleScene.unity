@@ -2445,7 +2445,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 791149447248187441, guid: 059497a836546ab4e926b9c66d0d614b, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 791149447248187441, guid: 059497a836546ab4e926b9c66d0d614b, type: 3}
       propertyPath: m_AnchorMax.x
@@ -4169,7 +4169,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 791149447248187441, guid: 059497a836546ab4e926b9c66d0d614b, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 791149447248187441, guid: 059497a836546ab4e926b9c66d0d614b, type: 3}
       propertyPath: m_AnchorMax.x
@@ -6493,6 +6493,10 @@ PrefabInstance:
       propertyPath: healthbar
       value: 
       objectReference: {fileID: 249597547}
+    - target: {fileID: 316941674390730222, guid: 1ffe216ecbe0a2a44b6b887ebf3617fe, type: 3}
+      propertyPath: battleController
+      value: 
+      objectReference: {fileID: 2023395678}
     - target: {fileID: 626999959740130306, guid: 1ffe216ecbe0a2a44b6b887ebf3617fe, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.6
@@ -6741,6 +6745,10 @@ PrefabInstance:
       propertyPath: slotNumber
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5742176092467305827, guid: 1ffe216ecbe0a2a44b6b887ebf3617fe, type: 3}
+      propertyPath: battleController
+      value: 
+      objectReference: {fileID: 2023395678}
     - target: {fileID: 6240200724459380087, guid: 1ffe216ecbe0a2a44b6b887ebf3617fe, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -6837,6 +6845,10 @@ PrefabInstance:
       propertyPath: slotNumber
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7228506414277420206, guid: 1ffe216ecbe0a2a44b6b887ebf3617fe, type: 3}
+      propertyPath: battleController
+      value: 
+      objectReference: {fileID: 2023395678}
     - target: {fileID: 7531528941560821058, guid: 1ffe216ecbe0a2a44b6b887ebf3617fe, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.91
@@ -6857,6 +6869,10 @@ PrefabInstance:
       propertyPath: healthbar
       value: 
       objectReference: {fileID: 510140263}
+    - target: {fileID: 7878501411887304101, guid: 1ffe216ecbe0a2a44b6b887ebf3617fe, type: 3}
+      propertyPath: battleController
+      value: 
+      objectReference: {fileID: 2023395678}
     - target: {fileID: 7882889982004694996, guid: 1ffe216ecbe0a2a44b6b887ebf3617fe, type: 3}
       propertyPath: isEnemy
       value: 1
@@ -6869,6 +6885,10 @@ PrefabInstance:
       propertyPath: slotNumber
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7882889982004694996, guid: 1ffe216ecbe0a2a44b6b887ebf3617fe, type: 3}
+      propertyPath: battleController
+      value: 
+      objectReference: {fileID: 2023395678}
     - target: {fileID: 8361576793598313535, guid: 1ffe216ecbe0a2a44b6b887ebf3617fe, type: 3}
       propertyPath: healthbar
       value: 
@@ -6877,6 +6897,10 @@ PrefabInstance:
       propertyPath: slotNumber
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8361576793598313535, guid: 1ffe216ecbe0a2a44b6b887ebf3617fe, type: 3}
+      propertyPath: battleController
+      value: 
+      objectReference: {fileID: 2023395678}
     - target: {fileID: 8709895884436854227, guid: 1ffe216ecbe0a2a44b6b887ebf3617fe, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.93

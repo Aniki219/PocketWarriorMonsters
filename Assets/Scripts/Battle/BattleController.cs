@@ -46,6 +46,7 @@ public class BattleController : MonoBehaviour
 
     private BattlePhase battlePhase;
     private Dictionary<BattleBuffer, List<BattleAction>> battleBuffer;
+    private Dictionary<List<BattleAction>, BattleAction> removalQueue;
     TextGenerator generator;
     TextGenerationSettings settings;
     void Start()
@@ -204,6 +205,7 @@ public class BattleController : MonoBehaviour
 
         foreach (FieldSlotController fc in enemyFieldSlots)
         {
+            if (!fc.isAvailable()) continue;
             Pokemon pokemon = fc.pokemon;
 
             /* We get a list of all moves with PP.
@@ -254,6 +256,31 @@ public class BattleController : MonoBehaviour
         battleBuffer[bufferEnum].Add(battleAction);
     }
 
+    /* Right now we just use this for fainting. If a Pokemon faints we should
+     * remove all of their queued actions
+     * */
+    public void removeFromQueue(Pokemon pokemon)
+    {
+        //Search through every queue in the bufferr
+        foreach (var queue in battleBuffer)
+        {
+            //Access the List of BattleActions
+            List<BattleAction> battleActions = queue.Value;
+            foreach (var action in battleActions)
+            {
+                /* Remove all BattleActions from the queue whose source is 
+                * the pokemon in question
+                * */
+                if (action.source == pokemon)
+                {
+                    //clearQueues() will delete the action
+                    //this bool prevents it from firing.
+                    action.toBeRemoved = true;
+                }
+            }
+        }
+    }
+
     private void sortBattleBuffers()
     {
         battleBuffer[BattleBuffer.BATTLE_MOVE].Sort();
@@ -277,15 +304,96 @@ public class BattleController : MonoBehaviour
         {
             foreach (BattleAction action in entry.Value)
             {
-                await BattleMessage.performScript(action.script());
+                if (action.toBeRemoved) continue;
+                if (action.source.isFainted()) continue;
+
                 if (action.GetType().Equals(typeof(BattleMove)))
                 {
                     BattleMove move = (BattleMove)action;
+
+                    #region checkStatus
+                    move.getPokemon().clearStatuses();
+                    move.getPokemon().statuses.Sort();
+                    foreach (PokemonStatus status in move.getPokemon().statuses)
+                    {
+                        switch (status)
+                        {
+                            case Confusion c:
+                                bool hitSelf = await c.DoStatus(BattleMessage);
+                                if (hitSelf)
+                                {
+                                    move = new BattleMove(new Hitself(move.getPokemon()), new List<FieldSlotController> { move.source.fieldSlot });
+                                    goto PostStatus;
+                                }
+                                break;
+
+                            case Paralysis para:
+                                Debug.Log("checking para");
+                                bool paralyzed = await para.DoStatus(BattleMessage);
+                                if (paralyzed)
+                                {
+                                    move = null;
+                                    goto SkipMove;
+                                }
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    #endregion
+                PostStatus:
+
+                    #region FixTargets
+                    //Fix targets
+                    List<FieldSlotController> fixedTargets = new List<FieldSlotController>();
+                    //For each intended target...
+                    foreach (FieldSlotController target in move.targets)
+                    {
+                        //If it is available we keep it (add to list of fixedTargets)
+                        if (target.isAvailable())
+                        {
+                            fixedTargets.Add(target);
+                            continue;
+                        }
+                        else
+                        //If the target is not available (e.g. fainted)
+                        {
+                            //Then if this is an AoE ability, exclude the target
+                            if (move.targets.Count > 1)
+                            {
+                                continue;
+                            }
+                            else
+                            //But if it was a single target we must reroute it
+                            {
+                                //So we get all fieldControllers of either enemies or allies
+                                List<FieldSlotController> availableTargets =
+                                    target.isEnemy ? enemyFieldSlots : allyFieldSlots;
+                                //Filter out all of the ones which are available
+                                availableTargets = availableTargets.FindAll(t => t.isAvailable());
+                                //And pick a random new target from that list
+                                FieldSlotController nextTarget = availableTargets[0]; //availableTargets[Random.Range(0, availableTargets.Count - 1)];
+                                //Then we add it to the fixed list
+                                fixedTargets.Add(nextTarget);
+                            }
+                        }
+                    }
+                    move.targets = fixedTargets;
+                    //We need to recalculate the damage the move deals to the new target
+                    move.setTargetDamages();
+                    #endregion
+
+                    await BattleMessage.performScript(move.script());
+
                     foreach (FieldSlotController fc in move.getTargets())
                     {
                         await fc.takeDamage(move.getDamage(fc));
                     }
+
+                SkipMove:
+                    continue;
                 }
+
                 cam.Reset();
             }
         }

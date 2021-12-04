@@ -313,17 +313,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591db92261121af4e9705f9d70374092, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pokemon:
-    name: 0
-    displayName: 
-    nature: {fileID: 0}
-    current_hp: 0
-    level: 0
-    xp: 0
-    type_1: {fileID: 0}
-    type_2: {fileID: 0}
-    status: {fileID: 0}
+  fieldSlot: {fileID: 0}
   healthBar: {fileID: 6826802896263856519}
+  nameText: {fileID: 4670995131045667799}
+  healthText: {fileID: 0}
+  levelText: {fileID: 3853093755569198658}
 --- !u!1 &5497867406692301500
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,8 +444,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 73.9, y: 5.42}
-  m_SizeDelta: {x: 27.67, y: 14.8}
+  m_AnchoredPosition: {x: 70.9, y: 5.42}
+  m_SizeDelta: {x: 34.6, y: 14.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6920979213623313152
 CanvasRenderer:
@@ -494,7 +488,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Lv.10
+  m_Text: 'Lv: 100'
 --- !u!114 &1766474123350312039
 MonoBehaviour:
   m_ObjectHideFlags: 0

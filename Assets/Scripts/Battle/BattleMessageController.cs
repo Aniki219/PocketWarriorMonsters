@@ -1,4 +1,5 @@
 ﻿using Febucci.UI;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -37,13 +38,24 @@ public class BattleMessageController : MonoBehaviour
         textAnimator.onEvent -= OnEvent;
     }
 
+    /* Sometimes scripts should execute some function, and we can do this using event
+     * tags. Turns out it's useful to also be able to pass parameters to the events.
+     * The bad news is that it all must be a parsed string. So the string "zoom(1)"
+     * will be parsed to an array of string ["zoom", "1"]
+     * */
     private void OnEvent(string message)
     {
-        switch (message)
+        //This is all for parsing the message into eventName and paramters
+        string[] eventParams = parseEvent(message);
+        string eventName = eventParams[0];
+
+        switch (eventName)
         {
+            /* Here we zoom into a specific field slot
+             * numbers 1-6 where enemy slots are 4-6.
+             * */
             case "zoom":
-                int i = BattleController.currentTargetIndex;
-                Debug.Log(i);
+                int i = int.Parse(eventParams[1]);
                 FieldSlotController target;
                 if (i < 3) {
                     target = battleController.allyFieldSlots[i];
@@ -53,12 +65,34 @@ public class BattleMessageController : MonoBehaviour
                 }
                 BattleController.cam.SetTarget(target.transform.position);
                 break;
+                /* Here we reset the camera. I think we don't use this
+                 * but it could be useful
+                 * */
             case "unzoom":
                 BattleController.cam.Reset();
                 break;
+            case "readscript":
+
             default:
                 throw new System.Exception("No handler for event " + message);
         }
+    }
+
+    /* messages come in the form of "eventName|param1|param2...)" so we
+     * can use string parsing to isolate the parameters.
+     * We use "|" to separate parameters in the list because we need to pass
+     * battlescripts with commas in them.
+     * The first parameter in the list will be the eventName.
+     * */
+    private string[] parseEvent(string message)
+    {
+        string[] delims = { "|" };
+        string[] eventParams = message.Split(delims, StringSplitOptions.RemoveEmptyEntries);
+        for (int i = 0; i < eventParams.Length; i++)
+        {
+            eventParams[i] = eventParams[i].Trim();
+        }
+        return eventParams;
     }
 
 

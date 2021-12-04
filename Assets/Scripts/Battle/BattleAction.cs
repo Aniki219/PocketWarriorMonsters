@@ -7,6 +7,11 @@ using static BattleController;
 public abstract class BattleAction : IComparable<BattleAction>
 {
     public abstract string script();
+    public Pokemon source;
+    public List<FieldSlotController> targets;
+
+    //All actions marked to be removed will not fire
+    public bool toBeRemoved = false;
 
     /*Every battle action has a battle buffer in the battle controller that it should be
     * added to when used.

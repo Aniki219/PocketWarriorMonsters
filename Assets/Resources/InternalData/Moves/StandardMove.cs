@@ -17,11 +17,7 @@
  */
 public class StandardMove : PokemonMove
 {
-    public StandardMove(Moves moveEnum, Pokemon sourcePokemon)
-    {
-        this.pokemon = sourcePokemon;
-        getStats(moveEnum);
-    }
+    public StandardMove(Moves moveEnum, Pokemon sourcePokemon) : base(sourcePokemon, moveEnum) { }
 }
 
 

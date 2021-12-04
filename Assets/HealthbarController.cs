@@ -14,38 +14,44 @@ public class HealthbarController : MonoBehaviour
     private const float MAX_SPEED = 10;
     private float currentSliderVelocity;
 
+
+    [SerializeField] private Text nameText;
+    [SerializeField] private Text healthText;
+    [SerializeField] private Text levelText;
+
     private void Start()
     {
-        setPokemon(fieldSlot.pokemon);
-        if (pokemon == null)
-        {
-            gameObject.SetActive(false);
-        }
+        gameObject.SetActive(false);
     }
 
     public void setPokemon(Pokemon pokemon)
     {
         this.pokemon = pokemon;
+        setHealthText();
+        levelText.text = "Lv: " + pokemon.level;
+        nameText.text = pokemon.displayName;
     }
 
-    /* This damage has already been calculated through the BattleMove itself
-     * */
-    public async Task takeDamage(int amount)
+    public async Task SetTargetValue(float targetSliderValue)
     {
-        int maxHp = pokemon.getStatValue(Stats.HP);
-        //The Pokemon should really be incharge of this
-        pokemon.current_hp -= amount;
-        pokemon.current_hp = Mathf.Clamp(pokemon.current_hp, 0, maxHp);
-        float targetSliderValue = (float)pokemon.current_hp / maxHp;
-
-        while(healthBar.value - 0.01f > targetSliderValue)
+        while (healthBar.value - 0.01f > targetSliderValue)
         {
-            healthBar.value = Mathf.SmoothDamp(healthBar.value, targetSliderValue, 
+            healthBar.value = Mathf.SmoothDamp(healthBar.value, targetSliderValue,
                 ref currentSliderVelocity, SMOOTH_TIME, MAX_SPEED);
+            setHealthText();
             await Task.Yield();
         }
         healthBar.value = targetSliderValue;
+        setHealthText();
+    }
 
-        await Task.Delay(100);
+    private void setHealthText()
+    {
+        if (pokemon == null) return;
+        if (healthText != null)
+        {
+            int maxHp = pokemon.getStatValue(Stats.HP);
+            healthText.text = Mathf.Round(maxHp * healthBar.value) + " / " + maxHp;
+        }
     }
 }

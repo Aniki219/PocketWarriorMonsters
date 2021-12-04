@@ -11,7 +11,7 @@ public class Pokemon
     public PokemonName name;
     public string displayName;
 
-    List<PokemonStat> stats;
+    [SerializeField] List<PokemonStat> stats;
     public List<PokemonMove> moves;
 
     public PokemonNature nature;
@@ -24,7 +24,9 @@ public class Pokemon
     public PokemonType type_1;
     public PokemonType type_2;
 
-    public PokemonStatus status;
+    public List<PokemonStatus> statuses;
+
+    public FieldSlotController fieldSlot;
 
     public Pokemon(PokemonName name, PokemonType type1, PokemonType type2, int hp, int attack,
         int defense, int sp_attack, int sp_defense, int speed, int level, int xp)
@@ -32,6 +34,9 @@ public class Pokemon
         TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
         this.name = name;
         displayName = textInfo.ToTitleCase(name.ToString().ToLower());
+
+        this.level = level;
+        this.xp = xp;
 
         type_1 = type1;
         type_2 = type2;
@@ -43,20 +48,20 @@ public class Pokemon
             new PokemonStat(Stats.SP_ATTACK, sp_attack),
             new PokemonStat(Stats.SP_DEFENSE, sp_defense),
             new PokemonStat(Stats.SPEED, speed),
-            new PokemonStat(Stats.LEVEL, level),
             new PokemonStat(Stats.CRIT_CHANCE, 0)
         };
         
-        current_hp = hp;
+        current_hp = getStatValue(Stats.HP);
 
         moves = new List<PokemonMove>();
         moves.Add(new StandardMove(Moves.ABSORB, this));
         moves.Add(new StandardMove(Moves.BLAST_BURN, this));
         moves.Add(new StandardMove(Moves.DIZZY_PUNCH, this));
         moves.Add(new StandardMove(Moves.FLAMETHROWER, this));
-        
-        this.level = level;
-        this.xp = xp;
+
+        statuses = new List<PokemonStatus>();
+        statuses.Add(new Confusion(this));
+        addStatus(new Paralysis(this));
     }
 
     public static Pokemon fromData(PokemonData data, int level = 1, int xp = 0)
@@ -84,17 +89,17 @@ public class Pokemon
         return new Pokemon(pokemon.name,
             pokemon.type_1,
             pokemon.type_2,
-            pokemon.getStat(Stats.HP),
-            pokemon.getStat(Stats.ATTACK),
-            pokemon.getStat(Stats.DEFENSE),
-            pokemon.getStat(Stats.SP_ATTACK),
-            pokemon.getStat(Stats.SP_DEFENSE),
-            pokemon.getStat(Stats.SPEED),
-            pokemon.getStat(Stats.LEVEL),
+            pokemon.getBaseStat(Stats.HP),
+            pokemon.getBaseStat(Stats.ATTACK),
+            pokemon.getBaseStat(Stats.DEFENSE),
+            pokemon.getBaseStat(Stats.SP_ATTACK),
+            pokemon.getBaseStat(Stats.SP_DEFENSE),
+            pokemon.getBaseStat(Stats.SPEED),
+            pokemon.level,
             pokemon.xp);
     }
 
-    public int getStat(Stats stat)
+    public int getBaseStat(Stats stat)
     {
         PokemonStat returnStat = stats.Find(s => s.statName == stat);
 
@@ -116,7 +121,7 @@ public class Pokemon
             throw new Exception("Pokemon: " + name + " does not contain a stat for " + stat);
         }
 
-        int common = (int)Mathf.Floor(2 * stat.amount + stat.IVs + Mathf.Floor(stat.EVs / 4.0f) * level / 100.0f);
+        int common = (int)Mathf.Floor((2 * stat.amount + stat.IVs + Mathf.Floor(stat.EVs / 4.0f)) * level / 100.0f);
 
         if (stat.statName.Equals(Stats.HP))
         {
@@ -125,8 +130,8 @@ public class Pokemon
         {
             //TODO: Calculate Natures boost.
             int natureBoost = 1;
-
-            return (common + 5) * natureBoost;
+            float statusMod = (stat.statName.Equals(Stats.SPEED) && hasStatus<Paralysis>()) ? 0.5f : 1.0f;
+            return Mathf.RoundToInt((common + 5) * natureBoost * statusMod);
         }
     }
 
@@ -135,9 +140,55 @@ public class Pokemon
     //    return getStat(Stats.ATTACK).ToString();
     //}
 
+    /* A secondary status is one like confusion, where a pokemon can be confused
+     * and poisoned.
+     * A non-secondary or primary status would be like poison and paralysis where 
+     * a pokemon cannot be aflicted by both.
+     * */
+    public bool addStatus(PokemonStatus status)
+    {
+        if (status.secondary)
+        {
+            if (statuses.Find(s => s.GetType().Equals(status.GetType())) == null)
+            {
+                statuses.Add(status);
+                return true;
+            }
+        } else
+        {
+            if (statuses.Find(s => !s.secondary) == null)
+            {
+                statuses.Add(status);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //Remove all status effects with depleted duration
+    public void clearStatuses()
+    {
+        statuses = statuses.FindAll(s => s.duration != 0);
+    }
+
+    public void removeStatus(PokemonStatus status)
+    {
+        statuses.Remove(status);
+    }
+
+    public bool hasStatus<T>()
+    {
+        return statuses.FindAll(s => s.GetType().Equals(typeof(T))).Count > 0;
+    }
+
     public List<PokemonType> getTypes()
     {
         return new List<PokemonType> { type_1, type_2 };
+    }
+
+    public bool isFainted()
+    {
+        return current_hp <= 0;
     }
 
     /* Here we create methods for getting the overworld sprites of a pokemon.

@@ -8,6 +8,5 @@
     SPEED,
     ACCURACY,
     EVASION,
-    LEVEL,
     CRIT_CHANCE,
 }
