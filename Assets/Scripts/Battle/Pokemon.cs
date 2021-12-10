@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HelperFunctions;
+using StatusEffects;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
@@ -55,13 +57,13 @@ public class Pokemon
 
         moves = new List<PokemonMove>();
         moves.Add(new StandardMove(Moves.ABSORB, this));
-        moves.Add(new StandardMove(Moves.BLAST_BURN, this));
-        moves.Add(new StandardMove(Moves.DIZZY_PUNCH, this));
-        moves.Add(new StandardMove(Moves.FLAMETHROWER, this));
+        moves.Add(new StandardMove(Moves.MIST, this));
+        moves.Add(new StandardMove(Moves.RAZOR_WIND, this));
+        moves.Add(new StandardMove(Moves.HAZE, this));
 
         statuses = new List<PokemonStatus>();
-        statuses.Add(new Confusion(this));
-        addStatus(new Paralysis(this));
+
+        nature = PokemonNature.get(EnumHelper.GetRandom<Natures>());
     }
 
     public static Pokemon fromData(PokemonData data, int level = 1, int xp = 0)
@@ -129,7 +131,15 @@ public class Pokemon
         } else
         {
             //TODO: Calculate Natures boost.
-            int natureBoost = 1;
+            float natureBoost = 1.0f;
+            if (nature.getPlus().Equals(stat.statName))
+            {
+                natureBoost += 0.1f;
+            }
+            if (nature.getMinus().Equals(stat.statName))
+            {
+                natureBoost -= 0.1f;
+            }
             float statusMod = (stat.statName.Equals(Stats.SPEED) && hasStatus<Paralysis>()) ? 0.5f : 1.0f;
             return Mathf.RoundToInt((common + 5) * natureBoost * statusMod);
         }
@@ -140,14 +150,15 @@ public class Pokemon
     //    return getStat(Stats.ATTACK).ToString();
     //}
 
-    /* A secondary status is one like confusion, where a pokemon can be confused
+    /* A isVolatile status is one like confusion, where a pokemon can be confused
      * and poisoned.
-     * A non-secondary or primary status would be like poison and paralysis where 
+     * A non-isVolatile or primary status would be like poison and paralysis where 
      * a pokemon cannot be aflicted by both.
      * */
     public bool addStatus(PokemonStatus status)
     {
-        if (status.secondary)
+        status.setPokemon(this);
+        if (status.isVolatile)
         {
             if (statuses.Find(s => s.GetType().Equals(status.GetType())) == null)
             {
@@ -156,7 +167,7 @@ public class Pokemon
             }
         } else
         {
-            if (statuses.Find(s => !s.secondary) == null)
+            if (statuses.Find(s => !s.isVolatile) == null)
             {
                 statuses.Add(status);
                 return true;
@@ -179,6 +190,11 @@ public class Pokemon
     public bool hasStatus<T>()
     {
         return statuses.FindAll(s => s.GetType().Equals(typeof(T))).Count > 0;
+    }
+
+    public bool hasNature(Natures nature)
+    {
+        return this.nature.Equals(nature);
     }
 
     public List<PokemonType> getTypes()

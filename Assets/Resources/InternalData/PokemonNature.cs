@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Globalization;
+using UnityEngine;
 
 [CreateAssetMenu(menuName = "Pokemon Data/Nature")]
 public class PokemonNature : ScriptableObject
@@ -15,6 +16,20 @@ public class PokemonNature : ScriptableObject
     public Stats getMinus()
     {
         return minus;
+    }
+
+    public static PokemonNature get(Natures nature)
+    {
+        TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+        string natureName = textInfo.ToTitleCase(nature.ToString().ToLower());
+        PokemonNature natureObject = Resources.Load<PokemonNature>("InternalData/Pokemon Natures/" + natureName);
+        if (natureObject != null)
+        {
+            return natureObject;
+        } else
+        {
+            throw new System.Exception("No nature object found of type: " + natureName);
+        }
     }
 }
 

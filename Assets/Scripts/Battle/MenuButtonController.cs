@@ -52,6 +52,11 @@ public class MenuButtonController : MonoBehaviour, ISelectHandler, IDeselectHand
         setMenuSelector(false);
     }
 
+    public Button getButton()
+    {
+        return GetComponent<Button>();
+    }
+
     private void setMenuSelector(bool active)
     {
         if (menuSelector != null)

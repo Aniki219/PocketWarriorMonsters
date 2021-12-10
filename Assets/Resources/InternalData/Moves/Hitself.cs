@@ -1,4 +1,6 @@
 ﻿
+using System.Collections.Generic;
+
 class Hitself : PokemonMove
 {
     public Hitself(Pokemon sourcePokemon) : base(sourcePokemon, Moves.HITSELF)
@@ -6,9 +8,11 @@ class Hitself : PokemonMove
 
     }
 
-    public override string getScript()
+    public override List<string> getScript()
     {
-        return string.Format("<?zoom|{0}>It hurt itself in confusion!<br><br>", pokemon.fieldSlot.slotNumber);
+        return new List<string>() {
+            string.Format("<?zoom|{0}>It hurt itself in confusion!<br><br>", pokemon.fieldSlot.slotNumber)
+        };
     }
 }
 

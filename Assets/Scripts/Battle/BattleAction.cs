@@ -6,7 +6,6 @@ using static BattleController;
 
 public abstract class BattleAction : IComparable<BattleAction>
 {
-    public abstract string script();
     public Pokemon source;
     public List<FieldSlotController> targets;
 
@@ -18,6 +17,7 @@ public abstract class BattleAction : IComparable<BattleAction>
     */
     protected BattleBuffer battleBuffer;
     public BattleBuffer getBattleBuffer() { return battleBuffer; }
+    public abstract List<string> script();
 
     public override string ToString()
     {
@@ -26,6 +26,7 @@ public abstract class BattleAction : IComparable<BattleAction>
 
     public virtual int CompareTo(BattleAction action)
     {
+        Debug.Log("Battle action compare");
         return 0;
     }
 }

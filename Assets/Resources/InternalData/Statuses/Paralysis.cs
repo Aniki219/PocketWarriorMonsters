@@ -1,30 +1,33 @@
-﻿
+﻿using StatusEffects;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class Paralysis : PokemonStatus
+namespace StatusEffects
 {
-    private const float PARALYSIS_CHANCE = 0.25f;
-    public Paralysis(Pokemon pokemon) :  base(pokemon)
+    public class Paralysis : PokemonStatus
     {
-        duration = -1;
-        secondary = false;
-        buffer = BattleController.BattleBuffer.BATTLE_MOVE;
-    }
-
-    public override async Task<bool> DoStatus(BattleMessageController messageController)
-    {
-        await base.DoStatus(messageController);
-
-        float rand = Random.Range(0.0f, 1.0f);
-        bool isParalyzed = rand < PARALYSIS_CHANCE;
-
-        if (isParalyzed)
+        private const float PARALYSIS_CHANCE = 0.25f;
+        public Paralysis()
         {
-            string script = "<?zoom|" + pokemon.fieldSlot.slotNumber + ">" + pokemon.displayName + " is fully paralyzed!<br><br>";
-            await messageController.performScript(script);
+            duration = -1;
+            isVolatile = false;
+            buffer = BattleController.BattleBuffer.BATTLE_MOVE;
         }
-        return isParalyzed;
+
+        public override async Task<BattleMove> DoInterruptStatus(BattleMessageController messageController)
+        {
+            await base.DoStatus(messageController);
+
+            float rand = Random.Range(0.0f, 1.0f);
+            bool isParalyzed = rand < PARALYSIS_CHANCE;
+            Debug.Log("parachance: " + rand);
+            if (isParalyzed)
+            {
+                string script = "<?zoom|" + pokemon.fieldSlot.slotNumber + ">" + pokemon.displayName + " is fully paralyzed!<br><br>";
+                await messageController.performScript(script);
+                return new BattleMove(new SkipMove(), null);
+            }
+            return null;
+        }
     }
 }
-

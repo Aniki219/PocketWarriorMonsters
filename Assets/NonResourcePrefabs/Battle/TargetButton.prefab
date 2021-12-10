@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 6172032105846639799}
   - component: {fileID: 59610890287225333}
   - component: {fileID: 3254116030865066960}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,8 +110,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 51.8, y: 6.299993}
-  m_SizeDelta: {x: 27.67, y: 14.68}
+  m_AnchoredPosition: {x: 50, y: 6.299993}
+  m_SizeDelta: {x: 35, y: 14.68}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6172032105846639799
 CanvasRenderer:
@@ -154,7 +154,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Lv.10
+  m_Text: 'Lv: 100'
 --- !u!114 &3254116030865066960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,12 +376,13 @@ MonoBehaviour:
   selectedTextColor: {r: 1, g: 1, b: 1, a: 1}
   buttonText: {fileID: 0}
   menuSelector: {fileID: 7031550208135376990}
-  fieldSlot: {fileID: 0}
+  fieldSlots: []
   pokeName: {fileID: 8464940735817624672}
   pokeLevel: {fileID: 59610890287225333}
   pokeSprite: {fileID: 6558416662865499450}
   type1Icon: {fileID: 962831978941111114}
   type2Icon: {fileID: 3791812582961224748}
+  submittable: 1
   battlePlan: {fileID: 0}
 --- !u!114 &6698620177520371134
 MonoBehaviour:

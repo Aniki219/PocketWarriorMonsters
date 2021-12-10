@@ -176,7 +176,7 @@ public class BattleMenuController : MonoBehaviour
         await Task.Delay(200);
         moveMenu.Hide();
         await Task.Delay(100);
-        targetMenu.Show();
+        targetMenu.Show(move.targets);
 
         /* Wait for player to select a target.
         * This returns a bool indicating whether a target was selected, or if

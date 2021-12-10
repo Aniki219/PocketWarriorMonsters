@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HelperFunctions;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -99,14 +100,14 @@ public class PokemonType : ScriptableObject
             return typeList[type];
         } else
         {
-            throw new System.Exception("Did not find " +
+            throw new Exception("Did not find " +
                 "PokemonType entry for " + type.ToString());
         }
     }
 
     public static PokemonType get(string typeName)
     {
-        TypeEnum typeEnum = (TypeEnum)Enum.Parse(typeof(TypeEnum), typeName.ToUpper());
+        TypeEnum typeEnum = EnumHelper.GetEnum<TypeEnum>(typeName);
         return get(typeEnum);
     }
 }

@@ -1,6 +1,9 @@
 ﻿using Febucci.UI;
+using HelperFunctions;
+using StatusEffects;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
@@ -15,6 +18,7 @@ public class BattleController : MonoBehaviour
     public BattlePlanController battlePlan;
 
     public static CameraController cam;
+    public AudioSource audio;
     public Canvas canvas;
 
     private bool battleOver;
@@ -68,7 +72,7 @@ public class BattleController : MonoBehaviour
         //Here we make a dictionary of buffers and initialize them all to empty lists.
         //This we we can access each buffer by supplying a buffer type enum.
         battleBuffer = new Dictionary<BattleBuffer, List<BattleAction>>();
-        for (int i = 0; i < System.Enum.GetNames(typeof(BattleBuffer)).Length; i++)
+        for (int i = 0; i < EnumHelper.GetLength<BattleBuffer>(); i++)
         {
             battleBuffer.Add(
                 (BattleBuffer)i,
@@ -137,6 +141,9 @@ public class BattleController : MonoBehaviour
 
             case BattlePhase.TURN_END:
                 //printBattleActions();
+                cam.Reset();
+                await Task.Delay(500);
+                await endOfTurnStatusEffects();
                 await Task.Delay(1000);
                 battlePlan.Clear();
                 clearQueues();
@@ -234,7 +241,35 @@ public class BattleController : MonoBehaviour
              * in the doBattle method
              * */
             List<FieldSlotController> targets = new List<FieldSlotController>();
-            targets.Add(allyFieldSlots[Random.Range(0, 2)]);
+            List<FieldSlotController> availableEnemies = enemyFieldSlots.FindAll(e => e.isAvailable());
+            List<FieldSlotController> availableAllies = allyFieldSlots.FindAll(a => a.isAvailable());
+
+            switch (move.targets) {
+                case Targets.ALL:
+                    targets.AddRange(availableAllies.Concat(availableEnemies).ToList());
+                    break;
+                case Targets.ALLIES:
+                    targets.AddRange(availableEnemies);
+                    break;
+                case Targets.ALLY:
+                    targets.Add(enemyFieldSlots[Random.Range(0, enemyFieldSlots.Count)]);
+                    break;
+                case Targets.ALL_BUT_SELF:
+                    targets.AddRange(availableAllies.Concat(availableEnemies).ToList());
+                    targets.Remove(move.getPokemon().fieldSlot);
+                    break;
+                case Targets.ENEMIES:
+                    targets.AddRange(availableAllies);
+                    break;
+                case Targets.ENEMY:
+                    targets.Add(allyFieldSlots[Random.Range(0, allyFieldSlots.Count)]);
+                    break;
+                case Targets.SELF:
+                    targets.Add(move.getPokemon().fieldSlot);
+                    break;
+                default:
+                    throw new System.Exception("No Enemy target handler for Targets enum: " + move.targets.ToString());
+            }
 
             move.decPp();
             enemyBattleActions.Add(new BattleMove(move, targets));
@@ -314,34 +349,25 @@ public class BattleController : MonoBehaviour
                     #region checkStatus
                     move.getPokemon().clearStatuses();
                     move.getPokemon().statuses.Sort();
-                    foreach (PokemonStatus status in move.getPokemon().statuses)
+                    List<PokemonStatus> statuses = move.getPokemon().statuses.FindAll(s => s.getBuffer().Equals(BattleBuffer.BATTLE_MOVE));
+                    foreach (PokemonStatus status in statuses)
                     {
-                        switch (status)
+                        BattleMove newMove = await status.DoInterruptStatus(BattleMessage);
+                        if (newMove != null)
                         {
-                            case Confusion c:
-                                bool hitSelf = await c.DoStatus(BattleMessage);
-                                if (hitSelf)
-                                {
-                                    move = new BattleMove(new Hitself(move.getPokemon()), new List<FieldSlotController> { move.source.fieldSlot });
-                                    goto PostStatus;
-                                }
-                                break;
-
-                            case Paralysis para:
-                                Debug.Log("checking para");
-                                bool paralyzed = await para.DoStatus(BattleMessage);
-                                if (paralyzed)
-                                {
-                                    move = null;
-                                    goto SkipMove;
-                                }
-                                break;
-                            default:
-                                break;
+                            if (newMove.getMove().GetType().Equals(typeof(SkipMove)))
+                            {
+                                //Paralysis, Sleep
+                                goto SkipMove;
+                            }
+                            //Confusion HitSelf or Uncontrollable Move
+                            move = newMove;
+                            break;
                         }
+                        //Confusion or paralysis did not work
+                        //Sleep wake up?
                     }
                     #endregion
-                PostStatus:
 
                     #region FixTargets
                     //Fix targets
@@ -383,10 +409,23 @@ public class BattleController : MonoBehaviour
                     move.setTargetDamages();
                     #endregion
 
-                    await BattleMessage.performScript(move.script());
+                    List<string> script = move.script();
+                    await BattleMessage.performScript(script[0]);
+
+                    AudioClip clip = Resources.Load<AudioClip>("Sounds/BattleMoves/" + move.getMove().getName());
+                    if (clip == null)
+                    {
+                        clip = Resources.Load<AudioClip>("Sounds/BattleMoves/Tackle");
+                    }
+                    audio.PlayOneShot(clip);
 
                     foreach (FieldSlotController fc in move.getTargets())
                     {
+                        script.RemoveAt(0);
+                        await BattleMessage.performScript(script[0]);
+
+                        AudioClip hitSound = Resources.Load<AudioClip>("Sounds/BattleMoves/Hit Normal Damage");
+                        audio.PlayOneShot(hitSound);
                         await fc.takeDamage(move.getDamage(fc));
                     }
 
@@ -410,6 +449,24 @@ public class BattleController : MonoBehaviour
     private void clearQueue(BattleBuffer buffer)
     {
         battleBuffer[buffer].Clear();
+    }
+
+
+    private async Task endOfTurnStatusEffects()
+    {
+        List<FieldSlotController> allFcs = new List<FieldSlotController>();
+        allFcs.AddRange(allyFieldSlots);
+        allFcs.AddRange(enemyFieldSlots);
+        allFcs = allFcs.FindAll(f => f.isAvailable());
+        foreach (FieldSlotController fc in allFcs)
+        {
+            Pokemon pokemon = fc.pokemon;
+            List<PokemonStatus> statuses = pokemon.statuses.FindAll(s => s.getBuffer().Equals(BattleBuffer.TURN_END));
+            foreach (PokemonStatus status in statuses)
+            {
+                await status.DoStatus(BattleMessage);
+            }
+        }
     }
 
     /* We just need a clock that ticks back and forth for a lot of 

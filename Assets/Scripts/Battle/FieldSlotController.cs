@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using StatusEffects;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -38,6 +39,8 @@ public class FieldSlotController : MonoBehaviour
         pokemon = Pokemon.copy(pokemonData);
         pokemon.fieldSlot = this;
         if (pokemon == null) return;
+
+        pokemon.addStatus(PokemonStatus.create(StatusType.POISONED));
 
         healthbar.gameObject.SetActive(true);
         healthbar.setPokemon(pokemon);

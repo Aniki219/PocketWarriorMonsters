@@ -1,24 +1,31 @@
-﻿using System.Threading.Tasks;
+﻿using StatusEffects;
+using System.Threading.Tasks;
 using UnityEngine;
 
-public class Burn : PokemonStatus
+namespace StatusEffects
 {
-    const float BURN_PERCENT = 0.5f;
-
-    public Burn(Pokemon pokemon) : base(pokemon)
+    public class Burn : PokemonStatus
     {
-        duration = -1;
-        secondary = false;
-        buffer = BattleController.BattleBuffer.TURN_END;
-    }
+        const float BURN_PERCENT = 0.5f;
+        const float BURN_DAMAGE_RATIO = 1.0f / 8.0f;
 
-    public override async Task<bool> DoStatus(BattleMessageController messageController)
-    {
-        await base.DoStatus(messageController);
+        public Burn()
+        {
+            duration = -1;
+            isVolatile = false;
+            buffer = BattleController.BattleBuffer.TURN_END;
+        }
 
-        string script = pokemon.displayName + " is hurt by its burn!<br><br>";
-        await messageController.performScript(script);
-        return true;
+        public override async Task DoStatus(BattleMessageController messageController)
+        {
+            await base.DoStatus(messageController);
+
+            int damage = Mathf.RoundToInt(pokemon.getStatValue(Stats.HP) * BURN_DAMAGE_RATIO);
+            string script = pokemon.displayName + " takes " + damage + " damage from their burn!<br>";
+            await messageController.performScript(script);
+            await pokemon.fieldSlot.takeDamage(damage);
+
+            return;
+        }
     }
 }
-

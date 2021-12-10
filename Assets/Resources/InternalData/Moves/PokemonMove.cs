@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HelperFunctions;
+using StatusEffects;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -7,8 +9,8 @@ using System.Threading.Tasks;
 
 /* This class holds the JSON data directly.
  * Pokemon will have a list of PokemonMoves, however this is an abstract class.
- * The StandardMove class is currently the only implementation of this class and may
- * become obsolete.
+ * The StandardMove class is the generic implementation of this class for damaging
+ * moves, simple status effects, and stat boost moves
  * */
 public abstract class PokemonMove
 {
@@ -21,6 +23,12 @@ public abstract class PokemonMove
     protected int currentPp;
     protected int power;
     protected int accuracy;
+    public Targets targets;
+    public int priority;
+    public int multihit;
+    public float crit_ratio;
+    public int heal;
+    public MoveStatus status;
 
     public PokemonMove(Pokemon pokemon, Moves moveEnum)
     {
@@ -36,17 +44,20 @@ public abstract class PokemonMove
 
         MoveData data = MoveDataReader.getMoveData(moveEnum);
 
-        TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
-        name = data.name.ToLower();
-        name = name.Replace('_', ' ');
-        name = textInfo.ToTitleCase(name);
-        type = PokemonType.get((TypeEnum)Enum.Parse(typeof(TypeEnum), data.type.ToUpper()));
-        category = (MoveCategory)Enum.Parse(typeof(MoveCategory), data.category.ToUpper());
+        name = StringHelper.ToTitleCase(data.name, true);
+        type = PokemonType.get(EnumHelper.GetEnum<TypeEnum>(data.type));
+        category = EnumHelper.GetEnum<MoveCategory>(data.category);
         pp = data.pp;
         currentPp = data.pp;
         power = data.power;
         accuracy = data.accuracy;
-    }
+        targets = EnumHelper.GetEnum<Targets>(data.targets);
+        priority = data.priority;
+        multihit = data.multihit;
+        crit_ratio = data.crit_ratio;
+        heal = data.heal;
+        status = new MoveStatus(data.status, data.statuschance, data.statustargets);
+}
 
     public void setPokemon(Pokemon pokemon)
     {
@@ -104,9 +115,23 @@ public abstract class PokemonMove
         return pokemon;
     }
 
-    public virtual string getScript()
+    public virtual List<string> getScript()
     {
-        return "none";
+        return null;
+    }
+}
+
+public class MoveStatus
+{
+    public StatusType status;
+    public int status_chance;
+    public Targets status_targets;
+
+    public MoveStatus(string statusString, int status_chance, string status_targetsString)
+    {
+        status = EnumHelper.GetEnum<StatusType>(statusString);
+        this.status_chance = status_chance;
+        status_targets = EnumHelper.GetEnum<Targets>(status_targetsString);
     }
 }
 

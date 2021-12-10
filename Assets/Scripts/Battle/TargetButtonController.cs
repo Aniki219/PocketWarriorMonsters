@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 public class TargetButtonController : MenuButtonController
 {
-    [SerializeField] private FieldSlotController fieldSlot;
+    [SerializeField] private List<FieldSlotController> fieldSlots;
 
     [SerializeField] private Text pokeName;
     [SerializeField] private Text pokeLevel;
@@ -18,6 +18,7 @@ public class TargetButtonController : MenuButtonController
     [SerializeField] private Image type1Icon;
     [SerializeField] private Image type2Icon;
 
+    public bool submittable = true;
     private bool submitted = false;
 
     [SerializeField] private BattlePlanController battlePlan;
@@ -26,6 +27,9 @@ public class TargetButtonController : MenuButtonController
 
     public void setTargetInfo()
     {
+        if (fieldSlots.Count > 1) return;
+
+        FieldSlotController fieldSlot = fieldSlots[0];
         if (fieldSlot.pokemon == null) return;
 
         Pokemon pokemon = fieldSlot.pokemon;
@@ -71,8 +75,15 @@ public class TargetButtonController : MenuButtonController
     {
         base.OnSelect(eventData);
         submitted = false;
-        Camera.main.GetComponent<CameraController>().SetTarget(fieldSlot.transform.position);
-        battlePlan.planMoves[BattleController.currentPokemonIndex].addTarget(fieldSlot);
+
+        if (fieldSlots.Count == 1)
+        {
+            BattleController.cam.SetTarget(fieldSlots[0].transform.position);
+        } else
+        {
+            BattleController.cam.Reset();
+        }
+        battlePlan.planMoves[BattleController.currentPokemonIndex].addTargets(fieldSlots);
     }
 
     public override void OnDeselect(BaseEventData eventData)
@@ -80,7 +91,7 @@ public class TargetButtonController : MenuButtonController
         base.OnDeselect(eventData);
         if (submitted == false)
         {
-            battlePlan.planMoves[BattleController.currentPokemonIndex].removeTarget(fieldSlot);
+            battlePlan.planMoves[BattleController.currentPokemonIndex].removeTargets(fieldSlots);
         }
     }
 
@@ -90,6 +101,7 @@ public class TargetButtonController : MenuButtonController
      * */
     public override void OnSubmit(BaseEventData eventData)
     {
+        if (!submittable) return;
         targetButtonSelected.Invoke(true);
         submitted = true;
     }
@@ -99,5 +111,8 @@ public class TargetButtonController : MenuButtonController
         targetButtonSelected.Invoke(false);
     }
 
-    
+    public List<FieldSlotController> getFieldSlots()
+    {
+        return fieldSlots;
+    }
 }

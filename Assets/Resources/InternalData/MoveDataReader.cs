@@ -55,4 +55,21 @@ public struct MoveData
     public int pp;
     public int power;
     public int accuracy;
+    public string targets;
+    public int priority;
+    public int multihit;
+    public float crit_ratio;
+    public int heal;
+    public string status;
+    public int statuschance;
+    public string statustargets;
+    public string boosttargets;
+    public int attackboost;
+    public int defenseboost;
+    public int spattackboost;
+    public int spdefenseboost;
+    public int speedboost;
+    public int accuracyboost;
+    public int evasionboost;
+    public int criticalboost;
 }

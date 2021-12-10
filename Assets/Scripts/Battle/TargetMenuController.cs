@@ -16,42 +16,83 @@ public class TargetMenuController : MonoBehaviour
 {
     [SerializeField] private Animator anim;
     [SerializeField] private BattleController battleController;
-    [SerializeField] private List<Button> buttons;
+    [SerializeField] private List<TargetButtonController> EnemyButtons;
+    [SerializeField] private List<TargetButtonController> AllyButtons;
+    [SerializeField] private List<TargetButtonController> AllEnemiesButton;
+    [SerializeField] private List<TargetButtonController> AllAlliesButton;
+    [SerializeField] private List<TargetButtonController> AllButton;
 
     /* Bring up the BattleMenu with an animation
      * Also set the buttons to interactable and select the first one. */
-    public void Show()
+    public void Show(Targets targets)
     {
         anim.SetBool("Showing", true);
-        for (int i = 0; i < buttons.Count; i++)
+
+        switch (targets)
         {
-            Button b = buttons[i];
+            case Targets.ALL:
+                setButtons(AllButton);
+                setButtons(AllyButtons, true, false);
+                setButtons(EnemyButtons, true, false);
+                AllButton[0].getButton().Select();
+                break;
 
-            //Don't enable buttons for defeated pokemon
-            List<FieldSlotController> fieldSlots = new List<FieldSlotController>();
-            fieldSlots.AddRange(battleController.enemyFieldSlots);
-            fieldSlots.AddRange(battleController.allyFieldSlots);
-            if (!fieldSlots[i].isAvailable())
-            {
-                buttons[i].gameObject.SetActive(false);
-                continue;
-            }
+            case Targets.ALLIES:
+                setButtons(AllAlliesButton);
+                setButtons(AllyButtons, true, false);
+                AllAlliesButton[0].getButton().Select();
+                break;
 
-            //TODO: Enable the actual available targets
-            //Will probably also need to set up button navigation
-            if (i < 3) { buttons[i].gameObject.SetActive(true); }
-            b.GetComponent<TargetButtonController>().setTargetInfo();
+            case Targets.ALLY:
+                setButtons(AllyButtons, true, true);
+                AllyButtons.Find(b => b.getFieldSlots()[0].isAvailable()).getButton().Select();
+                break;
+
+            case Targets.ENEMY:
+                setButtons(EnemyButtons, true, true);
+                EnemyButtons.Find(b => b.getFieldSlots()[0].isAvailable()).getButton().Select();
+                break;
+
+            case Targets.ENEMIES:
+                setButtons(AllEnemiesButton);
+                setButtons(EnemyButtons, true, false);
+                AllEnemiesButton[0].getButton().Select();
+                break;
+
+            default:
+                throw new Exception("Targets enum type: " + targets.ToString() + " not supported!");
         }
-        //Find the first enabled button and select it
-        buttons.Find(b => b.IsActive()).Select();
+    }
+
+    private void setButtons(List<TargetButtonController> buttons, bool active = true, bool interact = true)
+    {
+        foreach (TargetButtonController b in buttons)
+        {
+            b.gameObject.SetActive(active);
+            b.getButton().interactable = interact;
+            b.submittable = (b.getFieldSlots().Count == 1 && b.getFieldSlots()[0].isAvailable());
+            if (b.submittable)
+            {
+                b.setTargetInfo();
+            }
+        }
     }
 
     /* Hide the BattleMenu with an aimation */
     public void Hide()
     {
         anim.SetBool("Showing", false);
-        foreach (Button b in buttons)
+
+        List<TargetButtonController> buttons = AllButton
+            .Concat(AllAlliesButton)
+            .Concat(AllEnemiesButton)
+            .Concat(EnemyButtons)
+            .Concat(AllyButtons).ToList();
+
+        foreach (TargetButtonController b in buttons)
         {
+            if (!b.isActiveAndEnabled) continue;
+            b.getButton().interactable = false;
             b.gameObject.SetActive(false);
         }
     }

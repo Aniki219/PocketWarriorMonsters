@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using StatusEffects;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static BattleController;
@@ -45,6 +46,7 @@ public class BattleMove : BattleAction
 
     public void setTargetDamages()
     {
+        if (targets == null) return;
         targetDamages = new Dictionary<FieldSlotController, int>();
         didCrit = Random.Range(0, 1.0f) <= 6.25f * (source.getBaseStat(Stats.CRIT_CHANCE) + 1) / 100.0f;
         randomMod = Random.Range(0.85f, 1.0f); //Damage range
@@ -81,14 +83,20 @@ public class BattleMove : BattleAction
         return source;
     }
 
-    public override string script()
+    public override List<string> script()
     {
-        if (move.getScript() != "none") return move.getScript();
+        List<string> scriptLines = new List<string>();
+        if (targets.Count == 0)
+        {
+            throw new System.Exception("A BattleMove (" + move.getName() + ") was used by "
+                + source.displayName + " but had no targets.");
+        }
+        if (move.getScript() != null) return move.getScript();
 
-        string script = string.Format("{0} used {1}.<br>", source.name, move.getName());
+        scriptLines.Add(string.Format("<?zoom|{2}>{0} used {1}.<br>", source.name, move.getName(), source.fieldSlot.slotNumber));
 
         foreach (FieldSlotController target in targets) {
-            script += string.Format("<?zoom|{0}>", target.slotNumber);
+            string script = string.Format("<?zoom|{0}>", target.slotNumber);
             List <PokemonType> types = new List<PokemonType>() { target.pokemon.type_1, target.pokemon.type_2 };
             setTargetDamages();
             float effectiveness = calcTypeEffectiveness(move.getType(), types);
@@ -116,11 +124,9 @@ public class BattleMove : BattleAction
                 script += string.Format("{0} took {1} damage.<br>", 
                     target.pokemon.displayName, getDamage(target));
             }
-
-            return script;
+            scriptLines.Add(script);
         }
-        throw new System.Exception("A BattleMove (" + move.getName() + ") was used by " 
-            + source.displayName + " but had no targets.");
+        return scriptLines;
     }
 
     int calcDamage(Pokemon target, bool multihit = false)
@@ -143,7 +149,7 @@ public class BattleMove : BattleAction
         float typeMod = calcTypeEffectiveness(type, target.getTypes());
         float STAB = source.getTypes().Contains(type) ? 1.5f : 1.0f;
         float burnMod = (move.getCategory().Equals(MoveCategory.PHYSICAL) && 
-            source.hasStatus<Burn>() ?  0.5f : 0.1f;
+            source.hasStatus<Burn>()) ?  0.5f : 1.0f;
         //randomMod is calculated in constructor
         
         int dmg = (int)(Mathf.Round(
@@ -190,7 +196,9 @@ public class BattleMove : BattleAction
     {
         if (!action.GetType().Equals(typeof(BattleMove))) return 0;
         BattleMove battleMove = (BattleMove)action;
-        Pokemon pokemon = battleMove.getPokemon();
-        return pokemon.getStatValue(Stats.SPEED).CompareTo(pokemon.getStatValue(Stats.SPEED));
+        int mySpeed = source.getStatValue(Stats.SPEED);
+        int otherSpeed = battleMove.getPokemon().getStatValue(Stats.SPEED);
+        //This is the correct direction for descending order
+        return otherSpeed.CompareTo(mySpeed);
     }
 }

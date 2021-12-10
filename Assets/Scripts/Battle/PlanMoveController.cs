@@ -89,26 +89,29 @@ public class PlanMoveController : MonoBehaviour
                 {
                     targetIcons[j].enabled = true;
                 }
+            } else
+            {
+                i -= 3;
             }
             targetIcons[i].color = highlightColor;
         }
     }
 
-    public void addTarget(FieldSlotController target)
+    public void addTargets(List<FieldSlotController> targetsToAdd)
     {
-        if (!targets.Contains(target))
+        foreach (FieldSlotController target in targetsToAdd)
         {
-            targets.Add(target);
-            setTargets();
+            if (!targets.Contains(target))
+            {
+                targets.Add(target);
+                setTargets();
+            }
         }
     }
 
-    public void removeTarget(FieldSlotController target)
+    public void removeTargets(List<FieldSlotController> targetsToRemove)
     {
-        if (targets.Contains(target))
-        {
-            targets.Remove(target);
-            setTargets();
-        }
+        targets.RemoveAll(t => targetsToRemove.Contains(t));
+        setTargets();
     }
 }
