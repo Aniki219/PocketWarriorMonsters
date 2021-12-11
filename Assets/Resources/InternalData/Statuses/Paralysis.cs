@@ -14,6 +14,11 @@ namespace StatusEffects
             buffer = BattleController.BattleBuffer.BATTLE_MOVE;
         }
 
+        public override string ApplyScript()
+        {
+            return pokemon.displayName + " is paralyzed!<br> It may not attack!";
+        }
+
         public override async Task<BattleMove> DoInterruptStatus(BattleMessageController messageController)
         {
             await base.DoStatus(messageController);

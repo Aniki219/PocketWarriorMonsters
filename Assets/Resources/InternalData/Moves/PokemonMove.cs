@@ -28,7 +28,7 @@ public abstract class PokemonMove
     public int multihit;
     public float crit_ratio;
     public int heal;
-    public MoveStatus status;
+    public MoveStatus moveStatus;
 
     public PokemonMove(Pokemon pokemon, Moves moveEnum)
     {
@@ -56,7 +56,7 @@ public abstract class PokemonMove
         multihit = data.multihit;
         crit_ratio = data.crit_ratio;
         heal = data.heal;
-        status = new MoveStatus(data.status, data.statuschance, data.statustargets);
+        moveStatus = new MoveStatus(data.status, data.statuschance, data.statustargets);
 }
 
     public void setPokemon(Pokemon pokemon)

@@ -15,6 +15,11 @@ namespace StatusEffects
             buffer = BattleController.BattleBuffer.TURN_END;
         }
 
+        public override string ApplyScript()
+        {
+            return pokemon.displayName + " was poisoned!<br>";
+        }
+
         public override async Task DoStatus(BattleMessageController messageController)
         {
             await base.DoStatus(messageController);

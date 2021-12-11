@@ -56,10 +56,10 @@ public class Pokemon
         current_hp = getStatValue(Stats.HP);
 
         moves = new List<PokemonMove>();
-        moves.Add(new StandardMove(Moves.ABSORB, this));
-        moves.Add(new StandardMove(Moves.MIST, this));
-        moves.Add(new StandardMove(Moves.RAZOR_WIND, this));
-        moves.Add(new StandardMove(Moves.HAZE, this));
+        moves.Add(new StandardMove(Moves.CONFUSION, this));
+        moves.Add(new StandardMove(Moves.POISON_STING, this));
+        moves.Add(new StandardMove(Moves.FIRE_PUNCH, this));
+        moves.Add(new StandardMove(Moves.THUNDER_WAVE, this));
 
         statuses = new List<PokemonStatus>();
 

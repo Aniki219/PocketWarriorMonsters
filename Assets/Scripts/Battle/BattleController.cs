@@ -422,11 +422,28 @@ public class BattleController : MonoBehaviour
                     foreach (FieldSlotController fc in move.getTargets())
                     {
                         script.RemoveAt(0);
-                        await BattleMessage.performScript(script[0]);
+                        if (script.Count > 0)
+                        {
+                            await BattleMessage.performScript(script[0]);
+                        }
 
                         AudioClip hitSound = Resources.Load<AudioClip>("Sounds/BattleMoves/Hit Normal Damage");
                         audio.PlayOneShot(hitSound);
                         await fc.takeDamage(move.getDamage(fc));
+
+                        //Stop if pokemon faints
+                        if (!fc.isAvailable()) continue;
+
+                        MoveStatus moveStatus = move.getMove().moveStatus;
+                        if (moveStatus.status != StatusType.NONE)
+                        {
+                            if (Random.Range(0.0f, 1.0f) < moveStatus.status_chance)
+                            {
+                                PokemonStatus statusEffect = PokemonStatus.create(moveStatus.status);
+                                fc.pokemon.addStatus(statusEffect);
+                                await BattleMessage.performScript(statusEffect.ApplyScript());
+                            }
+                        }
                     }
 
                 SkipMove:

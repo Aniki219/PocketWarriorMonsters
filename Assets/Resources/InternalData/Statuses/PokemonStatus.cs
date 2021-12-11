@@ -33,6 +33,11 @@ namespace StatusEffects
             this.pokemon = pokemon;
         }
 
+        public virtual string ApplyScript()
+        {
+            return pokemon.displayName + " was affected by " + GetType().ToString();
+        }
+
         /* I think the best way to do this is to have the BattleController pass in
          * a reference to the BattleMessageController. I don't like it, but this is
          * only going to ever work one way, so it's fine to have this dependency
