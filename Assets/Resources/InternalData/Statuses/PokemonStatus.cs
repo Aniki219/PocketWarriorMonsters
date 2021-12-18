@@ -82,7 +82,8 @@ namespace StatusEffects
             Type pokemonStatusType = Type.GetType(typeof(PokemonStatus).Namespace + "." + status);
             if (pokemonStatusType == null)
             {
-                throw new Exception("No PokemonStatus type " + status + " found!");
+                //throw new Exception("No PokemonStatus type " + status + " found!");
+                return null;
             }
             else
             {

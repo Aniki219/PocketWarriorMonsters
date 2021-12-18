@@ -140,7 +140,9 @@ public class MoveStatus
         {
             PokemonStatus statusEffect = PokemonStatus.create(status);
             pokemon.addStatus(statusEffect);
+            if (statusEffect != null) { 
             await battleMessage.performScript(statusEffect.ApplyScript());
+            }
         }
         await Task.Yield();
     }

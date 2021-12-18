@@ -56,7 +56,7 @@ public class Pokemon
         current_hp = getStatValue(Stats.HP);
 
         moves = new List<PokemonMove>();
-        moves.Add(new StandardMove((Moves)UnityEngine.Random.Range(1,100), this));
+        moves.Add(new StandardMove(Moves.FISSURE, this));
         moves.Add(new StandardMove((Moves)UnityEngine.Random.Range(1, 100), this));
         moves.Add(new StandardMove((Moves)UnityEngine.Random.Range(1, 100), this));
         moves.Add(new StandardMove((Moves)UnityEngine.Random.Range(1, 100), this));
@@ -157,6 +157,7 @@ public class Pokemon
      * */
     public bool addStatus(PokemonStatus status)
     {
+        if (status == null) return false;
         status.setPokemon(this);
 
         if (status.isVolatile)
