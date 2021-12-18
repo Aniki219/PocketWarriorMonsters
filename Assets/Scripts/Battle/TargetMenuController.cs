@@ -30,14 +30,14 @@ public class TargetMenuController : MonoBehaviour
         switch (targets)
         {
             case Targets.ALL:
-                setButtons(AllButton);
+                setButtons(AllButton, true, true);
                 setButtons(AllyButtons, true, false);
                 setButtons(EnemyButtons, true, false);
                 AllButton[0].getButton().Select();
                 break;
 
             case Targets.ALLIES:
-                setButtons(AllAlliesButton);
+                setButtons(AllAlliesButton, true, true);
                 setButtons(AllyButtons, true, false);
                 AllAlliesButton[0].getButton().Select();
                 break;
@@ -53,7 +53,7 @@ public class TargetMenuController : MonoBehaviour
                 break;
 
             case Targets.ENEMIES:
-                setButtons(AllEnemiesButton);
+                setButtons(AllEnemiesButton, true, true);
                 setButtons(EnemyButtons, true, false);
                 AllEnemiesButton[0].getButton().Select();
                 break;
@@ -82,8 +82,8 @@ public class TargetMenuController : MonoBehaviour
         {
             b.gameObject.SetActive(active);
             b.getButton().interactable = interact;
-            b.submittable = (b.getFieldSlots().Count == 1 && b.getFieldSlots()[0].isAvailable());
-            if (b.submittable)
+            b.submittable = (b.getFieldSlots().Count == 1 && b.getFieldSlots()[0].isAvailable()) || (b.getFieldSlots().Count > 1);
+            if (b.submittable && b.getFieldSlots().Count == 1)
             {
                 b.setTargetInfo();
             }
