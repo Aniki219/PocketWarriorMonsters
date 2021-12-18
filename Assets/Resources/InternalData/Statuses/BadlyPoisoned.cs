@@ -4,11 +4,13 @@ using UnityEngine;
 
 namespace StatusEffects
 {
-    public class Poisoned : PokemonStatus
+    public class BadlyPoisoned : PokemonStatus
     {
-        const float POISON_RATIO = 1.0f / 8.0f;
+        const float BADLY_POISONED_RATIO = 1.0f / 16.0f;
 
-        public Poisoned()
+        int tick = 1;
+
+        public BadlyPoisoned()
         {
             duration = -1;
             statusBadgeId = 0;
@@ -18,14 +20,15 @@ namespace StatusEffects
 
         public override string ApplyScript()
         {
-            return pokemon.displayName + " was poisoned!<br>";
+            return pokemon.displayName + " was badly poisoned!<br>";
         }
 
         public override async Task DoStatus(BattleMessageController messageController)
         {
             await base.DoStatus(messageController);
 
-            int damage = Mathf.RoundToInt(pokemon.getStatValue(Stats.HP) * POISON_RATIO);
+            int damage = Mathf.RoundToInt(pokemon.getStatValue(Stats.HP) * BADLY_POISONED_RATIO * tick);
+            tick++;
             string script = pokemon.displayName + " takes " + damage + " damage from poison!<br>";
             await messageController.performScript(script);
             await pokemon.fieldSlot.takeDamage(damage);

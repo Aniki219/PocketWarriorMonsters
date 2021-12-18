@@ -1,6 +1,7 @@
 ﻿using StatusEffects;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using static BattleController;
 
@@ -27,9 +28,6 @@ public class BattleMove : BattleAction
     //This is calculated in constructor
     private bool didCrit = false; 
     private float randomMod = 1.0f;
-
-    private PokemonStatus status;
-    private int statusChance;
 
     private Dictionary<FieldSlotController, int> targetDamages;
 
@@ -127,6 +125,57 @@ public class BattleMove : BattleAction
             scriptLines.Add(script);
         }
         return scriptLines;
+    }
+
+    public void fixTargets()
+    {
+        //Fix targets
+        List<FieldSlotController> fixedTargets = new List<FieldSlotController>();
+        //For each intended target...
+        foreach (FieldSlotController target in targets)
+        {
+            //If it is available we keep it (add to list of fixedTargets)
+            if (target.isAvailable())
+            {
+                fixedTargets.Add(target);
+                continue;
+            }
+            else
+            //If the target is not available (e.g. fainted)
+            {
+                //Then if this is an AoE ability, exclude the target
+                if (targets.Count > 1)
+                {
+                    continue;
+                }
+                else
+                //But if it was a single target we must reroute it
+                {
+                    //So we get all fieldControllers of either enemies or allies
+                    List<FieldSlotController> availableTargets = target.isEnemy ? 
+                        battleController.enemyFieldSlots : battleController.allyFieldSlots;
+                    //Filter out all of the ones which are available
+                    availableTargets = availableTargets.FindAll(t => t.isAvailable());
+                    //And pick a random new target from that list
+                    FieldSlotController nextTarget = availableTargets[0]; //availableTargets[Random.Range(0, availableTargets.Count - 1)];
+                                                                          //Then we add it to the fixed list
+                    fixedTargets.Add(nextTarget);
+                }
+            }
+        }
+        //We need to recalculate the damage the move deals to the new target
+        setTargetDamages();
+    }
+
+    public async Task playSound()
+    {
+        AudioClip clip = Resources.Load<AudioClip>("Sounds/BattleMoves/" + move.getName());
+        if (clip == null)
+        {
+            clip = Resources.Load<AudioClip>("Sounds/BattleMoves/Tackle");
+        }
+        battleController.audio.PlayOneShot(clip);
+        await Task.Delay((int)(clip.length * 500));
     }
 
     int calcDamage(Pokemon target, bool multihit = false)

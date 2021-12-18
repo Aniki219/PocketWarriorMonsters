@@ -56,10 +56,10 @@ public class Pokemon
         current_hp = getStatValue(Stats.HP);
 
         moves = new List<PokemonMove>();
-        moves.Add(new StandardMove(Moves.CONFUSION, this));
-        moves.Add(new StandardMove(Moves.POISON_STING, this));
-        moves.Add(new StandardMove(Moves.FIRE_PUNCH, this));
-        moves.Add(new StandardMove(Moves.THUNDER_WAVE, this));
+        moves.Add(new StandardMove((Moves)UnityEngine.Random.Range(1,100), this));
+        moves.Add(new StandardMove((Moves)UnityEngine.Random.Range(1, 100), this));
+        moves.Add(new StandardMove((Moves)UnityEngine.Random.Range(1, 100), this));
+        moves.Add(new StandardMove((Moves)UnityEngine.Random.Range(1, 100), this));
 
         statuses = new List<PokemonStatus>();
 
@@ -158,6 +158,7 @@ public class Pokemon
     public bool addStatus(PokemonStatus status)
     {
         status.setPokemon(this);
+
         if (status.isVolatile)
         {
             if (statuses.Find(s => s.GetType().Equals(status.GetType())) == null)
@@ -169,6 +170,11 @@ public class Pokemon
         {
             if (statuses.Find(s => !s.isVolatile) == null)
             {
+                Sprite statusBadge = status.getStatusBadge();
+                if (statusBadge != null && fieldSlot != null)
+                {
+                    fieldSlot.healthbar.setStatusBadge(statusBadge);
+                }
                 statuses.Add(status);
                 return true;
             }
@@ -180,11 +186,19 @@ public class Pokemon
     public void clearStatuses()
     {
         statuses = statuses.FindAll(s => s.duration != 0);
+        if (fieldSlot != null)
+        {
+            fieldSlot.healthbar.setStatusBadge(null);
+        }
     }
 
     public void removeStatus(PokemonStatus status)
     {
         statuses.Remove(status);
+        if (fieldSlot != null && !status.isVolatile)
+        {
+            fieldSlot.healthbar.setStatusBadge(null);
+        }
     }
 
     public bool hasStatus<T>()
@@ -231,7 +245,12 @@ public class Pokemon
         if (Enum.TryParse(name, out nameEnum))
         {
             if (Enum.IsDefined(typeof(PokemonName), nameEnum)) {
-                return Resources.LoadAll<Sprite>(overworldPath + nameEnum.ToString().ToLower());
+                Sprite[] sprites = Resources.LoadAll<Sprite>(overworldPath + nameEnum.ToString().ToLower());
+                if (sprites == null || sprites.Length < 2)
+                {
+                    sprites = Resources.LoadAll<Sprite>(overworldPath + "nidoqueen");
+                }
+                return sprites;
             }
             throw new Exception("PokmonName enum " + name + " is undefined!");
         } else

@@ -14,10 +14,10 @@ public class HealthbarController : MonoBehaviour
     private const float MAX_SPEED = 10;
     private float currentSliderVelocity;
 
-
     [SerializeField] private Text nameText;
     [SerializeField] private Text healthText;
     [SerializeField] private Text levelText;
+    [SerializeField] private Image statusBadge;
 
     private void Start()
     {
@@ -53,5 +53,11 @@ public class HealthbarController : MonoBehaviour
             int maxHp = pokemon.getStatValue(Stats.HP);
             healthText.text = Mathf.Round(maxHp * healthBar.value) + " / " + maxHp;
         }
+    }
+
+    public void setStatusBadge(Sprite badgeSprite)
+    {
+        statusBadge.enabled = (badgeSprite != null);
+        statusBadge.sprite = badgeSprite;
     }
 }

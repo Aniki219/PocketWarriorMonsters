@@ -1,4 +1,5 @@
 ﻿using Febucci.UI;
+using StatusEffects;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -79,7 +80,7 @@ public class BattleMenuController : MonoBehaviour
         for (int i = 0; i < battleController.allyFieldSlots.Count;)
         {
             //Skip the turn of any fieldSlots that don't have available pokemon
-            if (!battleController.allyFieldSlots[i].isAvailable())
+            if (!battleController.allyFieldSlots[i].isAvailable() || battleController.allyFieldSlots[i].pokemon.hasStatus<Flinch>())
             {
                 i++;
                 continue;
@@ -157,7 +158,7 @@ public class BattleMenuController : MonoBehaviour
         //Show the battlePlan UI
         battlePlan.Show();
         planMove.setPokemonIcon(pokemon.displayName);
-        BattleController.cam.SetTarget(battleController.allyFieldSlots[i].transform.position);
+        BattleController.cam.SetTarget(source.transform.position);
         //Show move buttons
         moveMenu.Show();
 
@@ -176,7 +177,7 @@ public class BattleMenuController : MonoBehaviour
         await Task.Delay(200);
         moveMenu.Hide();
         await Task.Delay(100);
-        targetMenu.Show(move.targets);
+        targetMenu.Show(move.targets, source);
 
         /* Wait for player to select a target.
         * This returns a bool indicating whether a target was selected, or if

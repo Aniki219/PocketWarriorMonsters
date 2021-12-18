@@ -12,6 +12,7 @@ namespace StatusEffects
         public Burn()
         {
             duration = -1;
+            statusBadgeId = 4;
             isVolatile = false;
             buffer = BattleController.BattleBuffer.TURN_END;
         }

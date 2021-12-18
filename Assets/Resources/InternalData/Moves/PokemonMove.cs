@@ -133,5 +133,16 @@ public class MoveStatus
         this.status_chance = status_chance;
         status_targets = EnumHelper.GetEnum<Targets>(status_targetsString);
     }
+
+    public async Task Apply(Pokemon pokemon, BattleMessageController battleMessage)
+    {
+        if (status != StatusType.NONE && UnityEngine.Random.Range(0.0f, 1.0f) < status_chance)
+        {
+            PokemonStatus statusEffect = PokemonStatus.create(status);
+            pokemon.addStatus(statusEffect);
+            await battleMessage.performScript(statusEffect.ApplyScript());
+        }
+        await Task.Yield();
+    }
 }
 

@@ -15,7 +15,6 @@ using UnityEngine.UI;
 public class TargetMenuController : MonoBehaviour
 {
     [SerializeField] private Animator anim;
-    [SerializeField] private BattleController battleController;
     [SerializeField] private List<TargetButtonController> EnemyButtons;
     [SerializeField] private List<TargetButtonController> AllyButtons;
     [SerializeField] private List<TargetButtonController> AllEnemiesButton;
@@ -24,7 +23,7 @@ public class TargetMenuController : MonoBehaviour
 
     /* Bring up the BattleMenu with an animation
      * Also set the buttons to interactable and select the first one. */
-    public void Show(Targets targets)
+    public void Show(Targets targets, FieldSlotController sourceFc)
     {
         anim.SetBool("Showing", true);
 
@@ -57,6 +56,19 @@ public class TargetMenuController : MonoBehaviour
                 setButtons(AllEnemiesButton);
                 setButtons(EnemyButtons, true, false);
                 AllEnemiesButton[0].getButton().Select();
+                break;
+
+            case Targets.SELF:
+                setButtons(AllyButtons.FindAll(b => b.getFieldSlots()[0].Equals(sourceFc)), true, true);
+                AllyButtons.Find(b => b.isActiveAndEnabled).getButton().Select();
+                break;
+
+            case Targets.ALL_BUT_SELF:
+                setButtons(AllButton, true, true);
+                setButtons(AllyButtons, true, false);
+                setButtons(EnemyButtons, true, false);
+                setButtons(AllyButtons.FindAll(b => b.getFieldSlots()[0].Equals(sourceFc)), false, false);
+                AllButton[0].getButton().Select();
                 break;
 
             default:

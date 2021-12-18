@@ -10,12 +10,29 @@ using UnityEngine;
 
 public class BattleController : MonoBehaviour
 {
-    public List<FieldSlotController> allyFieldSlots = new List<FieldSlotController>();
-    public List<FieldSlotController> enemyFieldSlots = new List<FieldSlotController>();
+    #region Singleton
+    private static BattleController instance;
+    public static BattleController battleController { get { return instance; } }
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+    }
+    private void OnDestroy() { if (this == instance) { instance = null; } }
+    #endregion
 
     public BattleMessageController BattleMessage;
     public BattleMenuController BattleMenu;
     public BattlePlanController battlePlan;
+
+    public List<FieldSlotController> allyFieldSlots = new List<FieldSlotController>();
+    public List<FieldSlotController> enemyFieldSlots = new List<FieldSlotController>();
 
     public static CameraController cam;
     public AudioSource audio;
@@ -135,7 +152,7 @@ public class BattleController : MonoBehaviour
             case BattlePhase.BATTLE:
                 Debug.Log("Battling Phase...");
                 sortBattleBuffers();
-                await readBattleActionsScript();
+                await performBattleActions();
                 changeBattlePhase(BattlePhase.TURN_END);
                 break;
 
@@ -160,7 +177,7 @@ public class BattleController : MonoBehaviour
         int num = 3;
         for (int i = 0; i < num && i < 3; i++)
         {
-            int level = Random.Range(1, 100);
+            int level = 50;
             PokemonName randomPokemonName = (PokemonName)(Random.Range(1, 490));
             Pokemon randomPokemon = Pokemon.fromData(PokedexDataReader.getPokemonData(randomPokemonName), level);
             enemyFieldSlots[i].setPokemon(randomPokemon, true);
@@ -333,7 +350,7 @@ public class BattleController : MonoBehaviour
         }
     }
 
-    private async Task readBattleActionsScript()
+    private async Task performBattleActions()
     {
         foreach (KeyValuePair<BattleBuffer, List<BattleAction>> entry in battleBuffer)
         {
@@ -341,110 +358,23 @@ public class BattleController : MonoBehaviour
             {
                 if (action.toBeRemoved) continue;
                 if (action.source.isFainted()) continue;
+                if (action.source.hasStatus<Flinch>()) continue;
 
                 if (action.GetType().Equals(typeof(BattleMove)))
                 {
                     BattleMove move = (BattleMove)action;
 
-                    #region checkStatus
-                    move.getPokemon().clearStatuses();
-                    move.getPokemon().statuses.Sort();
-                    List<PokemonStatus> statuses = move.getPokemon().statuses.FindAll(s => s.getBuffer().Equals(BattleBuffer.BATTLE_MOVE));
-                    foreach (PokemonStatus status in statuses)
-                    {
-                        BattleMove newMove = await status.DoInterruptStatus(BattleMessage);
-                        if (newMove != null)
-                        {
-                            if (newMove.getMove().GetType().Equals(typeof(SkipMove)))
-                            {
-                                //Paralysis, Sleep
-                                goto SkipMove;
-                            }
-                            //Confusion HitSelf or Uncontrollable Move
-                            move = newMove;
-                            break;
-                        }
-                        //Confusion or paralysis did not work
-                        //Sleep wake up?
-                    }
-                    #endregion
+                    move = await checkBattleStatus(move);
+                    if (move.GetType().Equals(typeof(SkipMove))) goto SkipMove;
 
-                    #region FixTargets
-                    //Fix targets
-                    List<FieldSlotController> fixedTargets = new List<FieldSlotController>();
-                    //For each intended target...
-                    foreach (FieldSlotController target in move.targets)
-                    {
-                        //If it is available we keep it (add to list of fixedTargets)
-                        if (target.isAvailable())
-                        {
-                            fixedTargets.Add(target);
-                            continue;
-                        }
-                        else
-                        //If the target is not available (e.g. fainted)
-                        {
-                            //Then if this is an AoE ability, exclude the target
-                            if (move.targets.Count > 1)
-                            {
-                                continue;
-                            }
-                            else
-                            //But if it was a single target we must reroute it
-                            {
-                                //So we get all fieldControllers of either enemies or allies
-                                List<FieldSlotController> availableTargets =
-                                    target.isEnemy ? enemyFieldSlots : allyFieldSlots;
-                                //Filter out all of the ones which are available
-                                availableTargets = availableTargets.FindAll(t => t.isAvailable());
-                                //And pick a random new target from that list
-                                FieldSlotController nextTarget = availableTargets[0]; //availableTargets[Random.Range(0, availableTargets.Count - 1)];
-                                //Then we add it to the fixed list
-                                fixedTargets.Add(nextTarget);
-                            }
-                        }
-                    }
-                    move.targets = fixedTargets;
-                    //We need to recalculate the damage the move deals to the new target
-                    move.setTargetDamages();
-                    #endregion
+                    move.fixTargets();
 
                     List<string> script = move.script();
                     await BattleMessage.performScript(script[0]);
 
-                    AudioClip clip = Resources.Load<AudioClip>("Sounds/BattleMoves/" + move.getMove().getName());
-                    if (clip == null)
-                    {
-                        clip = Resources.Load<AudioClip>("Sounds/BattleMoves/Tackle");
-                    }
-                    audio.PlayOneShot(clip);
+                    await move.playSound();
 
-                    foreach (FieldSlotController fc in move.getTargets())
-                    {
-                        script.RemoveAt(0);
-                        if (script.Count > 0)
-                        {
-                            await BattleMessage.performScript(script[0]);
-                        }
-
-                        AudioClip hitSound = Resources.Load<AudioClip>("Sounds/BattleMoves/Hit Normal Damage");
-                        audio.PlayOneShot(hitSound);
-                        await fc.takeDamage(move.getDamage(fc));
-
-                        //Stop if pokemon faints
-                        if (!fc.isAvailable()) continue;
-
-                        MoveStatus moveStatus = move.getMove().moveStatus;
-                        if (moveStatus.status != StatusType.NONE)
-                        {
-                            if (Random.Range(0.0f, 1.0f) < moveStatus.status_chance)
-                            {
-                                PokemonStatus statusEffect = PokemonStatus.create(moveStatus.status);
-                                fc.pokemon.addStatus(statusEffect);
-                                await BattleMessage.performScript(statusEffect.ApplyScript());
-                            }
-                        }
-                    }
+                    await hitTargets(move);
 
                 SkipMove:
                     continue;
@@ -452,6 +382,52 @@ public class BattleController : MonoBehaviour
 
                 cam.Reset();
             }
+        }
+    }
+
+    private async Task<BattleMove> checkBattleStatus(BattleMove move)
+    {
+        Pokemon pokemon = move.getPokemon();
+        //Thaw frozen check
+        if (move.getMove().getType().getTypeEnum() == TypeEnum.FIRE && move.getPokemon().hasStatus<Freeze>())
+        {
+            Freeze freeze = (Freeze)move.getPokemon().statuses.Find(s => s.GetType().Equals(typeof(Freeze)));
+            await freeze.unfreeze(BattleMessage);
+        }
+        move.getPokemon().clearStatuses();
+        move.getPokemon().statuses.Sort();
+        List<PokemonStatus> statuses = move.getPokemon().statuses.FindAll(s => s.getBuffer().Equals(BattleBuffer.BATTLE_MOVE));
+        foreach (PokemonStatus status in statuses)
+        {
+            BattleMove newMove = await status.DoInterruptStatus(BattleMessage);
+            if (newMove != null)
+            {
+                return newMove;
+            }
+        }
+        return move;
+    }
+
+    private async Task hitTargets(BattleMove move)
+    {
+        List<string> script = move.script();
+        foreach (FieldSlotController fc in move.getTargets())
+        {
+            script.RemoveAt(0);
+            if (script.Count > 0)
+            {
+                await BattleMessage.performScript(script[0]);
+            }
+
+            AudioClip hitSound = Resources.Load<AudioClip>("Sounds/BattleMoves/Hit Normal Damage");
+            audio.PlayOneShot(hitSound);
+            await fc.takeDamage(move.getDamage(fc));
+
+            //Stop if pokemon faints
+            if (!fc.isAvailable()) continue;
+
+            MoveStatus moveStatus = move.getMove().moveStatus;
+            await moveStatus.Apply(fc.pokemon, BattleMessage);
         }
     }
 

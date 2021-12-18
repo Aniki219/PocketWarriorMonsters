@@ -22,8 +22,9 @@ public class PlayerPokemon : ScriptableObject
         for (int i = 0; i < pokemon.Count; i++)
         {
             Pokemon poke = pokemon[i];
-            PokemonData data = PokedexDataReader.getPokemonData(poke.name);
-            int level = Random.Range(1, 100);
+            PokemonName randomPokemonName = (PokemonName)(Random.Range(1, 490));
+            PokemonData data = PokedexDataReader.getPokemonData(randomPokemonName);
+            int level = 50;//Random.Range(1, 100);
             int xp = Random.Range(0, 100);
             pokemon[i] = Pokemon.fromData(data, level, xp);
         }

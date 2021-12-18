@@ -14,6 +14,7 @@ namespace StatusEffects
         protected BattleController.BattleBuffer buffer;
         public int duration;
         public Pokemon pokemon;
+        protected int statusBadgeId = -1;
 
         /* Volatile statuses go away on their own or at the end of battle
          * additionally there is no limit to the number of unique volatile
@@ -96,6 +97,15 @@ namespace StatusEffects
         {
             StatusType statusType = EnumHelper.GetEnum<StatusType>(status);
             return create(statusType);
+        }
+
+        public Sprite getStatusBadge()
+        {
+            if (statusBadgeId < 0)
+            {
+                return null;
+            }
+            return Resources.LoadAll<Sprite>("Sprites/Battle/UI/StatusIcons")[statusBadgeId];
         }
     }
 
