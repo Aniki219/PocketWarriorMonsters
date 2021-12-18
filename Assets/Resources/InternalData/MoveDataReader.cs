@@ -9,7 +9,7 @@ public class MoveDataReader : ScriptableObject
     private static MoveDataReader instance;
     public static MoveDataReader Instance { get { return instance; } }
 
-    private static string path = "Data/PokemonMoves.json";
+    private static string path = Application.dataPath + "/StreamingAssets/PokemonMoves.json";
     public static PokemonMoveData data;
 
     [RuntimeInitializeOnLoadMethod]

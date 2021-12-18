@@ -30,13 +30,7 @@ public class PlanMoveController : MonoBehaviour
         if (pokeIconSprites != null)
         {
             int i = BattleController.tick;
-            if (pokeIconSprites.Length > i)
-            {
-                pokemonIcon.sprite = pokeIconSprites[i];
-            } else
-            {
-                pokemonIcon.sprite = pokeIconSprites[0];
-            }
+            pokemonIcon.sprite = pokeIconSprites[i];
         }
 
         if (num == BattleController.currentPokemonIndex)

@@ -9,7 +9,7 @@ public class PokedexDataReader : ScriptableObject
     private static PokedexDataReader instance;
     public static PokedexDataReader Instance { get { return instance; } }
 
-    private static string path = "Data/Pokedex.json";
+    private static string path = Application.dataPath + "/StreamingAssets/Pokedex.json";
     public static Pokedex data;
 
     [RuntimeInitializeOnLoadMethod]
